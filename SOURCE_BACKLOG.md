@@ -6,7 +6,6 @@ Promotion rule: move a folder out of this ledger only after the course text name
 
 | Folder | Classification | Action |
 | --- | --- | --- |
-| `_legacy-flat-layout` | legacy-or-archive | Legacy/archive material. Preserve for reference; do not link as active coursework without explicit migration. |
 | `Animal-Face-Lab` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
 | `Arrow` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
 | `Asterisk` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
@@ -84,7 +83,6 @@ Promotion rule: move a folder out of this ledger only after the course text name
 | `House` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
 | `July-4th-Fireworks` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
 | `July-4th-Fireworks-Solution-with-Stars` | support-or-variant-source | Support, template, starter, solution, or updated variant. Keep available but do not count as a separate active project unless promoted. |
-| `legacy-customized` | legacy-or-archive | Legacy/archive material. Preserve for reference; do not link as active coursework without explicit migration. |
 | `Lightning-Bolt` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
 | `Magic-8-Ball` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
 | `Map-to-the-Stars-Completed` | inactive-source-candidate | Inactive/promotable source. Do not link until the course text, starter/solution role, and verification expectation are added. |
