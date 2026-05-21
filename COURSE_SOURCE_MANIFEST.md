@@ -20,32 +20,27 @@ Canonical source repository: `Python-Level-1`
 | `Check-in-Two-Additional-Practice-ProjectUpdated` |
 | `Check-in-Two-Practice-Project` |
 | `Conditionals-and-Booleans-Recap` |
+| `End-of-Course-Reflection` |
 | `Etch-A-Sketch` |
 | `Event-Listener-Discovery` |
 | `Event-Listener-Recap` |
-| `Event-Listener-Recap-Template` |
 | `Functions-2-Recap` |
-| `Functions-2-Recap-Template` |
 | `Functions-Recap` |
-| `Functions-Recap-Template` |
 | `Game-Mechanics-Recap` |
-| `Game-Mechanics-Recap-Template` |
 | `GrS-Check-in-1-Additional-Practice-Project` |
 | `GrS-Check-in-2-Practice-Project` |
 | `GRS-Check-in-Three-Updated` |
 | `GRS-Check-in-Two-Updated` |
 | `GRS-Conditionals-and-Booleans-Recap-Template` |
 | `GRS-Loops-Recap` |
-| `GRS-Loops-Recap-Template` |
+| `GrS1-Turtle-Exporation-All-Star` |
 | `GrS10-Winter-Wonderland` |
 | `GRS11-Advanced-Conditionals-Exploration` |
 | `GrS11-Advanced-Conditionals-Recap` |
 | `GRS11Advanced-Conditionals-Recap-Template` |
 | `GrS12-Debugging-Lists` |
-| `GrS12-Debugging-Lists-Solution` |
 | `GrS12-List-Exploration` |
 | `GrS12-Lists-Recap` |
-| `GrS12-Lists-Recap-Template` |
 | `GrS12-Rainbow-Path` |
 | `GrS12-Random-Number-Lists` |
 | `GrS12-Turtle-Launch-with-Lists` |
@@ -71,12 +66,11 @@ Canonical source repository: `Python-Level-1`
 | `GrS2-Watermelon-Slice` |
 | `GrS3-Awesome-Angles` |
 | `GrS3-Debugging-Practice` |
-| `GrS3-Debugging-Practice-Solution` |
 | `GrS3-Random-Bowtie` |
+| `GrS3-Random-Walk` |
 | `GrS3-Spirals` |
 | `GrS4-Find-Your-Turtle` |
 | `GrS4-Navigating-the-Coordinate-Plane` |
-| `GrS4-Navigating-the-Coordinate-Plane-Template` |
 | `GrS4-Surprise-Shape` |
 | `GrS5-Circle-of-Circles` |
 | `GrS5-Fireworks` |
@@ -95,7 +89,6 @@ Canonical source repository: `Python-Level-1`
 | `GrS7-Any-Shape-Staircase` |
 | `GrS7-Basic-Functions` |
 | `GrS7-Debugging-Functions` |
-| `GrS7-Debugging-Functions-Solution` |
 | `GrS7-Pyramid-with-Functions` |
 | `GrS7-Square-Inception-with-Functions` |
 | `GrS8-Build-a-Snowman` |
@@ -111,21 +104,26 @@ Canonical source repository: `Python-Level-1`
 | `Python-Level-1-ScreenUpdate` |
 | `Rainbow-Square-Inception` |
 | `Random-Age` |
+| `Randomly-Random-Shapes-Updated` |
 | `Reassignment-and-While-Loops-Recap` |
-| `Reassignment-and-While-Loops-Recap-Template` |
 | `Reflection-Template-Updated` |
 | `Smiley-Face` |
 | `Snowflake` |
 | `Square-Inception` |
 | `Surprise-Me-Square` |
 | `Turtle-Race-Starter` |
+| `Turtle-Race-Updated` |
 | `Turtle-Recap` |
-| `Turtle-Recap-Template` |
 | `While-Loops-Exploration` |
 
 ## Source Inventory
 
-- Top-level folders: 226
-- Active linked folders: 106
-- Ledgered inactive/support folders: 120
-- Source-like files: 552
+- Active project folders: 99
+- Active linked folders: 99
+- Archived inactive/support folders: 113
+- Wrapper project folders: 99
+- Placeholder role folders awaiting a distinct counterpart: 87
+- Complete starter/solution pairs with distinct migrated content: 12
+- Active source-like files excluding archive: 407
+
+Notes: active source-like files exclude `_archived-unlinked/`. Placeholder role folders are structural markers only; they do not contain assignment source yet.
