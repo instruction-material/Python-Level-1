@@ -28,11 +28,18 @@ projects.
 ## Sound Note
 
 This template uses visual feedback only. CodeHS allows uploaded files in
-programs, but the Python Turtle command set does not provide a portable Turtle
-sound command. For Turtle projects, use visual feedback such as score changes,
-color changes, stamps, or written messages. If a project needs reliable sound,
-test sound in the exact CodeHS environment first or move that version into a
-game-focused environment such as Pygame.
+programs, including common audio formats such as MP3, OGG, and WAV. The CodeHS
+Python Turtle command reference does not list a portable built-in Turtle sound
+command, so the reference code stays visual-only. For Turtle projects, use
+visual feedback such as score changes, color changes, stamps, or written
+messages. If a project needs reliable sound, test sound in the exact CodeHS
+environment first or move that version into a game-focused environment such as
+Pygame.
+
+Official references:
+
+- CodeHS file uploads: https://help.codehs.com/en/articles/2372009-uploading-a-file-to-your-program
+- CodeHS Python Turtle commands: https://codehs.com/documentation/new/python-turtle
 
 ## Suggested Extension
 
