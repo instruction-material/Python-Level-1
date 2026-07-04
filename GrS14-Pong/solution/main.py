@@ -5,7 +5,7 @@ import random
 screen = turtle.Screen()
 screen.bgcolor("black")
 screen.tracer(0)
-screen.register_shape("paddle", ((0,0), (10,0),(10,100),(0,100)))
+screen.register_shape("paddle", ((0, 0), (10, 0), (10, 100), (0, 100)))
 
 # draw boundary
 boundary_t = turtle.Turtle()
@@ -16,8 +16,8 @@ boundary_t.goto(-300, 300)
 boundary_t.pensize(2)
 boundary_t.pendown()
 for i in range(4):
-  boundary_t.forward(600)
-  boundary_t.right(90)
+    boundary_t.forward(600)
+    boundary_t.right(90)
 
 # player 1
 p1 = turtle.Turtle()
@@ -44,7 +44,7 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.right(random.randint(-30, 30)) # start off in a random direction
+ball.right(random.randint(-30, 30))  # start off in a random direction
 
 # score
 p1_score = 0
@@ -57,18 +57,23 @@ pen.hideturtle()
 pen.goto(0, 260)
 pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "normal"))
 
+
 # movement functions
 def p1_up():
-	p1.forward(20)
+    p1.forward(20)
+
 
 def p1_down():
-  p1.backward(20)
+    p1.backward(20)
+
 
 def p2_up():
-  p2.forward(20)
+    p2.forward(20)
+
 
 def p2_down():
-  p2.backward(20)
+    p2.backward(20)
+
 
 # key binds
 screen.onkey(p1_up, "w")
@@ -81,18 +86,20 @@ screen.listen()
 # There are two versions of changeBallDirection(context) below. The first is the most optimized version of the code that abstracts the changes based on context to the maximimum level. It condenses the multiple steps into a single changeBallDirection(degree). If you choose this one, walk your student through the math required to come up with the degree values.
 # The second version in the comments writes out all of the angle changes and changeBallDirection steps. The second one may be easier for students that have less geometry experience, as you can draw out each scenario and walk them through the individual steps required. You can use either one of these functions, either as teaching tools or as-is.
 
+
 def change_ball_direction(context):
-  # finds offset to any plane
-  ball_heading = ball.heading()
+    # finds offset to any plane
+    ball_heading = ball.heading()
 
-  if context == "topBound" or context == "bottomBound":
-    ball.setheading(360 - ball_heading)
-  elif 0 <= ball_heading < 180:
-    ball.setheading(180 - ball_heading)
-  elif 180 <= ball_heading < 360:
-    ball.setheading(540 - ball_heading)
+    if context == "topBound" or context == "bottomBound":
+        ball.setheading(360 - ball_heading)
+    elif 0 <= ball_heading < 180:
+        ball.setheading(180 - ball_heading)
+    elif 180 <= ball_heading < 360:
+        ball.setheading(540 - ball_heading)
 
-'''
+
+"""
 def changeBallDirection(context):
   # finds offset to any plane
   ballHeading = ball.heading()
@@ -152,53 +159,67 @@ def changeBallDirection(context):
     elif 270 < ballHeading <= 360:
       ball.setheading(0)
       ball.left(offset)
-'''
+"""
 
 # main game loop
 while True:
-  ball.forward(4)
+    ball.forward(4)
 
-  # if the ball is within the coordinates of p1 (left side)
-  if abs(p1.xcor() - ball.xcor()) < 10 and p1.ycor() <= ball.ycor() <= p1.ycor() + 100:
-    change_ball_direction("p1")
+    # if the ball is within the coordinates of p1 (left side)
+    if (
+        abs(p1.xcor() - ball.xcor()) < 10
+        and p1.ycor() <= ball.ycor() <= p1.ycor() + 100
+    ):
+        change_ball_direction("p1")
 
-  # if the ball is within the coordinates of p2 (right side)
-  elif abs(ball.xcor() - p2.xcor()) <= 10 and p2.ycor() <= ball.ycor() <= p2.ycor() + 100:
-    change_ball_direction("p2")
+    # if the ball is within the coordinates of p2 (right side)
+    elif (
+        abs(ball.xcor() - p2.xcor()) <= 10
+        and p2.ycor() <= ball.ycor() <= p2.ycor() + 100
+    ):
+        change_ball_direction("p2")
 
-  # ball exceeded boundaries on left; p1 missed the ball
-  elif ball.xcor() <= -300:
-    # sets heading to face left again so that we do not start off in the wrong angle
-    ball.setheading(180)
-    ball.right(random.randint(-30, 30))
-    ball.goto(0, 0)
-    p1.clear()
-    p2.clear()
-    p2.write("     I Win!")
-    p2_score += 1
-    pen.clear()
-    pen.write("Player 1: " + str(p1_score) + " Player 2: " + str(p2_score), align="center", font=("Courier", 24, "normal"))
+    # ball exceeded boundaries on left; p1 missed the ball
+    elif ball.xcor() <= -300:
+        # sets heading to face left again so that we do not start off in the wrong angle
+        ball.setheading(180)
+        ball.right(random.randint(-30, 30))
+        ball.goto(0, 0)
+        p1.clear()
+        p2.clear()
+        p2.write("     I Win!")
+        p2_score += 1
+        pen.clear()
+        pen.write(
+            "Player 1: " + str(p1_score) + " Player 2: " + str(p2_score),
+            align="center",
+            font=("Courier", 24, "normal"),
+        )
 
-  # ball exceeded boundaries on right; p2 missed the ball
-  elif ball.xcor() >= 300:
-    # sets heading to face right again so that we do not start off in the wrong angle
-    ball.setheading(0)
-    ball.right(random.randint(-30, 30))
-    ball.goto(0,0)
-    p1.clear()
-    p2.clear()
-    p1.write("     I Win!")
-    p1_score += 1
-    pen.clear()
-    pen.write("Player 1: " + str(p1_score) + " Player 2: " + str(p2_score), align="center", font=("Courier", 24, "normal"))
+    # ball exceeded boundaries on right; p2 missed the ball
+    elif ball.xcor() >= 300:
+        # sets heading to face right again so that we do not start off in the wrong angle
+        ball.setheading(0)
+        ball.right(random.randint(-30, 30))
+        ball.goto(0, 0)
+        p1.clear()
+        p2.clear()
+        p1.write("     I Win!")
+        p1_score += 1
+        pen.clear()
+        pen.write(
+            "Player 1: " + str(p1_score) + " Player 2: " + str(p2_score),
+            align="center",
+            font=("Courier", 24, "normal"),
+        )
 
-  # top boundary
-  elif ball.ycor() >= 290:
-    change_ball_direction("topBound")
+    # top boundary
+    elif ball.ycor() >= 290:
+        change_ball_direction("topBound")
 
-  # bottom boundary
-  elif ball.ycor() <= -290:
-    change_ball_direction("bottomBound")
+    # bottom boundary
+    elif ball.ycor() <= -290:
+        change_ball_direction("bottomBound")
 
-  # end by updating the screen with changes
-  screen.update()
+    # end by updating the screen with changes
+    screen.update()

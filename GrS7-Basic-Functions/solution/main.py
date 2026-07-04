@@ -26,7 +26,7 @@ def reset():
     drawing_turtle.penup()
     drawing_turtle.goto(0, 0)
     drawing_turtle.pendown()
-    drawing_turtle.color('black')
+    drawing_turtle.color("black")
     drawing_turtle.setheading(0)
     drawing_turtle.clear()
     drawing_turtle.speed(6)

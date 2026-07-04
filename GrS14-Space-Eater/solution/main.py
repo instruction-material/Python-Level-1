@@ -38,8 +38,7 @@ for i in range(10):
     targets[i].shape("circle")
     targets[i].penup()
     targets[i].speed(0)
-    targets[i].setposition(random.randint(-190, 190),
-                           random.randint(-190, 190))
+    targets[i].setposition(random.randint(-190, 190), random.randint(-190, 190))
     targets[i].right(random.randint(0, 360))
 
 
@@ -77,8 +76,10 @@ while True:
             target.right(180)
 
         # check for player/target collisions
-        if abs(player.xcor() - target.xcor()) < 10 and abs(player.ycor() -
-                                                           target.ycor()) < 10:
+        if (
+            abs(player.xcor() - target.xcor()) < 10
+            and abs(player.ycor() - target.ycor()) < 10
+        ):
             target.goto(random.randint(-200, 200), random.randint(-200, 200))
             target.right(random.randint(0, 360))
             score += 1

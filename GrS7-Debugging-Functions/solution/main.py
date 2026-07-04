@@ -2,6 +2,8 @@ import turtle
 
 drawing_turtle = turtle.Turtle()
 turtle.colormode(255)
+
+
 # This function draws a circle with size "circleSize"
 def draw_snowball(circle_size):
     drawing_turtle.color("black")
@@ -9,6 +11,7 @@ def draw_snowball(circle_size):
     for i in range(36):
         drawing_turtle.forward(circle_size)
         drawing_turtle.right(10)
+
 
 # This function draws a hat, where the middle of the bottom of the hat is at coordinates (x, y)
 def draw_hat(x, y):
@@ -22,7 +25,7 @@ def draw_hat(x, y):
     drawing_turtle.forward(60)
     drawing_turtle.penup()
     drawing_turtle.begin_fill()
-    drawing_turtle.goto(x+20, y)
+    drawing_turtle.goto(x + 20, y)
     drawing_turtle.pendown()
     drawing_turtle.right(90)
     drawing_turtle.forward(20)
@@ -33,6 +36,7 @@ def draw_hat(x, y):
     drawing_turtle.left(90)
     drawing_turtle.forward(40)
     drawing_turtle.end_fill()
+
 
 # This function draws a nose, with size "noseSize" at coordinates (x, y)
 def draw_carrot_nose(x, y, size):
@@ -47,6 +51,7 @@ def draw_carrot_nose(x, y, size):
         drawing_turtle.left(10)
     drawing_turtle.end_fill()
 
+
 # This function draws an eye, with size "eyeSize" at coordinates (x, y)
 def draw_charcoal_eye(x, y, size):
     drawing_turtle.setheading(0)
@@ -59,6 +64,7 @@ def draw_charcoal_eye(x, y, size):
         drawing_turtle.forward(size)
         drawing_turtle.left(10)
     drawing_turtle.end_fill()
+
 
 def draw_left_broomstick_arm(x, y, arm_length):
     drawing_turtle.penup()
@@ -73,6 +79,7 @@ def draw_left_broomstick_arm(x, y, arm_length):
         drawing_turtle.forward(15)
         drawing_turtle.backward(15)
         drawing_turtle.left(4)
+
 
 def draw_right_broomstick_arm(x, y, arm_length):
     drawing_turtle.penup()

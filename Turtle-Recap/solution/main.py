@@ -22,7 +22,7 @@ drawing_turtle.color("yellow")
 # I move the turtle to a new place without leaving a line with these commands:
 
 drawing_turtle.penup()
-drawing_turtle.goto(50,50)
+drawing_turtle.goto(50, 50)
 drawing_turtle.pendown()
 
 # Explain how the above commands work:
@@ -32,6 +32,6 @@ drawing_turtle.pendown()
 
 drawing_turtle.begin_fill()
 for i in range(4):
-  drawing_turtle.forward(100)
-  drawing_turtle.right(90)
+    drawing_turtle.forward(100)
+    drawing_turtle.right(90)
 drawing_turtle.end_fill()

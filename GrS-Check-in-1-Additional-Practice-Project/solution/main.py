@@ -8,10 +8,10 @@ drawing_turtle.pendown()
 
 drawing_turtle.left(70)
 for i in range(30):
-  drawing_turtle.forward(20)
-  drawing_turtle.right(140)
-  drawing_turtle.forward(20)
-  drawing_turtle.left(140)
+    drawing_turtle.forward(20)
+    drawing_turtle.right(140)
+    drawing_turtle.forward(20)
+    drawing_turtle.left(140)
 
 """
 # Bonus extension for advanced students

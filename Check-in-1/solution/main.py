@@ -26,8 +26,8 @@ whale.right(200)
 
 whale.color("red")
 for i in range(4):
-  whale.right(90)
-  whale.forward(50)
+    whale.right(90)
+    whale.forward(50)
 
 # Move the turtle to the coordinates (-100, -100) and draw another square which is filled in. Make sure not to draw a line between the two squares.
 
@@ -38,8 +38,8 @@ whale.pendown()
 whale.color("red")
 whale.begin_fill()
 for i in range(4):
-  whale.right(90)
-  whale.forward(50)
+    whale.right(90)
+    whale.forward(50)
 whale.end_fill()
 
 #########################################
@@ -54,25 +54,25 @@ whale.end_fill()
 # Write a loop that makes whale move forward 2 pixels, repeating 20 times.
 
 for i in range(20):
-  whale.forward(2)
+    whale.forward(2)
 
 # A dodecagon is a 12-sided shape. Can you draw a dodecagon using a loop?.
 
 for i in range(12):
-  whale.left(360/12)
-  whale.forward(30)
+    whale.left(360 / 12)
+    whale.forward(30)
 
 # Loops-4: Draw another dodecagon which is smaller than the first.
 
 for i in range(12):
-  whale.left(360/12)
-  whale.forward(10)
+    whale.left(360 / 12)
+    whale.forward(10)
 
 # Program whale to draw a circle using a loop that repeats 36 times.
 
 for i in range(36):
-  whale.forward(15)
-  whale.right(360/36)
+    whale.forward(15)
+    whale.right(360 / 36)
 
 #########################################
 
@@ -82,23 +82,23 @@ for i in range(36):
 
 # Create a variable called numPotatoes and set it to a random number between 42 and 90.
 
-num_potatoes = random.randint(42,90)
+num_potatoes = random.randint(42, 90)
 
 # What are the three variables we often use when defining a color? What do they stand for? What happens if we make one of them a larger number than the rest?
 
-  # Ans: r,g,b. They stand for red, green, and blue, which are the base colors we combine to make a specific color in computer graphics; the color would be "more" of the base color you made larger (e.g. a shade closer to red)
+# Ans: r,g,b. They stand for red, green, and blue, which are the base colors we combine to make a specific color in computer graphics; the color would be "more" of the base color you made larger (e.g. a shade closer to red)
 
 # Use these three variables to set the color of whale to a random color. Test it out and see if we get a different color each time!
 
-red_value = random.randint(0,255)
-green_value = random.randint(0,255)
-blue_value = random.randint(0,255)
-whale.color(red_value,green_value,blue_value)
+red_value = random.randint(0, 255)
+green_value = random.randint(0, 255)
+blue_value = random.randint(0, 255)
+whale.color(red_value, green_value, blue_value)
 whale.forward(100)
 
 # Bonus: Try to set the color of whale randomly without creating any r,g,b variables. (Hint: You can do this in one line of code.)
 
-whale.color(random.randint(0,255),random.randint(0,255),random.randint(0,255))
+whale.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 
 #########################################
@@ -108,30 +108,30 @@ whale.color(random.randint(0,255),random.randint(0,255),random.randint(0,255))
 #########################################
 
 # What is a conditional statement?
-  # Ans: A conditional is an if-then statement that tells the program to do something only if the condition is true (else, do something else).
+# Ans: A conditional is an if-then statement that tells the program to do something only if the condition is true (else, do something else).
 
 # Create a variable called num and set it to a random number between 0 and 10. If the number is less than 5, program whale to draw a star. If the number is 5, program whale to draw a square. If the number is greater than 5, program whale to draw a triangle.
 
-num = random.randint(0,10)
+num = random.randint(0, 10)
 if num < 5:
-  for i in range(5):
-    whale.forward(20)
-    whale.right(144)
+    for i in range(5):
+        whale.forward(20)
+        whale.right(144)
 if num == 5:
-  for i in range(4):
-    whale.forward(20)
-    whale.right(90)
+    for i in range(4):
+        whale.forward(20)
+        whale.right(90)
 if num > 5:
-  for i in range(3):
-    whale.forward(50)
-    whale.right(120)
+    for i in range(3):
+        whale.forward(50)
+        whale.right(120)
 
 # Use a conditional to change whale’s color to blue if whale is in quadrant III. Test your conditional statements by setting the turtle's position to various locations on the canvas.
 
 if whale.xcor() < 0 and whale.ycor() < 0:
-  whale.color("blue")
+    whale.color("blue")
 
 # Write another conditional which turns whale’s color to green if its x-coordinate is over 100 or its y-coordinate is less than -100.
 
 if whale.xcor() > 100 or whale.ycor() < -100:
-  whale.color("green")
+    whale.color("green")

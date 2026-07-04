@@ -2,10 +2,10 @@ import random
 import time
 import turtle
 
-
 # ------------------------------------------------------------
 # Function definitions
 # ------------------------------------------------------------
+
 
 def is_inside_bounds(x, y):
     inside_x = -BOUNDARY <= x <= BOUNDARY

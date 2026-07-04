@@ -82,9 +82,11 @@ pen.color("white")
 pen.penup()
 pen.hideturtle()
 pen.goto(0, 260)
-pen.write("Score: 0 High Score: {}".format(high_score),
-          align="center",
-          font=("Courier", 24, "normal"))
+pen.write(
+    "Score: 0 High Score: {}".format(high_score),
+    align="center",
+    font=("Courier", 24, "normal"),
+)
 
 
 # move() updates the position of the head, depending on the direction the head is facing
@@ -155,8 +157,13 @@ while True:
             break
 
     # check for a wall collision or a head collision
-    if head.xcor() > 300 or head.xcor() < -300 or head.ycor(
-    ) > 300 or head.ycor() < -300 or head_hit_body:
+    if (
+        head.xcor() > 300
+        or head.xcor() < -300
+        or head.ycor() > 300
+        or head.ycor() < -300
+        or head_hit_body
+    ):
         time.sleep(0.5)
         head.goto(0, 0)
         head_direction = "stop"
@@ -173,6 +180,8 @@ while True:
 
     # update the score
     pen.clear()
-    pen.write("score: {} High Score: {}".format(score, high_score),
-              align="center",
-              font=("Courier", 24, "normal"))
+    pen.write(
+        "score: {} High Score: {}".format(score, high_score),
+        align="center",
+        font=("Courier", 24, "normal"),
+    )
