@@ -23,18 +23,18 @@ for i in range(10):
   stars.append(star)
 
 # set up event listeners for controlling the player
-def turnLeft():
+def turn_left():
   player.left(10)
 
-def turnRight():
+def turn_right():
   player.right(10)
 
-screen.onkey(turnLeft, "Left")
-screen.onkey(turnRight, "Right")
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
 screen.listen()
 
 # lightStar() draws a star wherever we light one
-def lightStar():
+def light_star():
   player.pendown()
   player.color("yellow")
   player.begin_fill()
@@ -53,7 +53,7 @@ def lightStar():
 r = 195
 g = 20
 b = 50
-numStarsLit = 0
+num_stars_lit = 0
 
 while True:
   # move player
@@ -68,15 +68,15 @@ while True:
   if r < 30:
     player.write("Time's up! Game over!")
     break
-  
+
   # check for collision with a star
   for star in stars:
     if abs(player.xcor() - star.xcor()) < 10 and abs(player.ycor() - star.ycor()) < 10:
-      lightStar()
+      light_star()
       star.goto(500,500)    # move the star offscreen
-      numStarsLit += 1
-  
+      num_stars_lit += 1
+
   # check for win condition
-  if numStarsLit == 10:
+  if num_stars_lit == 10:
     player.write("I win!")
     break

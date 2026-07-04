@@ -7,16 +7,16 @@ ball.goto(random.randint(-300, 300), random.randint(-300, 300))
 ball.shape("circle")
 ball.color("red")
 
-t = turtle.Turtle()
-t.penup()
-t.goto(0, 0)
-t.shape("turtle")
-t.color("blue")
+drawing_turtle = turtle.Turtle()
+drawing_turtle.penup()
+drawing_turtle.goto(0, 0)
+drawing_turtle.shape("turtle")
+drawing_turtle.color("blue")
 
 
 def aim():
-    t.pendown()
-    t.forward(300)
+    drawing_turtle.pendown()
+    drawing_turtle.forward(300)
 
 
 screen = turtle.Screen()
@@ -25,7 +25,7 @@ screen.listen()
 
 while True:
     # only spins when the turtle hasn't moved
-    if t.xcor() == 0 and t.ycor() == 0:
-        t.left(10)
+    if drawing_turtle.xcor() == 0 and drawing_turtle.ycor() == 0:
+        drawing_turtle.left(10)
     else:
         break

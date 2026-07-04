@@ -1,30 +1,30 @@
-import turtle 
+import turtle
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 screen = turtle.Screen()
 
 move_speed = 10
 turn_speed = 10
 
-def moveForward():
-  t.pendown()
-  t.forward(move_speed)
+def move_forward():
+  drawing_turtle.pendown()
+  drawing_turtle.forward(move_speed)
 
-def moveBackward():
-  t.pendown()
-  t.backward(move_speed)
+def move_backward():
+  drawing_turtle.pendown()
+  drawing_turtle.backward(move_speed)
 
-def turnLeft():
-  t.left(turn_speed)
+def turn_left():
+  drawing_turtle.left(turn_speed)
 
-def turnRight():
-  t.right(turn_speed)
+def turn_right():
+  drawing_turtle.right(turn_speed)
 
-t.goto(0,0)
+drawing_turtle.goto(0,0)
 
 # associating event listeners with functions
-screen.onkey(moveForward, "Up")
-screen.onkey(moveBackward, "Down")
-screen.onkey(turnLeft, "Left")
-screen.onkey(turnRight, "Right")
+screen.onkey(move_forward, "Up")
+screen.onkey(move_backward, "Down")
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
 screen.listen()

@@ -7,27 +7,27 @@
 import turtle
 
 turtle.colormode(255)
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 
 
-def drawSquare():
+def draw_square():
     for i in range(4):
-        t.forward(50)
-        t.right(90)
+        drawing_turtle.forward(50)
+        drawing_turtle.right(90)
 
 
 # Call your function
 
-drawSquare()
+draw_square()
 
 # Call your function 2 more times in different locations
 
-t.penup()
-t.goto(-100, 100)
-t.pendown()
-drawSquare()
+drawing_turtle.penup()
+drawing_turtle.goto(-100, 100)
+drawing_turtle.pendown()
+draw_square()
 
-t.penup()
-t.goto(100, -100)
-t.pendown()
-drawSquare()
+drawing_turtle.penup()
+drawing_turtle.goto(100, -100)
+drawing_turtle.pendown()
+draw_square()

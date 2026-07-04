@@ -27,32 +27,32 @@ head.shape("square")
 head.color("black")
 head.penup()
 head.goto(0, 100)
-headDirection = "stop"
+head_direction = "stop"
 
 
 # define event listener functions - note that you can't switch to the direct opposite direction in Snake, hence the conditional statements
 def go_up():
-    global headDirection
-    if headDirection != "down":
-        headDirection = "up"
+    global head_direction
+    if head_direction != "down":
+        head_direction = "up"
 
 
 def go_down():
-    global headDirection
-    if headDirection != "up":
-        headDirection = "down"
+    global head_direction
+    if head_direction != "up":
+        head_direction = "down"
 
 
 def go_right():
-    global headDirection
-    if headDirection != "left":
-        headDirection = "right"
+    global head_direction
+    if head_direction != "left":
+        head_direction = "right"
 
 
 def go_left():
-    global headDirection
-    if headDirection != "right":
-        headDirection = "left"
+    global head_direction
+    if head_direction != "right":
+        head_direction = "left"
 
 
 # bind event listeners
@@ -89,19 +89,19 @@ pen.write("Score: 0 High Score: {}".format(high_score),
 
 # move() updates the position of the head, depending on the direction the head is facing
 def move():
-    if headDirection == "up":
+    if head_direction == "up":
         y = head.ycor()
         head.sety(y + 20)
 
-    if headDirection == "down":
+    if head_direction == "down":
         y = head.ycor()
         head.sety(y - 20)
 
-    if headDirection == "right":
+    if head_direction == "right":
         x = head.xcor()
         head.setx(x + 20)
 
-    if headDirection == "left":
+    if head_direction == "left":
         x = head.xcor()
         head.setx(x - 20)
 
@@ -148,18 +148,18 @@ while True:
     move()
 
     # check if head collided with any of the body segments
-    headHitBody = False
+    head_hit_body = False
     for segment in segments:
         if segment.distance(head) < 20:
-            headHitBody = True
+            head_hit_body = True
             break
 
     # check for a wall collision or a head collision
     if head.xcor() > 300 or head.xcor() < -300 or head.ycor(
-    ) > 300 or head.ycor() < -300 or headHitBody:
+    ) > 300 or head.ycor() < -300 or head_hit_body:
         time.sleep(0.5)
         head.goto(0, 0)
-        headDirection = "stop"
+        head_direction = "stop"
 
         # hide the segments
         for segment in segments:

@@ -4,7 +4,7 @@ turtle.colormode(255)
 juni = turtle.Turtle()
 juni.speed(0)
 
-def drawHouse():
+def draw_house():
   juni.fillcolor("red")
   juni.begin_fill()
   for i in range(3):
@@ -21,28 +21,28 @@ def drawHouse():
     juni.right(90)
   juni.end_fill()
 
-drawHouse()
+draw_house()
 
 juni.penup()
 juni.goto(-100, 100)
 juni.pendown()
 
-drawHouse()
+draw_house()
 
 juni.penup()
 juni.goto(100, 100)
 juni.pendown()
 
-drawHouse()
+draw_house()
 
 juni.penup()
 juni.goto(100, -100)
 juni.pendown()
 
-drawHouse()
+draw_house()
 
 juni.penup()
 juni.goto(-100, -100)
 juni.pendown()
 
-drawHouse()
+draw_house()

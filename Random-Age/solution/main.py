@@ -1,10 +1,10 @@
 import turtle
 import random
 
-t = turtle.Turtle()
-t.shape("turtle")
-t.goto(0,0)
-t.left(90)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.shape("turtle")
+drawing_turtle.goto(0,0)
+drawing_turtle.left(90)
 
 writer = turtle.Turtle()
 writer.ht()

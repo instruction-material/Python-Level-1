@@ -6,29 +6,29 @@
 import turtle
 import random
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 
 if True:
-  t.forward(50)
+  drawing_turtle.forward(50)
 
 # Change your condition to compare 3 and 1 with a comparison operator.
 
 if 3 > 1:
-  t.forward(50)
+  drawing_turtle.forward(50)
 
 # Write another condition to compare 3 and 1 using two comparison operators and either an and or an or.
 
 if 3 > 1 and 1 < 2:
-  t.forward(50)
+  drawing_turtle.forward(50)
 
 # This is the code that moves the turtle to a random place and then makes it turn 360 degrees if it is in Qudrant I or II
 
-t.penup()
-t.goto(random.randint(-200,200),random.randint(-200,200))
-if t.ycor() > 0:
-  t.right(360)
+drawing_turtle.penup()
+drawing_turtle.goto(random.randint(-200,200),random.randint(-200,200))
+if drawing_turtle.ycor() > 0:
+  drawing_turtle.right(360)
 
 # Explain how the above code works:
-# 
+#
 # Explain how we use an or statement to check if it is in Qudrant I, II, or III
-# 
+#

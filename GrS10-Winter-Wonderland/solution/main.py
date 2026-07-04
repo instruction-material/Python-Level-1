@@ -4,48 +4,48 @@ import random
 turtle.colormode(255)
 
 
-def drawSnowflake(numBranches, branchLength, sideBranchLength):
-    t = turtle.Turtle()
-    t.speed(10000)
-    t.penup()
+def draw_snowflake(num_branches, branch_length, side_branch_length):
+    drawing_turtle = turtle.Turtle()
+    drawing_turtle.speed(10000)
+    drawing_turtle.penup()
 
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    t.color(r, g, b)
+    red_value = random.randint(0, 255)
+    green_value = random.randint(0, 255)
+    blue_value = random.randint(0, 255)
+    drawing_turtle.color(red_value, green_value, blue_value)
 
     x = random.randint(-200, 200)
     y = random.randint(-200, 200)
 
-    for i in range(numBranches):
-        t.goto(x, y)
-        t.pendown()
+    for i in range(num_branches):
+        drawing_turtle.goto(x, y)
+        drawing_turtle.pendown()
 
         for i in range(10):
             # draw part of the branch
-            t.forward(branchLength / 10)
+            drawing_turtle.forward(branch_length / 10)
 
             # draw a little side branch
-            t.right(45)
-            t.forward(sideBranchLength)
-            t.backward(sideBranchLength)
+            drawing_turtle.right(45)
+            drawing_turtle.forward(side_branch_length)
+            drawing_turtle.backward(side_branch_length)
 
             # draw the symmetrical little side branch
-            t.left(90)
-            t.forward(sideBranchLength)
-            t.backward(sideBranchLength)
+            drawing_turtle.left(90)
+            drawing_turtle.forward(side_branch_length)
+            drawing_turtle.backward(side_branch_length)
 
             # reset positioning
-            t.right(45)
+            drawing_turtle.right(45)
 
         # turn to start drawing the next branch
-        t.right(360 / numBranches)
+        drawing_turtle.right(360 / num_branches)
 
-    t.penup()
+    drawing_turtle.penup()
 
 
 for i in range(10):
-    numBranches = random.randint(5, 20)
-    branchLength = random.randint(20, 80)
-    sideBranchLength = random.randint(5, 20)
-    drawSnowflake(numBranches, branchLength, sideBranchLength)
+    num_branches = random.randint(5, 20)
+    branch_length = random.randint(20, 80)
+    side_branch_length = random.randint(5, 20)
+    draw_snowflake(num_branches, branch_length, side_branch_length)

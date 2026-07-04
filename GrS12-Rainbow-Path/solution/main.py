@@ -128,14 +128,14 @@ colors = [
   "slate blue"
 ]
 
-t = turtle.Turtle()
-t.shape("turtle")
-t.penup()
-t.goto(-200,-200)
-t.pendown()
-t.setheading(45)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.shape("turtle")
+drawing_turtle.penup()
+drawing_turtle.goto(-200,-200)
+drawing_turtle.pendown()
+drawing_turtle.setheading(45)
 
 for color in colors:
-  t.color(color)
-  t.forward(random.randint(3,7))
-  t.right(random.randint(-10,10))
+  drawing_turtle.color(color)
+  drawing_turtle.forward(random.randint(3,7))
+  drawing_turtle.right(random.randint(-10,10))

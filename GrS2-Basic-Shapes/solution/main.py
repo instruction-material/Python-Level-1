@@ -1,24 +1,24 @@
 import turtle
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 
-t.pendown()
-t.color('blue')
+drawing_turtle.pendown()
+drawing_turtle.color('blue')
 for i in range(4):
-  t.forward(100)
-  t.right(90)
-t.penup()
+  drawing_turtle.forward(100)
+  drawing_turtle.right(90)
+drawing_turtle.penup()
 
-t.goto(-150,150)
-t.pendown()
-t.color('red')
+drawing_turtle.goto(-150,150)
+drawing_turtle.pendown()
+drawing_turtle.color('red')
 for i in range(3):
-  t.forward(100)
-  t.right(120)
-t.penup()
+  drawing_turtle.forward(100)
+  drawing_turtle.right(120)
+drawing_turtle.penup()
 
-t.goto(-150,-100)
-t.pendown()
-t.color('green')
+drawing_turtle.goto(-150,-100)
+drawing_turtle.pendown()
+drawing_turtle.color('green')
 for i in range(36):
-  t.forward(10)
-  t.right(10)
+  drawing_turtle.forward(10)
+  drawing_turtle.right(10)

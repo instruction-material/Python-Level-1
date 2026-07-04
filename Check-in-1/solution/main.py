@@ -4,11 +4,11 @@
 
 #########################################
 
-# When working with Python with Turtle, what do we first need to make sure to import? Can you think of anything else we usually import? 
+# When working with Python with Turtle, what do we first need to make sure to import? Can you think of anything else we usually import?
 # Write out both import statements. Why do we need to use these import statements?
 
 import turtle
-import random 
+import random
 
 # Create a Turtle named whale.
 
@@ -82,18 +82,18 @@ for i in range(36):
 
 # Create a variable called numPotatoes and set it to a random number between 42 and 90.
 
-numPotatoes = random.randint(42,90)  
+num_potatoes = random.randint(42,90)
 
-# What are the three variables we often use when defining a color? What do they stand for? What happens if we make one of them a larger number than the rest? 
+# What are the three variables we often use when defining a color? What do they stand for? What happens if we make one of them a larger number than the rest?
 
-  # Ans: r,g,b. They stand for red, green, and blue, which are the base colors we combine to make a specific color in computer graphics; the color would be "more" of the base color you made larger (e.g. a shade closer to red) 
+  # Ans: r,g,b. They stand for red, green, and blue, which are the base colors we combine to make a specific color in computer graphics; the color would be "more" of the base color you made larger (e.g. a shade closer to red)
 
 # Use these three variables to set the color of whale to a random color. Test it out and see if we get a different color each time!
 
-r = random.randint(0,255)
-g = random.randint(0,255)
-b = random.randint(0,255)
-whale.color(r,g,b)
+red_value = random.randint(0,255)
+green_value = random.randint(0,255)
+blue_value = random.randint(0,255)
+whale.color(red_value,green_value,blue_value)
 whale.forward(100)
 
 # Bonus: Try to set the color of whale randomly without creating any r,g,b variables. (Hint: You can do this in one line of code.)
@@ -110,7 +110,7 @@ whale.color(random.randint(0,255),random.randint(0,255),random.randint(0,255))
 # What is a conditional statement?
   # Ans: A conditional is an if-then statement that tells the program to do something only if the condition is true (else, do something else).
 
-# Create a variable called num and set it to a random number between 0 and 10. If the number is less than 5, program whale to draw a star. If the number is 5, program whale to draw a square. If the number is greater than 5, program whale to draw a triangle. 
+# Create a variable called num and set it to a random number between 0 and 10. If the number is less than 5, program whale to draw a star. If the number is 5, program whale to draw a square. If the number is greater than 5, program whale to draw a triangle.
 
 num = random.randint(0,10)
 if num < 5:
@@ -125,7 +125,7 @@ if num > 5:
   for i in range(3):
     whale.forward(50)
     whale.right(120)
-  
+
 # Use a conditional to change whale’s color to blue if whale is in quadrant III. Test your conditional statements by setting the turtle's position to various locations on the canvas.
 
 if whale.xcor() < 0 and whale.ycor() < 0:

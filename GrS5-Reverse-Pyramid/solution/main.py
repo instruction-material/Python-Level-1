@@ -2,27 +2,27 @@ import turtle
 import random
 
 turtle.colormode(255)
-t = turtle.Turtle()
-t.penup()
-t.speed(10000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.penup()
+drawing_turtle.speed(10000)
 
-sideLength = 500
+side_length = 500
 
 for i in range(50):
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    t.color(r, g, b)
+    red_value = random.randint(0, 255)
+    green_value = random.randint(0, 255)
+    blue_value = random.randint(0, 255)
+    drawing_turtle.color(red_value, green_value, blue_value)
 
-    t.goto(0, 200)
-    t.setheading(300)
-    t.pendown()
+    drawing_turtle.goto(0, 200)
+    drawing_turtle.setheading(300)
+    drawing_turtle.pendown()
 
-    t.begin_fill()
+    drawing_turtle.begin_fill()
     for j in range(3):
-        t.forward(sideLength)
-        t.right(120)
-    t.end_fill()
+        drawing_turtle.forward(side_length)
+        drawing_turtle.right(120)
+    drawing_turtle.end_fill()
 
-    sideLength = sideLength - 10
-    t.penup()
+    side_length = side_length - 10
+    drawing_turtle.penup()

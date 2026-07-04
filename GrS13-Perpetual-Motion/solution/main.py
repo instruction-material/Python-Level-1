@@ -1,20 +1,20 @@
 import turtle
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 screen = turtle.Screen()
 
-t.shape("turtle")
-t.penup()
+drawing_turtle.shape("turtle")
+drawing_turtle.penup()
 
-def turnLeft():
-  t.left(5)
+def turn_left():
+  drawing_turtle.left(5)
 
-def turnRight():
-  t.right(5)
+def turn_right():
+  drawing_turtle.right(5)
 
-screen.onkey(turnLeft, "Left")
-screen.onkey(turnRight, "Right")
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
 screen.listen()
 
 while True:
-  t.forward(1)
+  drawing_turtle.forward(1)

@@ -71,64 +71,64 @@ player.left(90)
 player.goto(0, -170)
 
 # event listeners to control player turtle
-def moveForward():
+def move_forward():
   player.forward(10)
-def moveBackward():
+def move_backward():
   player.backward(10)
-def turnLeft():
+def turn_left():
   player.left(90)
-def turnRight():
+def turn_right():
   player.right(90)
 
-screen.onkey(moveForward, "Up")
-screen.onkey(moveBackward, "Down")
-screen.onkey(turnLeft, "Left")
-screen.onkey(turnRight, "Right")
+screen.onkey(move_forward, "Up")
+screen.onkey(move_backward, "Down")
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
 screen.listen()
 
 # set up scoreTurtle
 score = 0
-scoreTurtle = turtle.Turtle()
-scoreTurtle.ht()
-scoreTurtle.penup()
-scoreTurtle.goto(-200,210)
-scoreTurtle.write("Score: 0", font=("Arial", 14, "normal"))
+score_turtle = turtle.Turtle()
+score_turtle.ht()
+score_turtle.penup()
+score_turtle.goto(-200,210)
+score_turtle.write("Score: 0", font=("Arial", 14, "normal"))
 screen.update()
 
 # set up gameOver turtle
-gameOver = turtle.Turtle()
-gameOver.penup()
-gameOver.ht()
-gameOver.goto(-150,0)
+game_over = turtle.Turtle()
+game_over.penup()
+game_over.ht()
+game_over.goto(-150,0)
 
 # function to make sure turtles stay inbounds
-def checkCollision(turtle):
+def check_collision(turtle):
   if turtle.xcor() <= -185 or turtle.xcor() >= 185:
     turtle.right(180)
 
 # main game loop
-continueGame = True
-while continueGame:
-  checkCollision(player)
+continue_game = True
+while continue_game:
+  check_collision(player)
 
-  # make enemy turtles move forward 
+  # make enemy turtles move forward
   for turtle in enemies:
     turtle.forward(random.randint(1,3))
-    checkCollision(turtle)
+    check_collision(turtle)
 
     # if player hits an enemy turtle, end the game
     if abs(player.xcor() - turtle.xcor()) < 10 and abs(player.ycor() - turtle.ycor()) < 10:
       player.ht()
-      continueGame = False
-  
+      continue_game = False
+
   # if player eats a dot, move dot to new random location and update the score
   for d in dots:
     if abs(player.xcor() - d.xcor()) < 15 and abs(player.ycor() - d.ycor()) < 15:
       d.goto(random.randint(-180,180), random.randint(-190,190))
       score = score + 1
-      scoreTurtle.clear()
-      scoreTurtle.write("Score: " + str(score), font=("Arial", 20, "normal"))
+      score_turtle.clear()
+      score_turtle.write("Score: " + str(score), font=("Arial", 20, "normal"))
   screen.update()
 
-gameOver.write("Game Over!", font=("Arial", 40, "normal"))
+game_over.write("Game Over!", font=("Arial", 40, "normal"))
 screen.update()

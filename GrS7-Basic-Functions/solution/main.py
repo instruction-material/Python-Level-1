@@ -3,42 +3,42 @@ import random
 
 turtle.colormode(255)
 
-t = turtle.Turtle()
-t.pensize(5)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.pensize(5)
 
 
-def randomSpot():
+def random_spot():
     x = random.randint(-200, 200)
     y = random.randint(-200, 200)
-    t.penup()
-    t.goto(x, y)
-    t.pendown()
+    drawing_turtle.penup()
+    drawing_turtle.goto(x, y)
+    drawing_turtle.pendown()
 
 
-def randomColor():
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    t.color(r, g, b)
+def random_color():
+    red_value = random.randint(0, 255)
+    green_value = random.randint(0, 255)
+    blue_value = random.randint(0, 255)
+    drawing_turtle.color(red_value, green_value, blue_value)
 
 
 def reset():
-    t.penup()
-    t.goto(0, 0)
-    t.pendown()
-    t.color('black')
-    t.setheading(0)
-    t.clear()
-    t.speed(6)
+    drawing_turtle.penup()
+    drawing_turtle.goto(0, 0)
+    drawing_turtle.pendown()
+    drawing_turtle.color('black')
+    drawing_turtle.setheading(0)
+    drawing_turtle.clear()
+    drawing_turtle.speed(6)
 
 
-def allRandom():
-    randomSpot()
-    randomColor()
+def all_random():
+    random_spot()
+    random_color()
 
 
-randomColor()
-randomSpot()
-t.right(90)
-t.forward(100)
+random_color()
+random_spot()
+drawing_turtle.right(90)
+drawing_turtle.forward(100)
 reset()

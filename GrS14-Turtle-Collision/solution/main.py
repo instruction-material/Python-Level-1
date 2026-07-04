@@ -2,45 +2,45 @@ import turtle
 import random
 turtle.colormode(255)
 
-t = turtle.Turtle()
-t2 = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
+race_turtle_two = turtle.Turtle()
 screen = turtle.Screen()
 
-def turnLeft1():
-  t.left(10)
+def turn_left1():
+  drawing_turtle.left(10)
 
-def turnRight1():
-  t.right(10)
+def turn_right1():
+  drawing_turtle.right(10)
 
-def turnLeft2():
-  t2.left(10)
+def turn_left2():
+  race_turtle_two.left(10)
 
-def turnRight2():
-  t2.right(10)
+def turn_right2():
+  race_turtle_two.right(10)
 
-def checkCollision():
-  if abs(t.xcor() - t2.xcor()) < 10 and abs(t.ycor() - t2.ycor()) < 10:
-    t.write("Collision!")
-    t.color(random.randint(0,255), random.randint(0,255), random.randint(0,255))
-    t2.color(random.randint(0,255), random.randint(0,255), random.randint(0,255))
+def check_collision():
+  if abs(drawing_turtle.xcor() - race_turtle_two.xcor()) < 10 and abs(drawing_turtle.ycor() - race_turtle_two.ycor()) < 10:
+    drawing_turtle.write("Collision!")
+    drawing_turtle.color(random.randint(0,255), random.randint(0,255), random.randint(0,255))
+    race_turtle_two.color(random.randint(0,255), random.randint(0,255), random.randint(0,255))
 
-screen.onkey(turnLeft1, "Left")
-screen.onkey(turnRight1, "Right")
-screen.onkey(turnLeft2, "a")
-screen.onkey(turnRight2, "d")
+screen.onkey(turn_left1, "Left")
+screen.onkey(turn_right1, "Right")
+screen.onkey(turn_left2, "a")
+screen.onkey(turn_right2, "d")
 screen.listen()
 
 # start turtles at a random location
-t.penup()
-t2.penup()
-t.goto(random.randint(-200,200),random.randint(-200,200))
-t2.goto(random.randint(-200,200),random.randint(-200,200))
-t.pendown()
-t2.pendown()
-t2.color("blue")
+drawing_turtle.penup()
+race_turtle_two.penup()
+drawing_turtle.goto(random.randint(-200,200),random.randint(-200,200))
+race_turtle_two.goto(random.randint(-200,200),random.randint(-200,200))
+drawing_turtle.pendown()
+race_turtle_two.pendown()
+race_turtle_two.color("blue")
 
 # both turtles continuously move and check for collisions
 while True:
-  t.forward(1)
-  t2.forward(1)
-  checkCollision()
+  drawing_turtle.forward(1)
+  race_turtle_two.forward(1)
+  check_collision()

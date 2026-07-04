@@ -2,81 +2,81 @@ import turtle
 import random
 turtle.colormode(255)
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 screen = turtle.Screen()
-t.speed(10000)
-t.penup()
+drawing_turtle.speed(10000)
+drawing_turtle.penup()
 
-def randColor():
-  r = random.randint(0,255)
-  g = random.randint(0,255)
-  b = random.randint(0,255)
-  t.color(r,g,b)
+def rand_color():
+  red_value = random.randint(0,255)
+  green_value = random.randint(0,255)
+  blue_value = random.randint(0,255)
+  drawing_turtle.color(red_value,green_value,blue_value)
 
-def randSpot():
+def rand_spot():
   x = random.randint(-300,300)
   y = random.randint(-300,300)
-  t.goto(x,y)
+  drawing_turtle.goto(x,y)
 
-def drawSquare():
-  randColor()
-  randSpot()
-  
-  sideLength = random.randint(20,100)
-  
-  t.pendown()
-  t.begin_fill()
+def draw_square():
+  rand_color()
+  rand_spot()
+
+  side_length = random.randint(20,100)
+
+  drawing_turtle.pendown()
+  drawing_turtle.begin_fill()
   for i in range(4):
-    t.forward(sideLength)
-    t.right(90)
-  t.end_fill()
-  t.penup()
+    drawing_turtle.forward(side_length)
+    drawing_turtle.right(90)
+  drawing_turtle.end_fill()
+  drawing_turtle.penup()
 
-def drawOctagon():
-  randColor()
-  randSpot()
-  
-  sideLength = random.randint(20,100)
-  
-  t.pendown()
-  t.begin_fill()
+def draw_octagon():
+  rand_color()
+  rand_spot()
+
+  side_length = random.randint(20,100)
+
+  drawing_turtle.pendown()
+  drawing_turtle.begin_fill()
   for i in range(8):
-    t.forward(sideLength)
-    t.right(315)
-  t.end_fill()
-  t.penup()
+    drawing_turtle.forward(side_length)
+    drawing_turtle.right(315)
+  drawing_turtle.end_fill()
+  drawing_turtle.penup()
 
-def drawFirework():
-  randColor()
-  
+def draw_firework():
+  rand_color()
+
   x = random.randint(-300,300)
   y = random.randint(-300,300)
-  
-  for i in range(36):
-    t.goto(x,y)
-    t.pendown()
-    t.forward(20)
-    t.right(10)
-    t.penup()
-  
-def drawCircle():
-  randColor()
-  randSpot()
-  
-  sideLength = random.randint(5,20)
-  
-  t.pendown()
-  t.begin_fill()
-  for i in range(36):
-    t.forward(sideLength)
-    t.right(10)
-  t.end_fill()
-  t.penup()
 
-t.goto(0,0)
+  for i in range(36):
+    drawing_turtle.goto(x,y)
+    drawing_turtle.pendown()
+    drawing_turtle.forward(20)
+    drawing_turtle.right(10)
+    drawing_turtle.penup()
 
-screen.onkey(drawSquare, "Up")
-screen.onkey(drawOctagon, "Down")
-screen.onkey(drawFirework, "Left")
-screen.onkey(drawCircle, "Right")
+def draw_circle():
+  rand_color()
+  rand_spot()
+
+  side_length = random.randint(5,20)
+
+  drawing_turtle.pendown()
+  drawing_turtle.begin_fill()
+  for i in range(36):
+    drawing_turtle.forward(side_length)
+    drawing_turtle.right(10)
+  drawing_turtle.end_fill()
+  drawing_turtle.penup()
+
+drawing_turtle.goto(0,0)
+
+screen.onkey(draw_square, "Up")
+screen.onkey(draw_octagon, "Down")
+screen.onkey(draw_firework, "Left")
+screen.onkey(draw_circle, "Right")
 screen.listen()

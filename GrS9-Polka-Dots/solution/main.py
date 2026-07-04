@@ -11,19 +11,19 @@ artist = turtle.Turtle()
 artist.speed(0)  # Adjust the drawing speed
 
 
-def drawCircle():
+def draw_circle():
   # Draw a colorful circle
-  r = random.randint(0, 255)
-  g = random.randint(0, 255)
-  b = random.randint(0, 255)
+  red_value = random.randint(0, 255)
+  green_value = random.randint(0, 255)
+  blue_value = random.randint(0, 255)
 
-  artist.color(r, g, b)
+  artist.color(red_value, green_value, blue_value)
 
-  circleSize = random.randint(1, 10)
+  circle_size = random.randint(1, 10)
 
   artist.begin_fill()
   for i in range(36):
-    artist.forward(circleSize)
+    artist.forward(circle_size)
     artist.right(10)
   artist.end_fill()
 
@@ -34,7 +34,7 @@ def move(x, y):
   artist.goto(x, y)
   artist.pendown()  # Lower the pen to start drawing
 
-  drawCircle()
+  draw_circle()
 
 
 # Set up the event listener

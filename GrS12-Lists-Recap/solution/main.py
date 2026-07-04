@@ -13,8 +13,8 @@ turtles = []
 # Add 3 turtles to turtles
 
 for i in range(3):
-  t = turtle.Turtle()
-  turtles.append(t)
+  drawing_turtle = turtle.Turtle()
+  turtles.append(drawing_turtle)
 
 # Loop through turtles and have each turtle move 50 pixels forward
 

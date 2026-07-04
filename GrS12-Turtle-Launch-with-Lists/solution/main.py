@@ -35,18 +35,18 @@ moon.ht()
 # create list of turtles
 turtles = []
 for i in range(10):
-  t = turtle.Turtle()
-  turtles.append(t)
+  drawing_turtle = turtle.Turtle()
+  turtles.append(drawing_turtle)
 
 # launch turtles
-for t in turtles:
-  t.color("red")
-  t.shape("turtle")
-  t.speed(10000)
-  t.penup()
-  t.goto(-200,-50)
-  t.speed(10)
-  travelDist = random.randint(200,500)
-  t.forward(travelDist)
-  if travelDist > 400:
-    t.color("white")
+for drawing_turtle in turtles:
+  drawing_turtle.color("red")
+  drawing_turtle.shape("turtle")
+  drawing_turtle.speed(10000)
+  drawing_turtle.penup()
+  drawing_turtle.goto(-200,-50)
+  drawing_turtle.speed(10)
+  travel_dist = random.randint(200,500)
+  drawing_turtle.forward(travel_dist)
+  if travel_dist > 400:
+    drawing_turtle.color("white")

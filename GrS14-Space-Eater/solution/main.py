@@ -5,16 +5,16 @@ screen = turtle.Screen()
 screen.bgcolor("black")
 
 # draw the boundary box
-boxDrawer = turtle.Turtle()
-boxDrawer.speed(10)
-boxDrawer.color("red")
-boxDrawer.penup()
-boxDrawer.goto(-200, 200)
-boxDrawer.pendown()
+box_drawer = turtle.Turtle()
+box_drawer.speed(10)
+box_drawer.color("red")
+box_drawer.penup()
+box_drawer.goto(-200, 200)
+box_drawer.pendown()
 for i in range(4):
-    boxDrawer.forward(400)
-    boxDrawer.right(90)
-boxDrawer.penup()
+    box_drawer.forward(400)
+    box_drawer.right(90)
+box_drawer.penup()
 
 # create player turtle
 player = turtle.Turtle()
@@ -24,11 +24,11 @@ player.penup()
 
 # write score
 score = 0
-scoreTurtle = turtle.Turtle()
-scoreTurtle.penup()
-scoreTurtle.color("white")
-scoreTurtle.goto(-200, 210)
-scoreTurtle.write("Score: 0")
+score_turtle = turtle.Turtle()
+score_turtle.penup()
+score_turtle.color("white")
+score_turtle.goto(-200, 210)
+score_turtle.write("Score: 0")
 
 # create targets
 targets = []
@@ -44,17 +44,17 @@ for i in range(10):
 
 
 # create functions for keyboard events
-def turnLeft():
+def turn_left():
     player.left(30)
 
 
-def turnRight():
+def turn_right():
     player.right(30)
 
 
 # bind keyboard events to screen
-screen.onkey(turnLeft, "Left")
-screen.onkey(turnRight, "Right")
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
 screen.listen()
 
 # main loop for game
@@ -82,5 +82,5 @@ while True:
             target.goto(random.randint(-200, 200), random.randint(-200, 200))
             target.right(random.randint(0, 360))
             score += 1
-            scoreTurtle.clear()
-            scoreTurtle.write("Score: " + str(score))
+            score_turtle.clear()
+            score_turtle.write("Score: " + str(score))

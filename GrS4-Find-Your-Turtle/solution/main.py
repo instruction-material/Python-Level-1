@@ -1,26 +1,26 @@
 import turtle
 import random
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 
-t.penup()
-t.goto(random.randint(-200,200), random.randint(-200,200))
-t.pendown()
+drawing_turtle.penup()
+drawing_turtle.goto(random.randint(-200,200), random.randint(-200,200))
+drawing_turtle.pendown()
 
-if t.xcor() >= 0 and t.ycor() >= 0:
-  t.color("blue")
-if t.xcor() <= 0 and t.ycor() >= 0:
-  t.color("yellow")
-if t.xcor() >= 0 and t.ycor() <= 0:
-  t.color("orange")
-if t.xcor() <= 0 and t.ycor() <= 0:
-  t.color("green") 
+if drawing_turtle.xcor() >= 0 and drawing_turtle.ycor() >= 0:
+  drawing_turtle.color("blue")
+if drawing_turtle.xcor() <= 0 and drawing_turtle.ycor() >= 0:
+  drawing_turtle.color("yellow")
+if drawing_turtle.xcor() >= 0 and drawing_turtle.ycor() <= 0:
+  drawing_turtle.color("orange")
+if drawing_turtle.xcor() <= 0 and drawing_turtle.ycor() <= 0:
+  drawing_turtle.color("green")
 
-if t.xcor() >= 0 or t.ycor() >= 0:
+if drawing_turtle.xcor() >= 0 or drawing_turtle.ycor() >= 0:
   for i in range(4):
-    t.forward(20)
-    t.right(90)
-if t.xcor() >= 0 and t.ycor() <= 0:
+    drawing_turtle.forward(20)
+    drawing_turtle.right(90)
+if drawing_turtle.xcor() >= 0 and drawing_turtle.ycor() <= 0:
   for i in range(36):
-    t.forward(2)
-    t.right(10)
+    drawing_turtle.forward(2)
+    drawing_turtle.right(10)

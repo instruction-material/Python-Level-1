@@ -1,29 +1,29 @@
 import turtle
-t = turtle.Turtle()
-t.speed(10000)
-t.right(5)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(10000)
+drawing_turtle.right(5)
 
 y = 100
-circleStep = 20
+circle_step = 20
 
 for i in range(5):
-  t.penup()
-  t.goto(0,y)
-  t.pendown()
+  drawing_turtle.penup()
+  drawing_turtle.goto(0,y)
+  drawing_turtle.pendown()
 
   # decide which color
   if (i % 2 == 0):
-    t.color('red')
+    drawing_turtle.color('red')
   else:
-    t.color('white')
-  
+    drawing_turtle.color('white')
+
   # draw circle
-  t.begin_fill()
+  drawing_turtle.begin_fill()
   for i in range(36):
-    t.forward(circleStep)
-    t.right(10)
-  t.end_fill()
+    drawing_turtle.forward(circle_step)
+    drawing_turtle.right(10)
+  drawing_turtle.end_fill()
 
   # decrease y and circleStep
   y -= 23
-  circleStep -= 4
+  circle_step -= 4

@@ -4,7 +4,7 @@ import turtle
 juni = turtle.Turtle()
 juni.speed(1029)
 
-def drawCircle(size):
+def draw_circle(size):
   for i in range (72):
     juni.forward(size)
     juni.right(5)
@@ -12,18 +12,18 @@ def drawCircle(size):
 juni.penup()
 juni.goto(0, 0)
 juni.pendown()
-drawCircle(9)
+draw_circle(9)
 
 juni.penup()
 juni.goto(0,137)
 juni.pendown()
-drawCircle(6)
+draw_circle(6)
 
 
 juni.penup()
 juni.goto(0, 228)
 juni.pendown()
-drawCircle(4)
+draw_circle(4)
 
 
 juni.color("black")

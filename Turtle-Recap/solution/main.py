@@ -4,34 +4,34 @@ import turtle
 
 # I create a turtle with this line:
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 
 # I move that turtle forward with this command:
 
-t.forward(10)
+drawing_turtle.forward(10)
 
 # I turn the turtle with these commands:
 
-t.right(90)
-t.left(90)
+drawing_turtle.right(90)
+drawing_turtle.left(90)
 
 # I change the turtles color with this command:
 
-t.color("yellow")
+drawing_turtle.color("yellow")
 
 # I move the turtle to a new place without leaving a line with these commands:
 
-t.penup()
-t.goto(50,50)
-t.pendown()
+drawing_turtle.penup()
+drawing_turtle.goto(50,50)
+drawing_turtle.pendown()
 
 # Explain how the above commands work:
-# 
+#
 
 # I draw a filled in square with these commands:
 
-t.begin_fill()
+drawing_turtle.begin_fill()
 for i in range(4):
-  t.forward(100)
-  t.right(90)
-t.end_fill()
+  drawing_turtle.forward(100)
+  drawing_turtle.right(90)
+drawing_turtle.end_fill()

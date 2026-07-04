@@ -1,9 +1,9 @@
 import turtle
-t = turtle.Turtle()
-t.speed(10000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(10000)
 
 for i in range(36):
   for i in range(36):
-    t.forward(15)
-    t.right(10)
-  t.right(10)
+    drawing_turtle.forward(15)
+    drawing_turtle.right(10)
+  drawing_turtle.right(10)

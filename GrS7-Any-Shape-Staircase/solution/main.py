@@ -3,27 +3,27 @@ import random
 
 turtle.colormode(255)
 
-t = turtle.Turtle()
-t.speed(10000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(10000)
 
 
-def drawShape(sideLength, numSides):
-    for i in range(numSides):
-        t.forward(sideLength)
-        t.right(360 / numSides)
+def draw_shape(side_length, num_sides):
+    for i in range(num_sides):
+        drawing_turtle.forward(side_length)
+        drawing_turtle.right(360 / num_sides)
 
 
-r = 0
-g = random.randint(0, 255)
-b = random.randint(0, 255)
-t.color(r, g, b)
+red_value = 0
+green_value = random.randint(0, 255)
+blue_value = random.randint(0, 255)
+drawing_turtle.color(red_value, green_value, blue_value)
 
-sideLength = random.randint(10, 30)
-numSides = random.randint(2, 12)
+side_length = random.randint(10, 30)
+num_sides = random.randint(2, 12)
 
 for i in range(100):
-    drawShape(sideLength, numSides)
-    t.right(10)
-    sideLength += 1
-    r += 1
-    t.color(r, g, b)
+    draw_shape(side_length, num_sides)
+    drawing_turtle.right(10)
+    side_length += 1
+    red_value += 1
+    drawing_turtle.color(red_value, green_value, blue_value)

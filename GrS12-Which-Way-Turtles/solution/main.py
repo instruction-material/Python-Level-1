@@ -5,9 +5,9 @@ turtle.colormode(255)
 # create 10 turtles in a list
 turtles = []
 for i in range(10):
-  t = turtle.Turtle()
-  t.shape("turtle")
-  turtles.append(t)
+  drawing_turtle = turtle.Turtle()
+  drawing_turtle.shape("turtle")
+  turtles.append(drawing_turtle)
 
 # make all 10 turtles move in a random direction
 for turtle in turtles:

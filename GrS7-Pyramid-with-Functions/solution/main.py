@@ -1,21 +1,21 @@
 import turtle
 turtle.colormode(255)
 
-t = turtle.Turtle()
-t.speed(10000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(10000)
 
-def drawTriangle(sideLength):
+def draw_triangle(side_length):
   for i in range(3):
-    t.forward(sideLength)
-    t.right(120)
+    drawing_turtle.forward(side_length)
+    drawing_turtle.right(120)
 
-sideLength = 10
+side_length = 10
 
 for i in range(50):
-  t.penup()
-  t.goto(0,200)
-  t.setheading(300)
-  t.pendown()
-  
-  drawTriangle(sideLength)
-  sideLength = sideLength + 10
+  drawing_turtle.penup()
+  drawing_turtle.goto(0,200)
+  drawing_turtle.setheading(300)
+  drawing_turtle.pendown()
+
+  draw_triangle(side_length)
+  side_length = side_length + 10

@@ -3,10 +3,10 @@ import random
 
 turtle.colormode(255)
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 
-t.shape("turtle")
-t.pensize(random.randint(1, 10))
+drawing_turtle.shape("turtle")
+drawing_turtle.pensize(random.randint(1, 10))
 
 num_steps = 100
 
@@ -17,13 +17,13 @@ for _ in range(num_steps):
   turn_angle = random.randint(-180, 180)
 
   # Generate random colors
-  r = random.randint(0, 255)
-  g = random.randint(0, 255)
-  b = random.randint(0, 255)
+  red_value = random.randint(0, 255)
+  green_value = random.randint(0, 255)
+  blue_value = random.randint(0, 255)
 
   # Set the color of the turtle
-  t.color(r, g, b)
+  drawing_turtle.color(red_value, green_value, blue_value)
 
   # Move the turtle
-  t.forward(step_length)
-  t.left(turn_angle)
+  drawing_turtle.forward(step_length)
+  drawing_turtle.left(turn_angle)

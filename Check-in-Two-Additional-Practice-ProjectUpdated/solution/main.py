@@ -1,54 +1,54 @@
 import turtle
 import random
 
-t = turtle.Turtle()
+drawing_turtle = turtle.Turtle()
 turtle.colormode(255)
-t.right(45)
-t.speed(5)
+drawing_turtle.right(45)
+drawing_turtle.speed(5)
 
 
 screen = turtle.Screen()
 
-def changeColor():
-  t.color(random.randint(0,255),random.randint(0,255),random.randint(0,255))
+def change_color():
+  drawing_turtle.color(random.randint(0,255),random.randint(0,255),random.randint(0,255))
 
-def drawDiamond():
-  sideLength = 20
+def draw_diamond():
+  side_length = 20
   for i in range(3):
-    changeColor()
-    t.begin_fill()
+    change_color()
+    drawing_turtle.begin_fill()
     for i in range(4):
-      t.forward(sideLength)
-      t.right(90)
-    t.end_fill()
+      drawing_turtle.forward(side_length)
+      drawing_turtle.right(90)
+    drawing_turtle.end_fill()
 
-def changeLocation():
-  t.penup()
-  t.goto(random.randint(-200,200),random.randint(-200,200))
-  t.pendown()
+def change_location():
+  drawing_turtle.penup()
+  drawing_turtle.goto(random.randint(-200,200),random.randint(-200,200))
+  drawing_turtle.pendown()
 
-def drawCircle():
-  sideLength = 3
+def draw_circle():
+  side_length = 3
   for i in range(3):
-    changeColor()
-    t.begin_fill()
+    change_color()
+    drawing_turtle.begin_fill()
     for i in range(36):
-      t.forward(sideLength)
-      t.right(10)
-    t.end_fill()
+      drawing_turtle.forward(side_length)
+      drawing_turtle.right(10)
+    drawing_turtle.end_fill()
 
-def drawPyramid():
-  sideLength = 30
+def draw_pyramid():
+  side_length = 30
   for i in range(3):
-    changeColor()
-    t.begin_fill()
+    change_color()
+    drawing_turtle.begin_fill()
     for i in range(3):
-      t.forward(sideLength)
-      t.right(120)
-    t.end_fill()
-      
-screen.onkey(drawDiamond, "d")
-screen.onkey(drawCircle, "c")
-screen.onkey(drawPyramid, "p")
-screen.onkey(changeLocation, "space")
+      drawing_turtle.forward(side_length)
+      drawing_turtle.right(120)
+    drawing_turtle.end_fill()
+
+screen.onkey(draw_diamond, "d")
+screen.onkey(draw_circle, "c")
+screen.onkey(draw_pyramid, "p")
+screen.onkey(change_location, "space")
 screen.listen()

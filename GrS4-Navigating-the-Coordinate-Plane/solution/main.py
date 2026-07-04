@@ -1,50 +1,50 @@
 import turtle
 
-graphDrawer = turtle.Turtle()
-graphDrawer.speed(0)
+graph_drawer = turtle.Turtle()
+graph_drawer.speed(0)
 
-graphDrawer.penup()
-graphDrawer.goto(-500, 0)
-graphDrawer.pendown()
-graphDrawer.goto(500, 0)
-graphDrawer.penup()
-graphDrawer.goto(0, -500)
-graphDrawer.pendown()
-graphDrawer.goto(0, 500)
+graph_drawer.penup()
+graph_drawer.goto(-500, 0)
+graph_drawer.pendown()
+graph_drawer.goto(500, 0)
+graph_drawer.penup()
+graph_drawer.goto(0, -500)
+graph_drawer.pendown()
+graph_drawer.goto(0, 500)
 
-graphDrawer.penup()
-graphDrawer.goto(50,100)
-graphDrawer.write("Quadrant I", font=("Arial", 16, "normal"))
-graphDrawer.goto(-150,100)
-graphDrawer.write("Quadrant II", font=("Arial", 16, "normal"))
-graphDrawer.goto(-150,-100)
-graphDrawer.write("Quadrant III", font=("Arial", 16, "normal"))
-graphDrawer.goto(50,-100)
-graphDrawer.write("Quadrant IV", font=("Arial", 16, "normal"))
-graphDrawer.goto(10,-150)
-graphDrawer.write("y-axis", font=("Arial", 12, "normal"))
-graphDrawer.goto(-120,10)
-graphDrawer.write("x-axis", font=("Arial", 12, "normal"))
+graph_drawer.penup()
+graph_drawer.goto(50,100)
+graph_drawer.write("Quadrant I", font=("Arial", 16, "normal"))
+graph_drawer.goto(-150,100)
+graph_drawer.write("Quadrant II", font=("Arial", 16, "normal"))
+graph_drawer.goto(-150,-100)
+graph_drawer.write("Quadrant III", font=("Arial", 16, "normal"))
+graph_drawer.goto(50,-100)
+graph_drawer.write("Quadrant IV", font=("Arial", 16, "normal"))
+graph_drawer.goto(10,-150)
+graph_drawer.write("y-axis", font=("Arial", 12, "normal"))
+graph_drawer.goto(-120,10)
+graph_drawer.write("x-axis", font=("Arial", 12, "normal"))
 
-graphDrawer.ht()
+graph_drawer.ht()
 
 # make a turtle and move it from the origin (where the two lines meet and our turtle starts) to somewhere in Quadrant I using goto()
 
-t = turtle.Turtle()
-t.penup()
-t.goto(50, 50)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.penup()
+drawing_turtle.goto(50, 50)
 
 # Next, move your turtle to Qudrant II. Did our X or Y coordinate change into a negative number?
 
-t.goto(-50, 50)
+drawing_turtle.goto(-50, 50)
 
 # Now move your turtle to Quadrant III. Again, which of our coordinates changed from a positive to a negative?
 
-t.goto(-50, -50)
+drawing_turtle.goto(-50, -50)
 
 # Finally, have your turtle move to Quadrant IV. Which of our coordinates changed its sign this time?
 
-t.goto(50, -50)
+drawing_turtle.goto(50, -50)
 
 # Are positive X coordinates to the left or the right of the y-axis? What about negative coordinates?
 #

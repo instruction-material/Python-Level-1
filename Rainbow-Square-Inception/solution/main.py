@@ -3,23 +3,23 @@ import random
 
 turtle.colormode(255)
 
-t = turtle.Turtle()
-t.speed(100000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(100000)
 
-r = random.randint(0, 255)
-g = random.randint(0, 255)
-b = 0
+red_value = random.randint(0, 255)
+green_value = random.randint(0, 255)
+blue_value = 0
 
 for i in range(36):
-    b += 20
-    t.color(r, g, b)
+    blue_value += 20
+    drawing_turtle.color(red_value, green_value, blue_value)
     length = 20
 
     for j in range(15):
         length += 10
 
         for j in range(4):
-            t.forward(length)
-            t.right(90)
+            drawing_turtle.forward(length)
+            drawing_turtle.right(90)
 
-    t.right(10)
+    drawing_turtle.right(10)

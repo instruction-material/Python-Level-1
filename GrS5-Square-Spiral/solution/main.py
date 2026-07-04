@@ -3,20 +3,20 @@ import random
 
 turtle.colormode(255)
 
-t = turtle.Turtle()
-t.speed(1000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(1000)
 
 side = 10
 
 counter = 0
 while counter < 50:
-    r = random.randint(0, 255)
-    g = random.randint(0, 255)
-    b = random.randint(0, 255)
-    t.color(r, g, b)
+    red_value = random.randint(0, 255)
+    green_value = random.randint(0, 255)
+    blue_value = random.randint(0, 255)
+    drawing_turtle.color(red_value, green_value, blue_value)
 
-    t.forward(side)
-    t.right(90)
+    drawing_turtle.forward(side)
+    drawing_turtle.right(90)
 
     side = side + 5
     counter += 1

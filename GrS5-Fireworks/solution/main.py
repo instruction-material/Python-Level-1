@@ -1,22 +1,22 @@
 import turtle
 import random
 turtle.colormode(255)
-t = turtle.Turtle()
-t.speed(1000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(1000)
 
-lineLength = 1
+line_length = 1
 
 for i in range(360):
   # set random color
-  r = random.randint(0,255)
-  g = random.randint(0,255)
-  b = random.randint(0,255)
-  t.color(r,g,b)
-  
+  red_value = random.randint(0,255)
+  green_value = random.randint(0,255)
+  blue_value = random.randint(0,255)
+  drawing_turtle.color(red_value,green_value,blue_value)
+
   # draw line
-  t.goto(0,0)
-  t.forward(lineLength)
-  t.right(5)
-  
+  drawing_turtle.goto(0,0)
+  drawing_turtle.forward(line_length)
+  drawing_turtle.right(5)
+
   # increase length of line
-  lineLength = lineLength + 1
+  line_length = line_length + 1

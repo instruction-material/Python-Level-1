@@ -1,69 +1,69 @@
 import turtle
-t = turtle.Turtle()
-t.speed(10000)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(10000)
 
 # draw the outer green layer
-t.penup()
-t.goto(-200,0)
-t.pendown()
-t.color("green")
-t.begin_fill()
-t.forward(400)
-t.right(90)
+drawing_turtle.penup()
+drawing_turtle.goto(-200,0)
+drawing_turtle.pendown()
+drawing_turtle.color("green")
+drawing_turtle.begin_fill()
+drawing_turtle.forward(400)
+drawing_turtle.right(90)
 
 for i in range(37):
-  t.forward(17.5)
-  t.right(5)
+  drawing_turtle.forward(17.5)
+  drawing_turtle.right(5)
 
-t.end_fill()
+drawing_turtle.end_fill()
 
 # draw the inner pink layer
-t.penup()
-t.right(85)
-t.forward(50)
-t.pendown()
-t.color("pink")
-t.begin_fill()
-t.forward(300)
-t.right(90)
+drawing_turtle.penup()
+drawing_turtle.right(85)
+drawing_turtle.forward(50)
+drawing_turtle.pendown()
+drawing_turtle.color("pink")
+drawing_turtle.begin_fill()
+drawing_turtle.forward(300)
+drawing_turtle.right(90)
 
 for i in range(37):
-  t.forward(13)
-  t.right(5)
+  drawing_turtle.forward(13)
+  drawing_turtle.right(5)
 
-t.end_fill()
+drawing_turtle.end_fill()
 
 # draw seeds
 
-t.penup()
-t.goto(80,-40)
-t.pendown()
-t.color("black")
-t.begin_fill()
+drawing_turtle.penup()
+drawing_turtle.goto(80,-40)
+drawing_turtle.pendown()
+drawing_turtle.color("black")
+drawing_turtle.begin_fill()
 
 for i in range(36):
-  t.forward(1)
-  t.right(10)
-t.end_fill()
+  drawing_turtle.forward(1)
+  drawing_turtle.right(10)
+drawing_turtle.end_fill()
 
-t.penup()
-t.goto(-10,-100)
-t.pendown()
-t.color("black")
-t.begin_fill()
-
-for i in range(36):
-  t.forward(1)
-  t.right(10)
-t.end_fill()
-
-t.penup()
-t.goto(-90,-30)
-t.pendown()
-t.color("black")
-t.begin_fill()
+drawing_turtle.penup()
+drawing_turtle.goto(-10,-100)
+drawing_turtle.pendown()
+drawing_turtle.color("black")
+drawing_turtle.begin_fill()
 
 for i in range(36):
-  t.forward(1)
-  t.right(10)
-t.end_fill()
+  drawing_turtle.forward(1)
+  drawing_turtle.right(10)
+drawing_turtle.end_fill()
+
+drawing_turtle.penup()
+drawing_turtle.goto(-90,-30)
+drawing_turtle.pendown()
+drawing_turtle.color("black")
+drawing_turtle.begin_fill()
+
+for i in range(36):
+  drawing_turtle.forward(1)
+  drawing_turtle.right(10)
+drawing_turtle.end_fill()
