@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 import turtle
 import random
 
@@ -19,5 +14,7 @@ for i in range(10):
 for turtle in turtles:
     turtle.speed(1000)
     turtle.left(random.randint(0, 360))
-    turtle.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    turtle.color(
+        random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+    )
     turtle.forward(200)

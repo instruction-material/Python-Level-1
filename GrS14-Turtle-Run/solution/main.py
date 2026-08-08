@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 import turtle
 import random
 import time
@@ -141,11 +136,16 @@ while continue_game:
 
     # if player eats a dot, move dot to new random location and update the score
     for d in dots:
-        if abs(player.xcor() - d.xcor()) < 15 and abs(player.ycor() - d.ycor()) < 15:
+        if (
+            abs(player.xcor() - d.xcor()) < 15
+            and abs(player.ycor() - d.ycor()) < 15
+        ):
             d.goto(random.randint(-180, 180), random.randint(-190, 190))
             score = score + 1
             score_turtle.clear()
-            score_turtle.write("Score: " + str(score), font=("Arial", 20, "normal"))
+            score_turtle.write(
+                "Score: " + str(score), font=("Arial", 20, "normal")
+            )
     screen.update()
 
 game_over.write("Game Over!", font=("Arial", 40, "normal"))

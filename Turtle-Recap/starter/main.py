@@ -17,7 +17,7 @@
 
 
 # Explain how the above commands work:
-# 
+#
 
 
 # I draw a filled in square with these commands:

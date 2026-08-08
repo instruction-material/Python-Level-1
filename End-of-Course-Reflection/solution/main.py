@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 """
 Congratulations on finishing Python Level 1!!! This is a huge accomplishment, so we're going to take some time to think back on all you've accomplished:
 

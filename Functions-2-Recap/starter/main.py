@@ -1,5 +1,5 @@
 # Explain what a parameter is. How are they useful?
-# 
+#
 
 # Write a function that draws an octogon with any size sideLength
 

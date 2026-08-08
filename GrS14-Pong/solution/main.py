@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 import turtle
 import random
 
@@ -60,7 +55,9 @@ pen.color("white")
 pen.penup()
 pen.hideturtle()
 pen.goto(0, 260)
-pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "normal"))
+pen.write(
+    "Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "normal")
+)
 
 
 # movement functions

@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 import turtle
 import random
 
@@ -36,10 +31,14 @@ def check_collision():
     ):
         drawing_turtle.write("Collision!")
         drawing_turtle.color(
-            random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+            random.randint(0, 255),
+            random.randint(0, 255),
+            random.randint(0, 255),
         )
         race_turtle_two.color(
-            random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+            random.randint(0, 255),
+            random.randint(0, 255),
+            random.randint(0, 255),
         )
 
 

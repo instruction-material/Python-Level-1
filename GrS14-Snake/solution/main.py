@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 # guidance taken from https://www.edureka.co/blog/python-turtle-module/
 
 import turtle

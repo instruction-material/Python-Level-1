@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 # Try this project in the Juniverse! https://app.junilearning.com/juniverse/projects/65e2318a8a9896d5deae7712
 
 import turtle

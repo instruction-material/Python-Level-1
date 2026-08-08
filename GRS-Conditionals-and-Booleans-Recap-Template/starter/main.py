@@ -14,6 +14,6 @@
 
 
 # Explain how the above code works:
-# 
+#
 # Explain how we use an or statement to check if it is in Qudrant I, II, or III
-# 
+#

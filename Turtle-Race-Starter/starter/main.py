@@ -6,14 +6,14 @@ laneDrawer = turtle.Turtle()
 laneDrawer.right(90)
 laneDrawer.speed(1000)
 for i in range(15):
-  laneDrawer.penup()
-  laneDrawer.goto(-200+20*i, 100)
-  laneDrawer.write(i)
-  laneDrawer.pendown()
-  laneDrawer.forward(100)
+    laneDrawer.penup()
+    laneDrawer.goto(-200 + 20 * i, 100)
+    laneDrawer.write(i)
+    laneDrawer.pendown()
+    laneDrawer.forward(100)
 # draw finish line
 laneDrawer.penup()
-laneDrawer.goto(-200+20*(i+1), 100)
+laneDrawer.goto(-200 + 20 * (i + 1), 100)
 laneDrawer.write("Finish")
 laneDrawer.pendown()
 laneDrawer.forward(100)
@@ -41,4 +41,4 @@ t3.shape("turtle")
 t3.goto(-200, 20)
 t3.pendown()
 
-# YOUR CODE HERE 
+# YOUR CODE HERE

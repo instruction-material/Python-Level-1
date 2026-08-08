@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 #########################################
 
 # PYTHON TURTLE BASICS
@@ -103,7 +98,9 @@ whale.forward(100)
 
 # Bonus: Try to set the color of whale randomly without creating any r,g,b variables. (Hint: You can do this in one line of code.)
 
-whale.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+whale.color(
+    random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+)
 
 
 #########################################

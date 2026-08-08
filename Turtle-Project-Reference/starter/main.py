@@ -1,9 +1,9 @@
 import turtle
 
-
 # ------------------------------------------------------------
 # Function definitions
 # ------------------------------------------------------------
+
 
 # TODO: Return True only when x and y are inside the square boundary.
 def is_inside_bounds(x, y):

@@ -5,7 +5,7 @@
 #
 
 # List out the three parts of an event listener:
-# 
+#
 
 # Write a function that moves the turtle to a random location
 
@@ -17,4 +17,3 @@
 
 
 # Add the last command you need for event listeners?
-

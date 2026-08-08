@@ -11,6 +11,6 @@
 
 
 # Explain how the above code works:
-# 
+#
 # Explain how we you can figure out what the value of lineLength and degrees will be by the end of the loop.
-# 
+#

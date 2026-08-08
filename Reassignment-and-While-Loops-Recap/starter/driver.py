@@ -21,17 +21,17 @@ screen.setup(1.0, 1.0)
 print("Python turtle on Replit")
 modules = []
 for path in args.files:
-	spec = importlib.util.spec_from_file_location(path.stem, path)
-	module = importlib.util.module_from_spec(spec)
-	spec.loader.exec_module(module)
-	modules.append(module)
+    spec = importlib.util.spec_from_file_location(path.stem, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    modules.append(module)
 
 locals = {}
 if len(modules) > 0:
-	main = modules[0]
-	locals = {attr: getattr(main, attr) for attr in dir(main)}
+    main = modules[0]
+    locals = {attr: getattr(main, attr) for attr in dir(main)}
 
-sys.ps1 = "\u001b[33m\uEEA7\u001b[00m "
+sys.ps1 = "\u001b[33m\ueea7\u001b[00m "
 code.interact(local=locals, banner='')
 
 screen.mainloop()

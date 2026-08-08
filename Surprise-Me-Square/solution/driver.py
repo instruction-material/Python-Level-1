@@ -74,7 +74,8 @@ def build_repl_locals(modules: list[ModuleType]) -> dict[str, object]:
 
     main_module = modules[0]
     return {
-        attribute: getattr(main_module, attribute) for attribute in dir(main_module)
+        attribute: getattr(main_module, attribute)
+        for attribute in dir(main_module)
     }
 
 

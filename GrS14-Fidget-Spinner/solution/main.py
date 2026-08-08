@@ -1,8 +1,3 @@
-###########################
-###   CODING STANDARD   ###
-###########################
-# Use named constants, descriptive names, and purpose comments before nontrivial scopes
-
 # Inspired by http://www.grantjenks.com/docs/freegames/index.html#fidget
 
 import turtle

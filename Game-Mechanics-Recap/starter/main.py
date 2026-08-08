@@ -10,8 +10,7 @@
 # Change your while True loop to break as well if the turtle is more than 100px to the left side of the screen.
 
 
-
 # Explain how the above code works:
-# 
+#
 # Explain how we use an or if statement to end a while True loop at an appropriate time
-# 
+#
