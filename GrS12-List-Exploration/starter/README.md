@@ -1,5 +1,5 @@
 # GrS12 List Exploration starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Open `main.py` in Turtle mode. Append red, yellow, purple, pink, and green to the empty list. Draw one ten-step line in each color, then write whether purple appears in the list.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Expect five segments and `yes`. Remove purple and expect four segments and `no`. An empty list draws no segments and also reports `no`.

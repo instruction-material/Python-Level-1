@@ -1,5 +1,5 @@
 # GrS12 Which Way Turtles starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Open `main.py` in Turtle mode. Create ten turtle objects and store them in one list. In a second loop, turn and color each turtle, then move it 200 steps.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Start with one racer and a fixed turn. Then try ten racers and random choices. A zero count should leave the list empty and draw no paths.
