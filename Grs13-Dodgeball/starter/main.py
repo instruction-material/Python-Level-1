@@ -8,6 +8,7 @@ screen = turtle.Screen()
 screen.tracer(0)
 arena = 200
 lives = 10
+last_lives = lives
 
 
 def draw_border(color):
@@ -62,11 +63,10 @@ def turn_right():
 
 screen.onkey(turn_left, "Left")
 screen.onkey(turn_right, "Right")
-screen.listen()
 
 
 def advance():
-    global lives
+    global lives, last_lives
     player.forward(6)
     reflect_at_walls(player)
     for ball in balls:
@@ -76,12 +76,12 @@ def advance():
     # TODO: Check for contact after moving all balls. On the first hit,
     # subtract one life, move the player to the center, and stop checking.
 
-    writer.clear()
+    if lives != last_lives:
+        writer.clear()
+        writer.write(f"Lives: {lives}" if lives > 0 else "Game over")
+        last_lives = lives
     if lives > 0:
-        writer.write(f"Lives: {lives}")
         screen.ontimer(advance, 25)
-    else:
-        writer.write("Game over")
     screen.update()
 
 
@@ -89,4 +89,5 @@ writer.write(f"Lives: {lives}")
 screen.update()
 screen.ontimer(advance, 25)
 print("Dodgeball workspace ready")
+screen.listen()
 turtle.done()

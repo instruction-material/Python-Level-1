@@ -7,6 +7,7 @@ screen.tracer(0)
 screen.colormode(255)
 arena = 190
 frames_left = 1650
+last_status = None
 screen.bgcolor(195, 20, 50)
 player = turtle.Turtle("turtle")
 player.color("white")
@@ -26,8 +27,11 @@ for index in range(10):
 
 
 def show_status(message):
-    status.clear()
-    status.write(message)
+    global last_status
+    if message != last_status:
+        status.clear()
+        status.write(message)
+        last_status = message
 
 
 def reflect_at_walls(actor):
@@ -54,7 +58,6 @@ def turn_right():
 
 screen.onkey(turn_left, "Left")
 screen.onkey(turn_right, "Right")
-screen.listen()
 
 
 def advance():
@@ -79,4 +82,5 @@ def advance():
 
 advance()
 print("Light the Stars workspace ready")
+screen.listen()
 turtle.done()

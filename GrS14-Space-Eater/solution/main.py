@@ -8,6 +8,7 @@ round_frames = 1600
 score = 0
 frames_left = round_frames
 playing = True
+last_status = None
 
 screen = turtle.Screen()
 screen.bgcolor("black")
@@ -48,8 +49,11 @@ def place_target(target):
 
 
 def show_status(message):
-    scoreboard.clear()
-    scoreboard.write(message)
+    global last_status
+    if message != last_status:
+        scoreboard.clear()
+        scoreboard.write(message)
+        last_status = message
 
 
 def reset_round():
@@ -91,7 +95,6 @@ def turn_right():
 
 screen.onkey(turn_left, "Left")
 screen.onkey(turn_right, "Right")
-screen.listen()
 
 
 screen.onkey(reset_round, "r")
@@ -129,4 +132,5 @@ def advance():
 reset_round()
 screen.ontimer(advance, 25)
 print("Space Eater running")
+screen.listen()
 turtle.done()
