@@ -1,10 +1,5 @@
-# GrS9 Polka Dots
+# Polka Dot Game
 
-Canonical source repository: `Python-Level-1`
+Move the pen without drawing, then stamp a dot. Change size and color within the stamping callback.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run starter/main.py for the exercise or solution/main.py for the reference. Both use Turtle mode.

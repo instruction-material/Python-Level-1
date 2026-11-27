@@ -1,5 +1,5 @@
-# GrS8 Fruit Stand starter
+# Fruit Stand starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Bind three drawing functions to number keys. Share placement code while keeping each fruit distinct.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode and complete the TODO.

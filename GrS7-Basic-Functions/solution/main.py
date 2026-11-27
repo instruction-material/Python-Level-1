@@ -1,35 +1,34 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.pensize(5)
+
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
+
+screen.colormode(255)
+pen.pensize(4)
 
 
 def random_spot():
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-    drawing_turtle.penup()
-    drawing_turtle.goto(x, y)
-    drawing_turtle.pendown()
+    pen.penup()
+    pen.goto(random.randint(-95, 95), random.randint(-55, 55))
+    pen.pendown()
 
 
 def random_color():
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-    drawing_turtle.color(red_value, green_value, blue_value)
+    pen.color(random.randint(20, 180), random.randint(20, 180), random.randint(20, 180))
 
 
 def reset():
-    drawing_turtle.penup()
-    drawing_turtle.goto(0, 0)
-    drawing_turtle.pendown()
-    drawing_turtle.color("black")
-    drawing_turtle.setheading(0)
-    drawing_turtle.clear()
-    drawing_turtle.speed(6)
+    pen.clear()
+    pen.penup()
+    pen.goto(0, 0)
+    pen.setheading(0)
+    pen.color("black")
+    pen.pendown()
 
 
 def all_random():
@@ -37,8 +36,11 @@ def all_random():
     random_color()
 
 
-random_color()
-random_spot()
-drawing_turtle.right(90)
-drawing_turtle.forward(100)
 reset()
+for stroke in range(5):
+    all_random()
+    pen.forward(24)
+
+screen.update()
+print("Basic Functions reference ready")
+turtle.done()

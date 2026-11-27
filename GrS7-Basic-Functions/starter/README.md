@@ -1,5 +1,5 @@
-# GrS7 Basic Functions starter
+# Basic Functions starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Use separate named helpers for a random location, random color, and a clean reset.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode and complete the TODO.

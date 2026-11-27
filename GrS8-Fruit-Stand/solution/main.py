@@ -1,67 +1,65 @@
 import turtle
-import random
 
-fruit = turtle.Turtle()
-fruit.speed(1000)
-fruit.width(5)
 
 screen = turtle.Screen()
-screen.bgcolor("light blue")
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
+
+pen.hideturtle()
+
+
+def move_fruit(x, y, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(0)
+    pen.color(color)
+    pen.pendown()
 
 
 def orange():
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-    fruit.penup()
-    fruit.goto(x, y)
-    fruit.setheading(0)
-    fruit.color("orange")
-    fruit.pendown()
-
-    fruit.begin_fill()
-    for i in range(36):
-        fruit.forward(7)
-        fruit.right(10)
-    fruit.end_fill()
+    move_fruit(-65, -20, "darkorange")
+    pen.dot(36)
+    screen.update()
+    print("Orange drawn")
 
 
 def starfruit():
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-    fruit.penup()
-    fruit.goto(x, y)
-    fruit.setheading(0)
-    fruit.color("yellow")
-    fruit.pendown()
-
-    fruit.begin_fill()
-    for i in range(5):
-        fruit.forward(50)
-        fruit.right(144)
-    fruit.end_fill()
+    move_fruit(-19, -13, "goldenrod")
+    pen.begin_fill()
+    for edge in range(5):
+        pen.forward(38)
+        pen.right(144)
+    pen.end_fill()
+    screen.update()
+    print("Starfruit drawn")
 
 
 def cherry():
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-    fruit.penup()
-    fruit.goto(x, y)
-    fruit.setheading(0)
-    fruit.color("dark red")
-    fruit.pendown()
+    move_fruit(66, -20, "crimson")
+    pen.dot(26)
+    move_fruit(66, -8, "forestgreen")
+    pen.left(70)
+    pen.forward(16)
+    screen.update()
+    print("Cherry drawn")
 
-    fruit.begin_fill()
-    for i in range(36):
-        fruit.forward(2)
-        fruit.right(10)
-    fruit.end_fill()
 
-    # draw the stem
-    fruit.left(90)
-    fruit.forward(15)
+def tap_fruit(x, y):
+    if x < -25:
+        orange()
+    elif x > 25:
+        cherry()
+    else:
+        starfruit()
 
 
 screen.onkey(orange, "1")
 screen.onkey(starfruit, "2")
 screen.onkey(cherry, "3")
+screen.onclick(tap_fruit)
 screen.listen()
+
+screen.update()
+print("Fruit Stand reference ready")
+turtle.done()

@@ -1,51 +1,41 @@
 import turtle
 
-turtle.colormode(255)
 
-juni = turtle.Turtle()
-juni.speed(0)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
+pen.hideturtle()
 
-def draw_house():
-    juni.fillcolor("red")
-    juni.begin_fill()
-    for i in range(3):
-        juni.forward(50)
-        juni.left(120)
-    juni.end_fill()
-
-    juni.forward(5)
-
-    juni.fillcolor("grey")
-    juni.begin_fill()
-    for i in range(4):
-        juni.forward(40)
-        juni.right(90)
-    juni.end_fill()
+def move_to(x, y):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(0)
+    pen.pendown()
 
 
-draw_house()
+def draw_house(x, y):
+    move_to(x, y)
+    pen.color("slateblue")
+    pen.begin_fill()
+    for side in range(4):
+        pen.forward(32)
+        pen.left(90)
+    pen.end_fill()
+    move_to(x, y + 32)
+    pen.color("tomato")
+    pen.begin_fill()
+    for side in range(3):
+        pen.forward(32)
+        pen.left(120)
+    pen.end_fill()
 
-juni.penup()
-juni.goto(-100, 100)
-juni.pendown()
 
-draw_house()
+draw_house(-85, -35)
+draw_house(-16, -35)
+draw_house(53, -35)
 
-juni.penup()
-juni.goto(100, 100)
-juni.pendown()
-
-draw_house()
-
-juni.penup()
-juni.goto(100, -100)
-juni.pendown()
-
-draw_house()
-
-juni.penup()
-juni.goto(-100, -100)
-juni.pendown()
-
-draw_house()
+screen.update()
+print("Build a Neighborhood reference ready")
+turtle.done()

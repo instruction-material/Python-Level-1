@@ -1,35 +1,60 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-screen = turtle.Screen()
 
-move_speed = 10
-turn_speed = 10
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
+
+pen.color("midnightblue")
+pen.pensize(3)
+distance = 14
+angle = 30
 
 
 def move_forward():
-    drawing_turtle.pendown()
-    drawing_turtle.forward(move_speed)
+    pen.forward(distance)
+    screen.update()
+    print("Forward")
 
 
 def move_backward():
-    drawing_turtle.pendown()
-    drawing_turtle.backward(move_speed)
+    pen.forward(-distance)
+    screen.update()
+    print("Backward")
 
 
 def turn_left():
-    drawing_turtle.left(turn_speed)
+    pen.left(angle)
+    screen.update()
+    print("Left")
 
 
 def turn_right():
-    drawing_turtle.right(turn_speed)
+    pen.right(angle)
+    screen.update()
+    print("Right")
 
 
-drawing_turtle.goto(0, 0)
+def tap_direction(x, y):
+    if abs(x) > abs(y):
+        if x > 0:
+            turn_right()
+        else:
+            turn_left()
+    elif y > 0:
+        move_forward()
+    else:
+        move_backward()
 
-# associating event listeners with functions
+
 screen.onkey(move_forward, "Up")
 screen.onkey(move_backward, "Down")
 screen.onkey(turn_left, "Left")
 screen.onkey(turn_right, "Right")
+screen.onclick(tap_direction)
 screen.listen()
+
+screen.update()
+print("Etch A Sketch reference ready")
+turtle.done()

@@ -1,90 +1,82 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
+
 screen = turtle.Screen()
-drawing_turtle.speed(10000)
-drawing_turtle.penup()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
+
+screen.colormode(255)
+pen.hideturtle()
 
 
-def rand_color():
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-    drawing_turtle.color(red_value, green_value, blue_value)
-
-
-def rand_spot():
-    x = random.randint(-300, 300)
-    y = random.randint(-300, 300)
-    drawing_turtle.goto(x, y)
+def start_mark():
+    pen.penup()
+    pen.goto(random.randint(-75, 75), random.randint(-45, 40))
+    pen.setheading(0)
+    pen.color(random.randint(20, 180), random.randint(20, 180), random.randint(20, 180))
+    pen.pendown()
 
 
 def draw_square():
-    rand_color()
-    rand_spot()
-
-    side_length = random.randint(20, 100)
-
-    drawing_turtle.pendown()
-    drawing_turtle.begin_fill()
-    for i in range(4):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.right(90)
-    drawing_turtle.end_fill()
-    drawing_turtle.penup()
+    start_mark()
+    for edge in range(4):
+        pen.forward(28)
+        pen.right(90)
+    screen.update()
+    print("Square drawn")
 
 
 def draw_octagon():
-    rand_color()
-    rand_spot()
-
-    side_length = random.randint(20, 100)
-
-    drawing_turtle.pendown()
-    drawing_turtle.begin_fill()
-    for i in range(8):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.right(315)
-    drawing_turtle.end_fill()
-    drawing_turtle.penup()
+    start_mark()
+    for edge in range(8):
+        pen.forward(12)
+        pen.right(45)
+    screen.update()
+    print("Octagon drawn")
 
 
-def draw_firework():
-    rand_color()
-
-    x = random.randint(-300, 300)
-    y = random.randint(-300, 300)
-
-    for i in range(36):
-        drawing_turtle.goto(x, y)
-        drawing_turtle.pendown()
-        drawing_turtle.forward(20)
-        drawing_turtle.right(10)
-        drawing_turtle.penup()
+def draw_burst():
+    start_mark()
+    x, y = pen.xcor(), pen.ycor()
+    for ray in range(12):
+        pen.forward(22)
+        pen.penup()
+        pen.goto(x, y)
+        pen.right(30)
+        pen.pendown()
+    screen.update()
+    print("Burst drawn")
 
 
 def draw_circle():
-    rand_color()
-    rand_spot()
-
-    side_length = random.randint(5, 20)
-
-    drawing_turtle.pendown()
-    drawing_turtle.begin_fill()
-    for i in range(36):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.right(10)
-    drawing_turtle.end_fill()
-    drawing_turtle.penup()
+    start_mark()
+    pen.circle(16)
+    screen.update()
+    print("Circle drawn")
 
 
-drawing_turtle.goto(0, 0)
+def tap_mark(x, y):
+    if y >= 0:
+        if x < 0:
+            draw_square()
+        else:
+            draw_octagon()
+    elif x < 0:
+        draw_burst()
+    else:
+        draw_circle()
+
 
 screen.onkey(draw_square, "Up")
 screen.onkey(draw_octagon, "Down")
-screen.onkey(draw_firework, "Left")
+screen.onkey(draw_burst, "Left")
 screen.onkey(draw_circle, "Right")
+screen.onclick(tap_mark)
 screen.listen()
+
+screen.update()
+print("Picasso Game reference ready")
+turtle.done()

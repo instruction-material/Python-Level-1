@@ -1,44 +1,58 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-# Set up the turtle screen
+
 screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-# Create a turtle for drawing
-artist = turtle.Turtle()
-artist.speed(0)  # Adjust the drawing speed
-
-
-def draw_circle():
-    # Draw a colorful circle
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-
-    artist.color(red_value, green_value, blue_value)
-
-    circle_size = random.randint(1, 10)
-
-    artist.begin_fill()
-    for i in range(36):
-        artist.forward(circle_size)
-        artist.right(10)
-    artist.end_fill()
+screen.colormode(255)
+pen.penup()
 
 
-# Function to handle mouse clicks
-def move(x, y):
-    artist.penup()  # Lift the pen to move to the clicked position
-    artist.goto(x, y)
-    artist.pendown()  # Lower the pen to start drawing
-
-    draw_circle()
+def move_forward():
+    pen.forward(12)
+    screen.update()
 
 
-# Set up the event listener
-screen.onclick(move)
+def move_backward():
+    pen.forward(-12)
+    screen.update()
 
-# Keep the window open
+
+def turn_left():
+    pen.left(30)
+    screen.update()
+
+
+def turn_right():
+    pen.right(30)
+    screen.update()
+
+
+def stamp_dot():
+    size = random.randint(8, 26)
+    pen.color(random.randint(20, 180), random.randint(20, 180), random.randint(20, 180))
+    pen.dot(size)
+    screen.update()
+    print("Dot stamped")
+
+
+def tap_dot(x, y):
+    pen.goto(x, y)
+    stamp_dot()
+
+
+screen.onkey(move_forward, "Up")
+screen.onkey(move_backward, "Down")
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
+screen.onkey(stamp_dot, "space")
+screen.onclick(tap_dot)
+screen.listen()
+
+screen.update()
+print("Polka Dot Game reference ready")
 turtle.done()
