@@ -1,5 +1,5 @@
-# GrS12 Turtle Launch with Lists starter
+# Turtle Launch with Lists starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Store turtle objects in a list and apply the same launch routine to each one.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode and complete the TODO.

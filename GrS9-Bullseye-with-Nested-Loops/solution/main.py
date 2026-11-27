@@ -1,30 +1,36 @@
+from math import radians, sin
+
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10000)
-drawing_turtle.right(5)
 
-y = 100
-circle_step = 20
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-for i in range(5):
-    drawing_turtle.penup()
-    drawing_turtle.goto(0, y)
-    drawing_turtle.pendown()
+def ring_color(index):
+    if index % 2 == 0:
+        return "crimson"
+    return "white"
 
-    # decide which color
-    if i % 2 == 0:
-        drawing_turtle.color("red")
-    else:
-        drawing_turtle.color("white")
 
-    # draw circle
-    drawing_turtle.begin_fill()
-    for i in range(36):
-        drawing_turtle.forward(circle_step)
-        drawing_turtle.right(10)
-    drawing_turtle.end_fill()
+def draw_target(rings):
+    for ring in range(rings):
+        radius = 70 * (rings - ring) / rings
+        pen.penup()
+        pen.goto(0, -radius)
+        pen.setheading(5)
+        pen.color(ring_color(ring))
+        pen.pendown()
+        pen.begin_fill()
+        for edge in range(36):
+            pen.forward(2 * radius * sin(radians(5)))
+            pen.left(10)
+        pen.end_fill()
 
-    # decrease y and circleStep
-    y -= 23
-    circle_step -= 4
+
+draw_target(5)
+
+screen.update()
+print("Bullseye with Nested Loops reference ready")
+turtle.done()

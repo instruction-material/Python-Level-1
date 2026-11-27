@@ -1,141 +1,26 @@
-import turtle
 import random
 
-colors = [
-    "white",
-    "white smoke",
-    "gainsboro",
-    "light gray",
-    "silver",
-    "dark gray",
-    "gray",
-    "dim gray",
-    "black",
-    "slate gray",
-    "alice blue",
-    "royal blue",
-    "blue",
-    "medium blue",
-    "navy",
-    "dark blue",
-    "midnight blue",
-    "light blue",
-    "deep sky blue",
-    "dodger blue",
-    "powder blue",
-    "sky blue",
-    "light sky blue",
-    "steel blue",
-    "azure",
-    "light cyan",
-    "cyan",
-    "pale turquoise",
-    "dark turquoise",
-    "turquoise",
-    "cadet blue",
-    "dark cyan",
-    "teal",
-    "mint cream",
-    "aquamarine",
-    "dark sea green",
-    "sea green",
-    "honeydew",
-    "pale green",
-    "light green",
-    "spring green",
-    "lime green",
-    "green",
-    "forest green",
-    "dark green",
-    "green yellow",
-    "chartreuse",
-    "lawn green",
-    "lime",
-    "yellow green",
-    "olive drab",
-    "beige",
-    "dark khaki",
-    "olive",
-    "pale goldenrod",
-    "khaki",
-    "ivory",
-    "light yellow",
-    "cornsilk",
-    "lemon chiffon",
-    "yellow",
-    "gold",
-    "goldenrod",
-    "dark goldenrod",
-    "wheat",
-    "tan",
-    "burlywood",
-    "peru",
-    "sienna",
-    "saddle brown",
-    "floral white",
-    "old lace",
-    "navajo white",
-    "moccasin",
-    "sandy brown",
-    "orange",
-    "dark orange",
-    "chocolate",
-    "firebrick",
-    "brown",
-    "dark red",
-    "maroon",
-    "antique white",
-    "papaya whip",
-    "bisque",
-    "peach puff",
-    "light salmon",
-    "coral",
-    "tomato",
-    "orange red",
-    "red",
-    "crimson",
-    "dark salmon",
-    "salmon",
-    "light coral",
-    "indian red",
-    "rosy brown",
-    "linen",
-    "seashell",
-    "misty rose",
-    "pink",
-    "light pink",
-    "hot pink",
-    "deep pink",
-    "snow",
-    "lavender blush",
-    "violet red",
-    "purple",
-    "dark magenta",
-    "violet",
-    "magenta",
-    "thistle",
-    "plum",
-    "orchid",
-    "medium orchid",
-    "dark orchid",
-    "dark violet",
-    "blue violet",
-    "medium purple",
-    "rebecca purple",
-    "indigo",
-    "ghost white",
-    "lavender",
-    "slate blue",
-]
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.shape("turtle")
-drawing_turtle.penup()
-drawing_turtle.goto(-200, -200)
-drawing_turtle.pendown()
-drawing_turtle.setheading(45)
+
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
+
+colors = ["crimson", "darkorange", "goldenrod", "seagreen", "teal", "royalblue", "purple"]
+pen.penup()
+pen.goto(-100, -22)
+pen.pensize(5)
+pen.pendown()
 
 for color in colors:
-    drawing_turtle.color(color)
-    drawing_turtle.forward(random.randint(3, 7))
-    drawing_turtle.right(random.randint(-10, 10))
+    pen.color(color)
+    pen.setheading(random.randint(-20, 20))
+    pen.forward(24)
+
+print("Palette:", colors)
+
+screen.update()
+print("Rainbow Path reference ready")
+turtle.done()

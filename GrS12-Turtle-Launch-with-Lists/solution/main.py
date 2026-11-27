@@ -1,52 +1,59 @@
-import turtle
 import random
 
+import turtle
+
+
 screen = turtle.Screen()
-screen.bgcolor("black")
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-# draw Earth
-earth = turtle.Turtle()
-earth.speed(10000)
-earth.penup()
-earth.goto(-200, 0)
-earth.color("deep sky blue")
-earth.pendown()
-earth.begin_fill()
-for i in range(36):
-    earth.forward(10)
-    earth.right(10)
-earth.end_fill()
-earth.ht()
+pen.penup()
+pen.goto(70, -67)
+pen.setheading(90)
+pen.color("lightsteelblue")
+pen.pensize(4)
+pen.pendown()
+pen.forward(136)
+pen.penup()
+pen.goto(100, -67)
+pen.pendown()
+pen.forward(136)
+pen.penup()
+pen.goto(60, 76)
+pen.write("Landing zone")
 
-# draw moon
-moon = turtle.Turtle()
-moon.speed(10000)
-moon.penup()
-moon.goto(200, -25)
-moon.color("light slate gray")
-moon.pendown()
-moon.begin_fill()
-for i in range(36):
-    moon.forward(5)
-    moon.right(10)
-moon.end_fill()
-moon.ht()
+fleet = []
+for lane in range(4):
+    pilot = turtle.Turtle(visible=False)
+    pilot.speed(0)
+    pilot.penup()
+    pilot.goto(-120, 45 - 30 * lane)
+    fleet.append(pilot)
 
-# create list of turtles
-turtles = []
-for i in range(10):
-    drawing_turtle = turtle.Turtle()
-    turtles.append(drawing_turtle)
 
-# launch turtles
-for drawing_turtle in turtles:
-    drawing_turtle.color("red")
-    drawing_turtle.shape("turtle")
-    drawing_turtle.speed(10000)
-    drawing_turtle.penup()
-    drawing_turtle.goto(-200, -50)
-    drawing_turtle.speed(10)
-    travel_dist = random.randint(200, 500)
-    drawing_turtle.forward(travel_dist)
-    if travel_dist > 400:
-        drawing_turtle.color("white")
+def launch(pilot, distance):
+    endpoint = -120 + distance
+    if endpoint < 70:
+        outcome, color = "undershoot", "darkorange"
+    elif endpoint <= 100:
+        outcome, color = "landed", "seagreen"
+    else:
+        outcome, color = "overshoot", "firebrick"
+    pilot.color(color)
+    pilot.pendown()
+    pilot.goto(endpoint, pilot.ycor())
+    pilot.penup()
+    pilot.dot(10)
+    return outcome
+
+
+outcomes = []
+for pilot in fleet:
+    outcomes.append(launch(pilot, random.randint(160, 245)))
+
+print("Launched:", len(outcomes), outcomes)
+
+screen.update()
+print("Turtle Launch with Lists reference ready")
+turtle.done()

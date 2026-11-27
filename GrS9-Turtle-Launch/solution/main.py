@@ -1,51 +1,62 @@
-import turtle
 import random
 
+import turtle
+
+
 screen = turtle.Screen()
-screen.bgcolor("black")
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-# draw Earth
-earth = turtle.Turtle()
-earth.speed(10000)
-earth.penup()
-earth.goto(-200, 0)
-earth.color("deep sky blue")
-earth.pendown()
-earth.begin_fill()
-for i in range(36):
-    earth.forward(10)
-    earth.right(10)
-earth.end_fill()
-earth.ht()
-
-# draw moon
-moon = turtle.Turtle()
-moon.speed(10000)
-moon.penup()
-moon.goto(200, -25)
-moon.color("light slate gray")
-moon.pendown()
-moon.begin_fill()
-for i in range(36):
-    moon.forward(5)
-    moon.right(10)
-moon.end_fill()
-moon.ht()
+pen.color("steelblue")
+pen.penup()
+pen.goto(70, -28)
+pen.pendown()
+pen.pensize(6)
+pen.forward(30)
+pen.penup()
+pen.goto(65, -52)
+pen.write("Landing zone")
+pen.pensize(2)
+marker = turtle.Turtle(visible=False)
+marker.speed(0)
+marker.penup()
 
 
-def launch():
-    drawing_turtle = turtle.Turtle()
-    drawing_turtle.color("red")
-    drawing_turtle.shape("turtle")
-    drawing_turtle.speed(10000)
-    drawing_turtle.penup()
-    drawing_turtle.goto(-200, -50)
-    drawing_turtle.speed(10)
-    travel_dist = random.randint(200, 500)
-    drawing_turtle.forward(travel_dist)
-    if travel_dist > 400:
-        drawing_turtle.color("white")
+def classify(endpoint):
+    if endpoint < 70:
+        return "undershoot", "darkorange"
+    elif endpoint <= 100:
+        return "landed", "seagreen"
+    else:
+        return "overshoot", "firebrick"
 
 
-screen.onkey(launch, "space")
+def launch(distance):
+    endpoint = -120 + distance
+    outcome, color = classify(endpoint)
+    marker.clear()
+    marker.color(color)
+    marker.goto(-120, -15)
+    marker.pendown()
+    marker.goto(endpoint, -15)
+    marker.penup()
+    marker.dot(12)
+    marker.goto(-115, 12)
+    marker.write(outcome)
+    screen.update()
+    print("End x:", endpoint, outcome)
+
+
+def random_launch(x=None, y=None):
+    launch(random.randint(160, 245))
+
+
+launch(205)
+screen.onkey(random_launch, "space")
+screen.onclick(random_launch)
 screen.listen()
+
+screen.update()
+print("Turtle Launch reference ready")
+turtle.done()
