@@ -1,17 +1,26 @@
 import turtle
 
-turtle.colormode(255)
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.color("white")
-drawing_turtle.speed(100)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-s = turtle.Screen()
-s.bgcolor("black")
+screen.bgcolor("black")
+pen.color("white")
 
-n = 50
 
-for i in range(300):
-    drawing_turtle.forward(n)
-    drawing_turtle.right(91)
-    n = n + 1
+def expanding_spiral(length, increase, turn, steps):
+    for step in range(steps):
+        pen.forward(length)
+        pen.right(turn)
+        length += increase
+    return length
+
+
+after_last = expanding_spiral(30, 1, 91, 120)
+print("Next length:", after_last)
+
+screen.update()
+print("Into the Void reference ready")
+turtle.done()

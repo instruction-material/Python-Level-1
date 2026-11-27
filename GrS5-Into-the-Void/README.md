@@ -1,10 +1,5 @@
-# GrS5 Into the Void
+# Into the Void
 
-Canonical source repository: `Python-Level-1`
+Start in the center, grow the length on each of 120 moves, and compare a 91-degree turn to 90 degrees.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run starter/main.py to complete the exercise or solution/main.py for the working example. Both run in Turtle mode.

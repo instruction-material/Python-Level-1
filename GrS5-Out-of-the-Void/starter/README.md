@@ -1,5 +1,5 @@
-# GrS5 Out of the Void starter
+# Out of the Void starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Draw only while the length is positive. Reassign it by subtracting the same shrink amount.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode. Complete the TODO and use the lesson checkpoints.

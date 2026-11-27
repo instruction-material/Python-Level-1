@@ -1,41 +1,55 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-sign_drawer = turtle.Turtle()
 
-# Go to the starting position
-sign_drawer.penup()
-sign_drawer.goto(50, 50)
-sign_drawer.pendown()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-# Draw a stop sign
-sign_drawer.color("red")
-sign_drawer.begin_fill()
-for i in range(8):
-    sign_drawer.forward(50)
-    sign_drawer.right(360 / 8)
-sign_drawer.end_fill()
 
-# Draw text on sign, then hide the turtle
-sign_drawer.penup()
-sign_drawer.color("white")
-sign_drawer.goto(75, -20)
-sign_drawer.pendown()
-sign_drawer.write("STOP", align="center", font=("Arial", 16, "normal"))
-sign_drawer.ht()
+guide = turtle.Turtle(visible=False)
+guide.speed(0)
+guide.penup()
+guide.goto(0, -86)
+guide.pendown()
+guide.setheading(90)
+guide.forward(172)
 
-# Configure the main turtle
-drawing_turtle.goto(-200, 0)
-drawing_turtle.color("green")
-drawing_turtle.shape("turtle")
-drawing_turtle.pendown()
+guide.penup()
+guide.goto(24, 62)
+guide.setheading(0)
+guide.color("firebrick")
+guide.begin_fill()
+guide.pendown()
+for edge in range(8):
+    guide.forward(22)
+    guide.right(45)
+guide.end_fill()
+guide.penup()
+guide.goto(35, 34)
+guide.color("white")
+guide.write("STOP", align="center", font=("Arial", 11, "bold"))
 
-# Program the turtle to move forward as long as the x coordinate is less than 0
-while drawing_turtle.xcor() < 0:
-    # Print the x coordinate of the turtle
-    drawing_turtle.clear()
-    drawing_turtle.write(drawing_turtle.xcor(), font=("Arial", 16, "normal"))
-    drawing_turtle.forward(1)
+pen.penup()
+pen.goto(-150, 0)
+pen.shape("turtle")
+pen.color("forestgreen")
 
-# Keep the window open: note this line is only needed when running projects in repl.it
-turtle.mainloop()
+
+def move_to_line(step):
+    if step <= 0:
+        raise ValueError("Step must be positive.")
+    pen.setheading(0)
+    moves = 0
+    while pen.xcor() < 0:
+        pen.forward(min(step, -pen.xcor()))
+        moves += 1
+    return moves
+
+
+moves = move_to_line(5)
+print("Moves:", moves, "Final x:", round(pen.xcor()))
+
+screen.update()
+print("While Loops Exploration reference ready")
+turtle.done()

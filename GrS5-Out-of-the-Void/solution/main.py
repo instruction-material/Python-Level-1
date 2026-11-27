@@ -1,23 +1,36 @@
 import turtle
 
-turtle.colormode(255)
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.color("white")
-drawing_turtle.speed(100)
-drawing_turtle.setheading(300)
-drawing_turtle.penup()
-drawing_turtle.goto(-10, 200)
-drawing_turtle.pendown()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-s = turtle.Screen()
-s.bgcolor("black")
+screen.bgcolor("black")
+pen.color("white")
 
-n = 300
 
-for i in range(200):
-    drawing_turtle.forward(n)
-    drawing_turtle.right(119)
-    n = n - 3
+pen.penup()
+pen.goto(20, 100)
+pen.setheading(300)
+pen.pendown()
 
-drawing_turtle.ht()
+
+def inward_spiral(length, shrink, turn):
+    if shrink <= 0:
+        raise ValueError("Shrink must be positive.")
+    count = 0
+    while length > 0:
+        pen.forward(length)
+        pen.right(turn)
+        length -= shrink
+        count += 1
+    return count, length
+
+
+steps, final_length = inward_spiral(160, 3, 119)
+print("Steps:", steps, "Final length:", final_length)
+
+screen.update()
+print("Out of the Void reference ready")
+turtle.done()

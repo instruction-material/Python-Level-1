@@ -1,22 +1,31 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(1000)
 
-side = 10
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-counter = 0
-while counter < 50:
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-    drawing_turtle.color(red_value, green_value, blue_value)
 
-    drawing_turtle.forward(side)
-    drawing_turtle.right(90)
+screen.colormode(255)
 
-    side = side + 5
-    counter += 1
+
+def spiral(side, increase, limit):
+    counter = 0
+    while counter < limit:
+        pen.color(random.randint(20, 200), random.randint(20, 200), random.randint(20, 200))
+        pen.forward(side)
+        pen.right(90)
+        side += increase
+        counter += 1
+    return counter, side
+
+
+sides_drawn, next_side = spiral(10, 5, 50)
+print("Sides:", sides_drawn, "Next length:", next_side)
+
+screen.update()
+print("Square Spiral reference ready")
+turtle.done()

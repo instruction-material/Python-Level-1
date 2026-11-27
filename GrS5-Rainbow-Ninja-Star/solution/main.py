@@ -1,29 +1,40 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(1000)
 
-red_value = random.randint(0, 255)
-green_value = random.randint(0, 255)
-blue_value = 0
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-for i in range(180):
-    drawing_turtle.color(red_value, green_value, blue_value)
 
-    drawing_turtle.forward(100)
-    drawing_turtle.right(30)
-    drawing_turtle.forward(20)
-    drawing_turtle.left(60)
-    drawing_turtle.forward(50)
-    drawing_turtle.right(30)
+screen.colormode(255)
+screen.bgcolor("black")
+red = random.randint(120, 250)
+green = random.randint(80, 215)
+blue = 0
+arms = 180
 
-    drawing_turtle.penup()
-    drawing_turtle.goto(0, 0)
-    drawing_turtle.pendown()
 
-    drawing_turtle.right(2)
+def next_channel(current):
+    return (current + 2) % 256
 
-    blue_value = blue_value + 2
+
+for arm in range(arms):
+    pen.color(red, green, blue)
+    pen.pendown()
+    pen.forward(48)
+    pen.right(30)
+    pen.forward(13)
+    pen.left(60)
+    pen.forward(24)
+    pen.right(30)
+    pen.penup()
+    pen.goto(0, 0)
+    pen.right(2)
+    blue = next_channel(blue)
+
+screen.update()
+print("Rainbow Ninja Star reference ready")
+turtle.done()
