@@ -1,31 +1,75 @@
-import turtle
 import random
-
-ball = turtle.Turtle()
-ball.penup()
-ball.goto(random.randint(-300, 300), random.randint(-300, 300))
-ball.shape("circle")
-ball.color("red")
-
-drawing_turtle = turtle.Turtle()
-drawing_turtle.penup()
-drawing_turtle.goto(0, 0)
-drawing_turtle.shape("turtle")
-drawing_turtle.color("blue")
-
-
-def aim():
-    drawing_turtle.pendown()
-    drawing_turtle.forward(300)
+import turtle
 
 
 screen = turtle.Screen()
-screen.onkey(aim, "space")
-screen.listen()
+screen.tracer(0)
+player = turtle.Turtle("turtle")
+player.color("blue")
+player.penup()
+target = turtle.Turtle("circle")
+target.color("red")
+target.penup()
+writer = turtle.Turtle(visible=False)
+writer.penup()
+writer.goto(-175, 180)
+state = "aiming"
+distance_left = 0
 
-while True:
-    # only spins when the turtle hasn't moved
-    if drawing_turtle.xcor() == 0 and drawing_turtle.ycor() == 0:
-        drawing_turtle.left(10)
-    else:
-        break
+
+def target_hit():
+    return player.distance(target) < 16
+
+
+def reset():
+    global state, distance_left
+    state = "aiming"
+    distance_left = 0
+    player.goto(0, 0)
+    player.setheading(0)
+    target.setheading(random.randint(0, 35) * 10)
+    target.goto(0, 0)
+    target.forward(random.randint(80, 155))
+    writer.clear()
+    writer.write("Space to launch. R to reset.")
+    screen.update()
+
+
+def launch():
+    global state, distance_left
+    if state == "aiming":
+        state = "moving"
+        distance_left = 180
+
+
+def finish(message):
+    global state
+    state = "finished"
+    writer.clear()
+    writer.write(message + " Press R to replay.")
+    print(message)
+
+
+def advance():
+    global distance_left
+    if state == "aiming":
+        player.left(10)
+        screen.update()
+    elif state == "moving":
+        player.forward(6)
+        distance_left -= 6
+        if target_hit():
+            finish("Hit!")
+        elif distance_left == 0:
+            finish("Miss.")
+        screen.update()
+    screen.ontimer(advance, 35)
+
+
+screen.onkey(launch, "space")
+screen.onkey(reset, "r")
+reset()
+screen.ontimer(advance, 35)
+print("Target Check-In running")
+screen.listen()
+turtle.done()

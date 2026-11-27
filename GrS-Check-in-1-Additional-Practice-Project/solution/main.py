@@ -1,30 +1,36 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(0)
-drawing_turtle.penup()
-drawing_turtle.goto(-200, 0)
-drawing_turtle.pendown()
 
-drawing_turtle.left(70)
-for i in range(30):
-    drawing_turtle.forward(20)
-    drawing_turtle.right(140)
-    drawing_turtle.forward(20)
-    drawing_turtle.left(140)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
+turn = 70
+step_length = 16
+pairs = 30
 
-"""
-# Bonus extension for advanced students
-t.right(70)
-for i in range(4):
-  t.forward(100)
-  t.right(90)
 
-t.penup()
-t.goto(-200, 0)
-t.pendown()
-t.right(60)
-for i in range(3):
-  t.forward(100)
-  t.right(120)
-"""
+def draw_zigzag(pair_count):
+    pen.setheading(turn)
+    for pair in range(pair_count):
+        pen.forward(step_length)
+        pen.right(2 * turn)
+        pen.forward(step_length)
+        pen.left(2 * turn)
+
+
+def connect_square(side_length):
+    pen.setheading(0)
+    for side in range(4):
+        pen.forward(side_length)
+        pen.left(90)
+
+
+pen.penup()
+pen.goto(-180, 0)
+pen.pendown()
+draw_zigzag(pairs)
+connect_square(36)
+screen.update()
+print("Zigzag pairs:", pairs, "Endpoint:", round(pen.xcor()), round(pen.ycor()))
+turtle.done()

@@ -1,98 +1,59 @@
-#########################################
-
-# Nested Loops and Game Mechanics
-
-#########################################
-
-import turtle
 import random
+import turtle
 
-turtle.colormode(255)
-lion = turtle.Turtle()
-lion.speed(0)
-
-# What is a nested loop and why do we use them in python?
-# Write code which will move lion to a random place on the screen 5 times, drawing a square each time it moves, using a nested loop.
-
-for i in range(5):
-    lion.penup()
-    lion.goto(random.randint(-200, 200), random.randint(-200, 200))
-    lion.pendown()
-    for i in range(4):
-        lion.forward(50)
-        lion.right(90)
-
-# Alter your code to draw 3 triangles instead.
-
-for i in range(3):
-    lion.penup()
-    lion.goto(random.randint(-200, 200), random.randint(-200, 200))
-    lion.pendown()
-    for i in range(3):
-        lion.forward(50)
-        lion.right(120)
-
-# How many lines does our turtle make in our new code?
-
-# Create a screen variable and program the screen to stop tracing. Then program to screen to update after drawing each triangle.
-# How does our drawing change?
 
 screen = turtle.Screen()
 screen.tracer(0)
+lion = turtle.Turtle()
+lion.speed(0)
 
-for i in range(3):
+
+def draw_shape_at(x, y, sides, size):
     lion.penup()
-    lion.goto(random.randint(-200, 200), random.randint(-200, 200))
+    lion.goto(x, y)
+    lion.setheading(0)
     lion.pendown()
-    for i in range(3):
-        lion.forward(50)
-        lion.right(120)
+    for side in range(sides):
+        lion.forward(size)
+        lion.left(360 / sides)
     screen.update()
 
 
-# Make a while true loop which breaks after its fifth iteration.
+def range_color(number):
+    if number <= 20:
+        return "red"
+    elif number <= 40:
+        return "yellow"
+    return "green"
 
-counter = 0
-while True:
-    counter += 1
-    if counter >= 5:
-        break
+
+for index in range(5):
+    draw_shape_at(-160 + index * 62, 80, 4, 28)
+for index in range(3):
+    x = random.randint(-165 + index * 118, -130 + index * 118)
+    lion.color(range_color(random.randint(0, 60)))
+    draw_shape_at(x, 5, 3, 32)
+
+def count_passes():
+    turns = 0
+    while True:
+        turns += 1
+        if turns == 5:
+            break
+    return turns
 
 
-#########################################
+turns = count_passes()
 
-# Conditionals
+swimmers = []
+for index in range(3):
+    swimmer = turtle.Turtle("turtle")
+    swimmer.penup()
+    swimmer.goto(-125 + index * 90, -90)
+    swimmers.append(swimmer)
+for swimmer in swimmers:
+    swimmer.backward(30)
 
-#########################################
-
-# What is the difference between elif and else? When do we use one or the other in Python?
-# Create a variable called num which holds a random number between 0 and 60. If the number is between 0 and 20, change lion’s color to red. If the number is between 21 and 40, change lion’s color to yellow. Otherwise, change lion’s color to green.
-
-num = random.randint(0, 60)
-if num <= 20:
-    lion.color("red")
-elif num <= 40:
-    lion.color("yellow")
-else:
-    lion.color("green")
-
-#########################################
-
-# Lists
-
-#########################################
-
-# What is a list? Why do we use lists in Python?
-# Create an empty list called whales.
-
-whales = []
-
-# Create three more turtles (name them anything) and add them to the list.
-
-for i in range(3):
-    whales.append(turtle.Turtle())
-
-# Use a loop to move each turtle in our list backward by 30 pixels.
-
-for whale in whales:
-    whale.backward(30)
+screen.update()
+print("Check-In 3:", turns, len(swimmers), range_color(20), range_color(21), range_color(41))
+turtle.done()

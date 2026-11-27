@@ -1,10 +1,5 @@
-# Check in 1
+# Check-In 1 Turtle Fundamentals
 
-Canonical source repository: `Python-Level-1`
+Complete the polygon, RGB, shape-selection and coordinate tasks. Check 4, 5 and 6 for the shape boundaries.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Open starter/main.py for the exercise or solution/main.py for the working reference. Run either file directly in Turtle mode. The old Replit driver is retained in solution/.

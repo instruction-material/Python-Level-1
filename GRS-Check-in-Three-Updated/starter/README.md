@@ -1,5 +1,3 @@
-# GRS Check in Three Updated starter
+# Check-In 3 Drawing and Lists starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
-
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Open main.py in Turtle mode. Complete the shape loop, five-pass stopping rule, color ranges and shared movement for all three turtles.

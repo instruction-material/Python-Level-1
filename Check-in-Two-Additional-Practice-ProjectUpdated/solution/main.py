@@ -1,13 +1,13 @@
-import turtle
 import random
-
-drawing_turtle = turtle.Turtle()
-turtle.colormode(255)
-drawing_turtle.right(45)
-drawing_turtle.speed(5)
+import turtle
 
 
 screen = turtle.Screen()
+screen.tracer(0)
+screen.colormode(255)
+drawing_turtle = turtle.Turtle()
+drawing_turtle.speed(0)
+drawing_turtle.right(45)
 
 
 def change_color():
@@ -16,47 +16,45 @@ def change_color():
     )
 
 
-def draw_diamond():
-    side_length = 20
-    for i in range(3):
+def draw_layers(sides, turn, base_size):
+    for layer in range(1, 4):
         change_color()
         drawing_turtle.begin_fill()
-        for i in range(4):
-            drawing_turtle.forward(side_length)
-            drawing_turtle.right(90)
+        for side in range(sides):
+            drawing_turtle.forward(base_size * layer)
+            drawing_turtle.right(turn)
         drawing_turtle.end_fill()
+    screen.update()
+
+
+def draw_diamond():
+    draw_layers(4, 90, 16)
+    print("Keyboard Art: diamond")
+
+
+def draw_circle():
+    draw_layers(36, 10, 2)
+    print("Keyboard Art: circle")
+
+
+def draw_pyramid():
+    draw_layers(3, 120, 17)
+    print("Keyboard Art: pyramid")
 
 
 def change_location():
     drawing_turtle.penup()
-    drawing_turtle.goto(random.randint(-200, 200), random.randint(-200, 200))
+    drawing_turtle.goto(random.randint(-115, 115), random.randint(-115, 115))
     drawing_turtle.pendown()
-
-
-def draw_circle():
-    side_length = 3
-    for i in range(3):
-        change_color()
-        drawing_turtle.begin_fill()
-        for i in range(36):
-            drawing_turtle.forward(side_length)
-            drawing_turtle.right(10)
-        drawing_turtle.end_fill()
-
-
-def draw_pyramid():
-    side_length = 30
-    for i in range(3):
-        change_color()
-        drawing_turtle.begin_fill()
-        for i in range(3):
-            drawing_turtle.forward(side_length)
-            drawing_turtle.right(120)
-        drawing_turtle.end_fill()
+    screen.update()
+    print("Keyboard Art: moved")
 
 
 screen.onkey(draw_diamond, "d")
 screen.onkey(draw_circle, "c")
 screen.onkey(draw_pyramid, "p")
 screen.onkey(change_location, "space")
+screen.update()
+print("Keyboard Art running")
 screen.listen()
+turtle.done()
