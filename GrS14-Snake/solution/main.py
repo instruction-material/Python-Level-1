@@ -1,187 +1,125 @@
-# guidance taken from https://www.edureka.co/blog/python-turtle-module/
-
-import turtle
-import time
 import random
 
-# screen setup
+import turtle
+
+
 screen = turtle.Screen()
-
-screen.bgcolor("light blue")
 screen.tracer(0)
-
-# draw boundary
-boundary = turtle.Turtle()
-boundary.penup()
-boundary.goto(-310, 310)
-boundary.pendown()
-for i in range(4):
-    boundary.forward(620)
-    boundary.right(90)
-boundary.ht()
-
-# draw snake head
-head = turtle.Turtle()
-head.speed(0)
-head.shape("square")
-head.color("black")
-head.penup()
-head.goto(0, 100)
-head_direction = "stop"
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
 
-# define event listener functions - note that you can't switch to the direct opposite direction in Snake, hence the conditional statements
-def go_up():
-    global head_direction
-    if head_direction != "down":
-        head_direction = "up"
+def point(x, y, size, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.dot(size, color)
 
 
-def go_down():
-    global head_direction
-    if head_direction != "up":
-        head_direction = "down"
+def label(x, y, text):
+    pen.penup()
+    pen.goto(x, y)
+    pen.color("midnightblue")
+    pen.write(text, align="center", font=("Arial", 12, "normal"))
+
+trail = [(0, 0), (-1, 0), (-2, 0)]
+food = (1, 0)
+direction = (1, 0)
+pending_direction = direction
+running = False
+score = 0
+message = "Tap or press Space to start"
 
 
-def go_right():
-    global head_direction
-    if head_direction != "left":
-        head_direction = "right"
+def render():
+    pen.clear()
+    for x in range(-7, 8):
+        for y in (-4, 4):
+            point(19 * x, 19 * y, 4, "lightsteelblue")
+    for x, y in trail:
+        point(19 * x, 19 * y, 15, "darkcyan")
+    point(19 * food[0], 19 * food[1], 13, "goldenrod")
+    label(0, 84, "Lights: " + str(score) + " / 5")
+    label(0, -98, message)
+    screen.update()
 
 
-def go_left():
-    global head_direction
-    if head_direction != "right":
-        head_direction = "left"
+def choose_food():
+    cells = [(x, y) for y in range(-3, 4) for x in range(-6, 7) if (x, y) not in trail]
+    return random.choice(cells)
 
 
-# bind event listeners
+def queue_turn(turn):
+    opposite = (-direction[0], -direction[1])
+    global pending_direction
+    if running and pending_direction == direction and turn != opposite:
+        pending_direction = turn
 
-screen.onkey(go_up, "Up")
-screen.onkey(go_down, "Down")
-screen.onkey(go_right, "Right")
-screen.onkey(go_left, "Left")
+
+def advance():
+    global direction, score, food
+    direction = pending_direction
+    x = trail[0][0] + direction[0]
+    y = trail[0][1] + direction[1]
+    head = (x, y)
+    if abs(x) > 7 or abs(y) > 4:
+        return "Trail reached the edge"
+    collecting = head == food
+    occupied = trail if collecting else trail[:-1]
+    if head in occupied:
+        return "Trail folded onto itself"
+    trail.insert(0, head)
+    if collecting:
+        score += 1
+        food = choose_food()
+        print("Lights collected:", score)
+        if score == 5:
+            return "All five lights collected"
+    else:
+        trail.pop()
+    return ""
+
+
+def tick():
+    global message, running
+    message = advance()
+    if message:
+        running = False
+        print(message)
+    render()
+    if running:
+        screen.ontimer(tick, 235)
+
+
+def start():
+    global food, direction, pending_direction, running, score, message
+    if running:
+        return
+    trail[:] = [(0, 0), (-1, 0), (-2, 0)]
+    food, score = (1, 0), 0
+    direction = pending_direction = (1, 0)
+    running, message = True, ""
+    print("Trail started")
+    render()
+    screen.ontimer(tick, 235)
+
+
+def tap(x, y):
+    if not running:
+        start()
+    elif abs(x) > abs(y):
+        queue_turn((1 if x > 0 else -1, 0))
+    else:
+        queue_turn((0, 1 if y > 0 else -1))
+
+
+render()
+screen.onkey(lambda: queue_turn((0, 1)), "Up")
+screen.onkey(lambda: queue_turn((0, -1)), "Down")
+screen.onkey(lambda: queue_turn((-1, 0)), "Left")
+screen.onkey(lambda: queue_turn((1, 0)), "Right")
+screen.onkey(start, "space")
+screen.onclick(tap)
 screen.listen()
 
-# create the "food" object for the snake
-food = turtle.Turtle()
-food.speed(0)
-food.shape("circle")
-food.color("red")
-food.penup()
-food.goto(0, 0)
-
-# set up the score
-score = 0
-high_score = 0
-
-pen = turtle.Turtle()
-pen.speed(0)
-pen.shape("square")
-pen.color("white")
-pen.penup()
-pen.hideturtle()
-pen.goto(0, 260)
-pen.write(
-    "Score: 0 High Score: {}".format(high_score),
-    align="center",
-    font=("Courier", 24, "normal"),
-)
-
-
-# move() updates the position of the head, depending on the direction the head is facing
-def move():
-    if head_direction == "up":
-        y = head.ycor()
-        head.sety(y + 20)
-
-    if head_direction == "down":
-        y = head.ycor()
-        head.sety(y - 20)
-
-    if head_direction == "right":
-        x = head.xcor()
-        head.setx(x + 20)
-
-    if head_direction == "left":
-        x = head.xcor()
-        head.setx(x - 20)
-
-
-# segments is a list that holds each of the snake's body segments
-segments = []
-
-# main game loop
-while True:
-    screen.update()
-    time.sleep(0.1)  # modify this for faster/slower speed
-
-    # check for a collision between the head and the food
-    if head.distance(food) < 15:
-        # move the food to a random position on screen
-        x = random.randint(-290, 290)
-        y = random.randint(-290, 290)
-        food.goto(x, y)
-
-        # add a segment
-        new_segment = turtle.Turtle()
-        new_segment.speed(0)
-        new_segment.shape("square")
-        new_segment.color("grey")
-        new_segment.penup()
-        segments.append(new_segment)
-
-        # update the score
-        score += 10
-        if score > high_score:
-            high_score = score
-
-    # update the positioning of all of the body segments. this is the most complex logic in the game - essentially, we are moving each body segment to the location of the one before it in the list, and the first segment move to the position of the head
-    for index in range(len(segments) - 1, 0, -1):
-        x = segments[index - 1].xcor()
-        y = segments[index - 1].ycor()
-        segments[index].goto(x, y)
-    # update the first segment to the position of the head
-    if len(segments) > 0:
-        x = head.xcor()
-        y = head.ycor()
-        segments[0].goto(x, y)
-    # move the head to the next spot
-    move()
-
-    # check if head collided with any of the body segments
-    head_hit_body = False
-    for segment in segments:
-        if segment.distance(head) < 20:
-            head_hit_body = True
-            break
-
-    # check for a wall collision or a head collision
-    if (
-        head.xcor() > 300
-        or head.xcor() < -300
-        or head.ycor() > 300
-        or head.ycor() < -300
-        or head_hit_body
-    ):
-        time.sleep(0.5)
-        head.goto(0, 0)
-        head_direction = "stop"
-
-        # hide the segments
-        for segment in segments:
-            segment.goto(1000, 1000)
-
-        # clear segment list
-        segments = []
-
-        # reset score
-        score = 0
-
-    # update the score
-    pen.clear()
-    pen.write(
-        "score: {} High Score: {}".format(score, high_score),
-        align="center",
-        font=("Courier", 24, "normal"),
-    )
+print("Trail Collector reference ready")
+turtle.done()

@@ -1,100 +1,72 @@
-# Inspired by http://www.grantjenks.com/docs/freegames/index.html#fidget
+from math import cos, radians, sin
 
 import turtle
 
-# setup drawing turtle and screen
-drawing_turtle = turtle.Turtle()
-drawing_turtle.ht()
-drawing_turtle.width(20)
-drawing_turtle.speed(0)
 
 screen = turtle.Screen()
 screen.tracer(0)
-
-# global variable for turn speed
-turn_speed = 0
-
-
-# flick() increases the turn speed
-def flick():
-    global turn_speed
-    turn_speed += 10
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
 
-# slow() decreases the turn speed
-def slow():
-    global turn_speed
-    if turn_speed > 0:
-        turn_speed -= 10
+def point(x, y, size, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.dot(size, color)
 
 
-# setup key listeners
-screen.onkey(flick, "space")
-screen.onkey(slow, "Down")
+def label(x, y, text):
+    pen.penup()
+    pen.goto(x, y)
+    pen.color("midnightblue")
+    pen.write(text, align="center", font=("Arial", 12, "normal"))
+
+angle = 0
+speed = 0
+timer_pending = False
+
+
+def render():
+    pen.clear()
+    point(0, 0, 26, "midnightblue")
+    for offset, color in [(0, "darkcyan"), (120, "tomato"), (240, "goldenrod")]:
+        radians_here = radians(angle + offset)
+        x, y = cos(radians_here) * 39, sin(radians_here) * 39
+        point(x / 2, y / 2, 18, "slateblue")
+        point(x, y, 28, color)
+    label(0, 75, "Speed: " + str(speed))
+    screen.update()
+
+
+def schedule():
+    global timer_pending
+    if speed > 0 and not timer_pending:
+        timer_pending = True
+        screen.ontimer(tick, 110)
+
+
+def tick():
+    global angle, speed, timer_pending
+    timer_pending = False
+    angle = (angle + speed) % 360
+    speed = max(0, speed - 1)
+    render()
+    schedule()
+
+
+def adjust(change):
+    global speed
+    speed = min(24, max(0, speed + change))
+    print("Spinner speed:", speed)
+    render()
+    schedule()
+
+
+render()
+screen.onkey(lambda: adjust(8), "space")
+screen.onkey(lambda: adjust(-4), "Down")
+screen.onclick(lambda x, y: adjust(-4 if x < 0 else 8))
 screen.listen()
 
-# setup turnSpeed writer
-writer = turtle.Turtle()
-writer.ht()
-writer.penup()
-writer.goto(200, 200)
-
-# main loop
-while True:
-    # clear our previous drawings
-    drawing_turtle.clear()
-
-    # get the angle that we will have to change by and rotate
-    angle = turn_speed / 10
-    drawing_turtle.right(angle)
-
-    # draw the red circle side
-    drawing_turtle.color("black")
-    drawing_turtle.forward(100)
-    drawing_turtle.color("red")
-    drawing_turtle.begin_fill()
-    drawing_turtle.left(90)
-    for i in range(36):
-        drawing_turtle.forward(8)
-        drawing_turtle.right(10)
-    drawing_turtle.right(90)
-    drawing_turtle.end_fill()
-    drawing_turtle.color("black")
-    drawing_turtle.backward(100)
-    drawing_turtle.right(120)
-
-    # draw the green circle side
-    drawing_turtle.color("black")
-    drawing_turtle.forward(100)
-    drawing_turtle.color("green")
-    drawing_turtle.begin_fill()
-    drawing_turtle.left(90)
-    for i in range(36):
-        drawing_turtle.forward(8)
-        drawing_turtle.right(10)
-    drawing_turtle.right(90)
-    drawing_turtle.end_fill()
-    drawing_turtle.color("black")
-    drawing_turtle.backward(100)
-    drawing_turtle.right(120)
-
-    # draw the blue circle side
-    drawing_turtle.color("black")
-    drawing_turtle.forward(100)
-    drawing_turtle.color("blue")
-    drawing_turtle.begin_fill()
-    drawing_turtle.left(90)
-    for i in range(36):
-        drawing_turtle.forward(8)
-        drawing_turtle.right(10)
-    drawing_turtle.right(90)
-    drawing_turtle.end_fill()
-    drawing_turtle.color("black")
-    drawing_turtle.backward(100)
-    drawing_turtle.right(120)
-
-    # write turnSpeed
-    writer.clear()
-    writer.write("Turn Speed: " + str(turn_speed))
-
-    screen.update()
+print("Fidget Spinner reference ready")
+turtle.done()

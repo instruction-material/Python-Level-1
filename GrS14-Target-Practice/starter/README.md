@@ -1,5 +1,5 @@
-# GrS14 Target Practice starter
+# Beacon Hop starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Turn a cursor, move toward a beacon and test the boundary.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode and complete the TODO.

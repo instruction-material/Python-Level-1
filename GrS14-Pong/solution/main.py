@@ -1,227 +1,117 @@
 import turtle
-import random
 
-# setup the screen and the paddle shape
+
 screen = turtle.Screen()
-screen.bgcolor("black")
 screen.tracer(0)
-screen.register_shape("paddle", ((0, 0), (10, 0), (10, 100), (0, 100)))
-
-# draw boundary
-boundary_t = turtle.Turtle()
-boundary_t.color("white")
-boundary_t.speed(0)
-boundary_t.penup()
-boundary_t.goto(-300, 300)
-boundary_t.pensize(2)
-boundary_t.pendown()
-for i in range(4):
-    boundary_t.forward(600)
-    boundary_t.right(90)
-
-# player 1
-p1 = turtle.Turtle()
-p1.speed(0)
-p1.shape("paddle")
-p1.color("white")
-p1.penup()
-p1.goto(-290, 0)
-p1.setheading(90)
-
-# player 2
-p2 = turtle.Turtle()
-p2.speed(0)
-p2.shape("paddle")
-p2.color("white")
-p2.penup()
-p2.goto(300, 0)
-p2.setheading(90)
-
-# ball
-ball = turtle.Turtle()
-ball.speed(0)
-ball.shape("circle")
-ball.color("white")
-ball.penup()
-ball.goto(0, 0)
-ball.right(random.randint(-30, 30))  # start off in a random direction
-
-# score
-p1_score = 0
-p2_score = 0
-pen = turtle.Turtle()
+pen = turtle.Turtle(visible=False)
 pen.speed(0)
-pen.color("white")
-pen.penup()
-pen.hideturtle()
-pen.goto(0, 260)
-pen.write(
-    "Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "normal")
-)
 
 
-# movement functions
-def p1_up():
-    p1.forward(20)
+def point(x, y, size, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.dot(size, color)
 
 
-def p1_down():
-    p1.backward(20)
+def label(x, y, text):
+    pen.penup()
+    pen.goto(x, y)
+    pen.color("midnightblue")
+    pen.write(text, align="center", font=("Arial", 12, "normal"))
+
+paddles = [0, 0]
+scores = [0, 0]
+ball = [0, 0]
+velocity = [7, 3]
+running = False
+wall = 77
+goal = 5
 
 
-def p2_up():
-    p2.forward(20)
+def set_paddle(side, y):
+    paddles[side] = min(54, max(-54, y))
+    render()
 
 
-def p2_down():
-    p2.backward(20)
+def render():
+    pen.clear()
+    for y in range(-60, 61, 15):
+        point(0, y, 3, "lightsteelblue")
+    for side, x in enumerate((-112, 112)):
+        for offset in (-18, -9, 0, 9, 18):
+            point(x, paddles[side] + offset, 13, "steelblue" if side == 0 else "darkorange")
+    point(*ball, 12, "purple")
+    label(0, 81, str(scores[0]) + "   Rally   " + str(scores[1]))
+    if not running:
+        label(0, -93, "Tap center or press Space")
+    screen.update()
 
 
-# key binds
-screen.onkey(p1_up, "w")
-screen.onkey(p1_down, "s")
-screen.onkey(p2_up, "Up")
-screen.onkey(p2_down, "Down")
+def advance():
+    old_x = ball[0]
+    ball[0] += velocity[0]
+    ball[1] += velocity[1]
+    if ball[1] > wall or ball[1] < -wall:
+        limit = wall if ball[1] > wall else -wall
+        ball[1] = 2 * limit - ball[1]
+        velocity[1] = -velocity[1]
+    for side, x in enumerate((-112, 112)):
+        crossing = old_x > x >= ball[0] if side == 0 else old_x < x <= ball[0]
+        if crossing and abs(ball[1] - paddles[side]) <= 25:
+            ball[0] = 2 * x - ball[0]
+            velocity[0] = -velocity[0]
+    if abs(ball[0]) > 145:
+        winner = int(ball[0] < 0)
+        scores[winner] += 1
+        ball[:] = [0, 0]
+        velocity[:] = [7 if winner == 0 else -7, 3]
+        return winner
+
+
+def tick():
+    global running
+    winner = advance()
+    if winner is not None:
+        print("Rally score:", scores[0], scores[1])
+        if scores[winner] == goal:
+            running = False
+            print("Match finished")
+    render()
+    if running:
+        screen.ontimer(tick, 65)
+
+
+def start():
+    global running
+    if running:
+        return
+    paddles[:] = [0, 0]
+    scores[:] = [0, 0]
+    ball[:] = [0, 0]
+    velocity[:] = [7, 3]
+    running = True
+    render()
+    print("Rally started")
+    screen.ontimer(tick, 65)
+
+
+def tap(x, y):
+    if not running:
+        start()
+    elif x < -25:
+        set_paddle(0, y)
+    elif x > 25:
+        set_paddle(1, y)
+
+
+render()
+screen.onkey(lambda: set_paddle(0, paddles[0] + 15), "w")
+screen.onkey(lambda: set_paddle(0, paddles[0] - 15), "s")
+screen.onkey(lambda: set_paddle(1, paddles[1] + 15), "Up")
+screen.onkey(lambda: set_paddle(1, paddles[1] - 15), "Down")
+screen.onkey(start, "space")
+screen.onclick(tap)
 screen.listen()
 
-# changeBallDirection(context) is a function that should be provided to the student, or you may help them with the geometry. This function takes in one of four options for the context: p1, p2, topBound, or bottomBound, and changes the ball's heading angle after the bounce.
-# There are two versions of changeBallDirection(context) below. The first is the most optimized version of the code that abstracts the changes based on context to the maximimum level. It condenses the multiple steps into a single changeBallDirection(degree). If you choose this one, walk your student through the math required to come up with the degree values.
-# The second version in the comments writes out all of the angle changes and changeBallDirection steps. The second one may be easier for students that have less geometry experience, as you can draw out each scenario and walk them through the individual steps required. You can use either one of these functions, either as teaching tools or as-is.
-
-
-def change_ball_direction(context):
-    # finds offset to any plane
-    ball_heading = ball.heading()
-
-    if context == "topBound" or context == "bottomBound":
-        ball.setheading(360 - ball_heading)
-    elif 0 <= ball_heading < 180:
-        ball.setheading(180 - ball_heading)
-    elif 180 <= ball_heading < 360:
-        ball.setheading(540 - ball_heading)
-
-
-"""
-def changeBallDirection(context):
-  # finds offset to any plane
-  ballHeading = ball.heading()
-  offset = 0
-  if 0 <= ballHeading < 90:
-    offset = ballHeading
-  elif 90 <= ballHeading < 180:
-    offset = 180 - ballHeading
-  elif 180 <= ballHeading < 270:
-    offset = ballHeading - 180
-  elif 270 <= ballHeading <= 360:
-    offset = 360 - ballHeading
-
-  # ball is hitting p1's paddle
-  if context == "p1":
-    # coming from bottom
-    if 90 <= ballHeading <= 180:
-      ball.setheading(90)
-      ball.right(90 - offset)
-    # coming from top
-    elif 180 <= ballHeading <= 270:
-      ball.setheading(270)
-      ball.left(90 - offset)
-
-  # ball is hitting p2's paddle
-  elif context == "p2":
-    # coming from bottom
-    if 0 <= ballHeading <= 90:
-      ball.setheading(90)
-      ball.left(90 - offset)
-
-    # coming from top
-    elif 270 <= ballHeading <= 360:
-      ball.setheading(270)
-      ball.right(90 - offset)
-
-  # ball is hitting the top
-  elif context == "topBound":
-  # coming from left
-    if 0 <= ballHeading <= 90:
-      ball.setheading(0)
-      ball.right(offset)
-
-    # coming from right
-    elif 90 < ballHeading <= 180:
-      ball.setheading(180)
-      ball.left(offset)
-
-  # ball is hitting the bottom
-  elif context == "bottomBound":
-    # coming from right
-    if 180 <= ballHeading <= 270:
-      ball.setheading(180)
-      ball.right(offset)
-
-    # coming from left
-    elif 270 < ballHeading <= 360:
-      ball.setheading(0)
-      ball.left(offset)
-"""
-
-# main game loop
-while True:
-    ball.forward(4)
-
-    # if the ball is within the coordinates of p1 (left side)
-    if (
-        abs(p1.xcor() - ball.xcor()) < 10
-        and p1.ycor() <= ball.ycor() <= p1.ycor() + 100
-    ):
-        change_ball_direction("p1")
-
-    # if the ball is within the coordinates of p2 (right side)
-    elif (
-        abs(ball.xcor() - p2.xcor()) <= 10
-        and p2.ycor() <= ball.ycor() <= p2.ycor() + 100
-    ):
-        change_ball_direction("p2")
-
-    # ball exceeded boundaries on left; p1 missed the ball
-    elif ball.xcor() <= -300:
-        # sets heading to face left again so that we do not start off in the wrong angle
-        ball.setheading(180)
-        ball.right(random.randint(-30, 30))
-        ball.goto(0, 0)
-        p1.clear()
-        p2.clear()
-        p2.write("     I Win!")
-        p2_score += 1
-        pen.clear()
-        pen.write(
-            "Player 1: " + str(p1_score) + " Player 2: " + str(p2_score),
-            align="center",
-            font=("Courier", 24, "normal"),
-        )
-
-    # ball exceeded boundaries on right; p2 missed the ball
-    elif ball.xcor() >= 300:
-        # sets heading to face right again so that we do not start off in the wrong angle
-        ball.setheading(0)
-        ball.right(random.randint(-30, 30))
-        ball.goto(0, 0)
-        p1.clear()
-        p2.clear()
-        p1.write("     I Win!")
-        p1_score += 1
-        pen.clear()
-        pen.write(
-            "Player 1: " + str(p1_score) + " Player 2: " + str(p2_score),
-            align="center",
-            font=("Courier", 24, "normal"),
-        )
-
-    # top boundary
-    elif ball.ycor() >= 290:
-        change_ball_direction("topBound")
-
-    # bottom boundary
-    elif ball.ycor() <= -290:
-        change_ball_direction("bottomBound")
-
-    # end by updating the screen with changes
-    screen.update()
+print("Paddle Rally reference ready")
+turtle.done()

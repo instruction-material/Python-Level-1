@@ -1,53 +1,100 @@
-import turtle
-import random
+from math import cos, hypot, radians, sin
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.shape("turtle")
-drawing_turtle.color("white")
-drawing_turtle.goto(0, 0)
+import turtle
+
 
 screen = turtle.Screen()
-screen.bgcolor("black")
-
-# set up target
-target = turtle.Turtle()
-target.speed(1000)
-target.color("aquamarine")
-target.shape("circle")
-target.penup()
-target.goto(random.randint(-200, 200), random.randint(-200, 200))
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
 
-# set up turn controls for player turtle (left/right)
-def turn_left():
-    drawing_turtle.left(10)
+def point(x, y, size, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.dot(size, color)
 
 
-def turn_right():
-    drawing_turtle.right(10)
+def label(x, y, text):
+    pen.penup()
+    pen.goto(x, y)
+    pen.color("midnightblue")
+    pen.write(text, align="center", font=("Arial", 12, "normal"))
+
+direction = 0
+distance = 0
+running = False
+cursor = (0, 0)
+beacon = (92, 0)
+radius = 12
+message = "Tap to turn or start"
 
 
-# set up shoot function, which shoots yellow bullet (pointing in direction of the turtle) and detects if there's a hit
-def shoot():
-    bullet = turtle.Turtle()
-    bullet.penup()
-    bullet.color("yellow")
-    bullet.speed(1000)
-    bullet.setheading(drawing_turtle.heading())
-
-    for i in range(300):
-        bullet.forward(10)
-        if (
-            bullet.xcor() > target.xcor() - 10
-            and bullet.xcor() < target.xcor() + 10
-            and bullet.ycor() > target.ycor() - 10
-            and bullet.ycor() < target.ycor() + 10
-        ):
-            bullet.ht()
-            target.goto(random.randint(-200, 200), random.randint(-200, 200))
+def reaches_beacon(x, y):
+    gap = hypot(x - beacon[0], y - beacon[1])
+    return gap <= radius
 
 
-screen.onkey(turn_left, "Left")
-screen.onkey(turn_right, "Right")
-screen.onkey(shoot, "space")
+def render():
+    pen.clear()
+    point(*beacon, radius * 2, "lightseagreen")
+    point(0, 0, 8, "lightsteelblue")
+    point(cos(radians(direction)) * 25, sin(radians(direction)) * 25, 7, "goldenrod")
+    point(*cursor, 14, "purple")
+    label(0, 70, "Heading: " + str(direction))
+    label(0, -89, message)
+    screen.update()
+
+
+def turn(change):
+    global direction
+    if not running:
+        direction = (direction + change) % 360
+        render()
+
+
+def tick():
+    global distance, cursor, message, running
+    distance += 8
+    angle = radians(direction)
+    cursor = (cos(angle) * distance, sin(angle) * distance)
+    if reaches_beacon(*cursor):
+        running, message = False, "Beacon reached"
+    elif distance >= 120:
+        running, message = False, "Beacon missed"
+    render()
+    if running:
+        screen.ontimer(tick, 55)
+    else:
+        print(message)
+
+
+def start():
+    global cursor, distance, running, message
+    if running:
+        return
+    cursor, distance = (0, 0), 0
+    running, message = True, "Moving"
+    print("Beacon hop started")
+    render()
+    screen.ontimer(tick, 55)
+
+
+def tap(x, y):
+    if x < -40:
+        turn(15)
+    elif x > 40:
+        turn(-15)
+    else:
+        start()
+
+
+render()
+screen.onkey(lambda: turn(15), "Left")
+screen.onkey(lambda: turn(-15), "Right")
+screen.onkey(start, "space")
+screen.onclick(tap)
 screen.listen()
+
+print("Beacon Hop reference ready")
+turtle.done()
