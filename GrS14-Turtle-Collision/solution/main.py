@@ -1,64 +1,49 @@
 import turtle
-import random
 
-turtle.colormode(255)
 
-drawing_turtle = turtle.Turtle()
-race_turtle_two = turtle.Turtle()
 screen = turtle.Screen()
+screen.tracer(0)
+player = turtle.Turtle("turtle")
+other = turtle.Turtle("turtle")
+other.color("blue")
+player.penup()
+other.penup()
+player.goto(-20, 0)
+other.goto(20, 0)
+other.setheading(180)
+message = turtle.Turtle(visible=False)
+message.penup()
+message.goto(-80, 40)
+touching_before = False
+frames_left = 40
 
 
-def turn_left1():
-    drawing_turtle.left(10)
+def touching(ax, ay, bx, by):
+    return abs(ax - bx) < 10 and abs(ay - by) < 10
 
 
-def turn_right1():
-    drawing_turtle.right(10)
+def advance():
+    global touching_before, frames_left
+    if frames_left == 0:
+        return
+    player.forward(1)
+    other.forward(1)
+    contact = touching(player.xcor(), player.ycor(), other.xcor(), other.ycor())
+    if contact and not touching_before:
+        message.clear()
+        message.write("Collision!")
+    touching_before = contact
+    frames_left -= 1
+    screen.update()
+    if frames_left > 0:
+        screen.ontimer(advance, 25)
 
 
-def turn_left2():
-    race_turtle_two.left(10)
-
-
-def turn_right2():
-    race_turtle_two.right(10)
-
-
-def check_collision():
-    if (
-        abs(drawing_turtle.xcor() - race_turtle_two.xcor()) < 10
-        and abs(drawing_turtle.ycor() - race_turtle_two.ycor()) < 10
-    ):
-        drawing_turtle.write("Collision!")
-        drawing_turtle.color(
-            random.randint(0, 255),
-            random.randint(0, 255),
-            random.randint(0, 255),
-        )
-        race_turtle_two.color(
-            random.randint(0, 255),
-            random.randint(0, 255),
-            random.randint(0, 255),
-        )
-
-
-screen.onkey(turn_left1, "Left")
-screen.onkey(turn_right1, "Right")
-screen.onkey(turn_left2, "a")
-screen.onkey(turn_right2, "d")
+screen.onkey(lambda: player.left(10), "Left")
+screen.onkey(lambda: player.right(10), "Right")
+screen.onkey(lambda: other.left(10), "a")
+screen.onkey(lambda: other.right(10), "d")
 screen.listen()
-
-# start turtles at a random location
-drawing_turtle.penup()
-race_turtle_two.penup()
-drawing_turtle.goto(random.randint(-200, 200), random.randint(-200, 200))
-race_turtle_two.goto(random.randint(-200, 200), random.randint(-200, 200))
-drawing_turtle.pendown()
-race_turtle_two.pendown()
-race_turtle_two.color("blue")
-
-# both turtles continuously move and check for collisions
-while True:
-    drawing_turtle.forward(1)
-    race_turtle_two.forward(1)
-    check_collision()
+advance()
+print("Collision run started")
+turtle.done()

@@ -1,5 +1,3 @@
-# Python Level 1 ScreenUpdate starter
+# Python-Level-1-ScreenUpdate starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
-
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Open main.py in Turtle mode. Draw a complete circle in each frame and reveal it with one update. The 21 frames run from x = -100 to x = 100 in ten-step increments.

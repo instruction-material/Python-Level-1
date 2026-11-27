@@ -1,37 +1,52 @@
-import turtle
 import random
+import turtle
 
-# draw the boundary box
-box_drawer = turtle.Turtle()
-box_drawer.speed(10)
-box_drawer.penup()
-box_drawer.goto(-200, 200)
-box_drawer.pendown()
-for i in range(4):
-    box_drawer.forward(400)
-    box_drawer.right(90)
-box_drawer.ht()
+
+limit = 200
+step_size = 10
+screen = turtle.Screen()
+screen.tracer(0)
+border = turtle.Turtle(visible=False)
+border.penup()
+border.goto(-limit, limit)
+border.pendown()
+for side in range(4):
+    border.forward(2 * limit)
+    border.right(90)
 
 balls = []
-for i in range(10):
-    drawing_turtle = turtle.Turtle()
-    drawing_turtle.penup()
-    drawing_turtle.speed(1000)
-    drawing_turtle.color("red")
-    drawing_turtle.shape("circle")
-    drawing_turtle.goto(random.randint(-200, 200), random.randint(-200, 200))
-    drawing_turtle.right(random.randint(0, 360))
-    balls.append(drawing_turtle)
+for index in range(10):
+    ball = turtle.Turtle("circle")
+    ball.color("red")
+    ball.penup()
+    ball.goto(random.randint(-180, 180), random.randint(-180, 180))
+    ball.setheading(random.randint(0, 359))
+    balls.append(ball)
 
 
-def check_collision(ball):
-    if ball.xcor() > 200 or ball.xcor() < -200:
-        ball.right(180)
-    elif ball.ycor() > 200 or ball.ycor() < -200:
-        ball.right(180)
+def reflect_at_walls(ball):
+    if ball.xcor() > limit:
+        ball.setx(limit)
+        ball.setheading(180 - ball.heading())
+    elif ball.xcor() < -limit:
+        ball.setx(-limit)
+        ball.setheading(180 - ball.heading())
+    if ball.ycor() > limit:
+        ball.sety(limit)
+        ball.setheading(-ball.heading())
+    elif ball.ycor() < -limit:
+        ball.sety(-limit)
+        ball.setheading(-ball.heading())
 
 
-while True:
+def advance():
     for ball in balls:
-        check_collision(ball)
-        ball.forward(10)
+        ball.forward(step_size)
+        reflect_at_walls(ball)
+    screen.update()
+    screen.ontimer(advance, 25)
+
+
+advance()
+print("Ball room running")
+turtle.done()

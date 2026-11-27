@@ -1,10 +1,6 @@
-# GrS13 Stay Inbounds
+# GrS13-Stay-Inbounds
 
-Canonical source repository: `Python-Level-1`
+- starter/ contains the workspace and checks for completing the activity.
+- solution/main.py contains a working reference for the same behavior.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run main.py in the site Turtle workspace or with desktop Python and Tk installed.
