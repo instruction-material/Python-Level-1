@@ -1,29 +1,26 @@
 import turtle
-import random
-
-turtle.colormode(255)
-
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10000)
 
 
-def draw_shape(side_length, num_sides):
-    for i in range(num_sides):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.right(360 / num_sides)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
+
+def draw_shape(length, sides):
+    turn = 360 / sides
+    for edge in range(sides):
+        pen.forward(length)
+        pen.left(turn)
 
 
-red_value = 0
-green_value = random.randint(0, 255)
-blue_value = random.randint(0, 255)
-drawing_turtle.color(red_value, green_value, blue_value)
+for step, sides in enumerate((3, 4, 5, 6)):
+    pen.penup()
+    pen.goto(-104 + 58 * step, -55 + 23 * step)
+    pen.setheading(0)
+    pen.color("darkslateblue")
+    pen.pendown()
+    draw_shape(23, sides)
 
-side_length = random.randint(10, 30)
-num_sides = random.randint(2, 12)
-
-for i in range(100):
-    draw_shape(side_length, num_sides)
-    drawing_turtle.right(10)
-    side_length += 1
-    red_value += 1
-    drawing_turtle.color(red_value, green_value, blue_value)
+screen.update()
+print("Any Shape Staircase reference ready")
+turtle.done()

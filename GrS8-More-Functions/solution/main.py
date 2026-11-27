@@ -1,31 +1,37 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(0)
+
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
+
+def place(x, y, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(0)
+    pen.color(color)
+    pen.pendown()
 
 
-def draw_square(side_length):
-    drawing_turtle.pendown()
-    for i in range(4):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.right(90)
-    drawing_turtle.penup()
+def draw_square(length):
+    for edge in range(4):
+        pen.forward(length)
+        pen.left(90)
 
 
-def draw_triangle(side_length):
-    drawing_turtle.pendown()
-    for i in range(3):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.right(120)
-    drawing_turtle.penup()
+def draw_triangle(length):
+    for edge in range(3):
+        pen.forward(length)
+        pen.left(120)
 
 
-draw_square(100)
-draw_triangle(200)
+for x, size in [(-98, 18), (-29, 30), (40, 42)]:
+    place(x, -62, "teal")
+    draw_square(size)
+    place(x, 12, "coral")
+    draw_triangle(size)
 
-# How would we make the turtle draw ten different squares, starting from a side length of 20 and going up by 5 each time?
-
-side_length = 20
-for i in range(10):
-    draw_square(side_length)
-    side_length += 5
+screen.update()
+print("More Functions reference ready")
+turtle.done()

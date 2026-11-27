@@ -1,51 +1,40 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
 
-def draw_snowflake(num_branches, branch_length, side_branch_length):
-    drawing_turtle = turtle.Turtle()
-    drawing_turtle.speed(10000)
-    drawing_turtle.penup()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-    drawing_turtle.color(red_value, green_value, blue_value)
-
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-
-    for i in range(num_branches):
-        drawing_turtle.goto(x, y)
-        drawing_turtle.pendown()
-
-        for i in range(10):
-            # draw part of the branch
-            drawing_turtle.forward(branch_length / 10)
-
-            # draw a little side branch
-            drawing_turtle.right(45)
-            drawing_turtle.forward(side_branch_length)
-            drawing_turtle.backward(side_branch_length)
-
-            # draw the symmetrical little side branch
-            drawing_turtle.left(90)
-            drawing_turtle.forward(side_branch_length)
-            drawing_turtle.backward(side_branch_length)
-
-            # reset positioning
-            drawing_turtle.right(45)
-
-        # turn to start drawing the next branch
-        drawing_turtle.right(360 / num_branches)
-
-    drawing_turtle.penup()
+pen.color("steelblue")
 
 
-for i in range(10):
-    num_branches = random.randint(5, 20)
-    branch_length = random.randint(20, 80)
-    side_branch_length = random.randint(5, 20)
-    draw_snowflake(num_branches, branch_length, side_branch_length)
+def draw_flake(x, y, arms, length, twig):
+    for arm in range(arms):
+        pen.penup()
+        pen.goto(x, y)
+        pen.setheading(360 * arm / arms)
+        pen.pendown()
+        for step in range(5):
+            pen.forward(length / 5)
+            pen.right(45)
+            pen.forward(twig)
+            pen.forward(-twig)
+            pen.left(90)
+            pen.forward(twig)
+            pen.forward(-twig)
+            pen.right(45)
+
+
+for y in (-54, 54):
+    for x in (-100, 0, 100):
+        arms = random.randint(5, 7)
+        length = random.randint(20, 38)
+        twig = random.randint(4, 7)
+        draw_flake(x, y, arms, length, twig)
+
+screen.update()
+print("Winter Wonderland reference ready")
+turtle.done()

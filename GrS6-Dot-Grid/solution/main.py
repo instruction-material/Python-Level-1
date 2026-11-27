@@ -1,21 +1,26 @@
 import turtle
 
-turtle.colormode(255)
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(50)
-drawing_turtle.penup()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-distance = 25
-num_rows = 5
-num_cols = 8
+rows = 5
+columns = 8
+spacing = 25
+dot_size = 8
+start_x, start_y = -88, 50
+pen.penup()
+pen.color("darkcyan")
 
-for i in range(num_rows):
-    for j in range(num_cols):
-        drawing_turtle.dot()
-        drawing_turtle.forward(distance)
-    drawing_turtle.backward(distance * num_cols)
-    drawing_turtle.right(90)
-    drawing_turtle.forward(distance)
-    drawing_turtle.left(90)
-drawing_turtle.ht()
+for row in range(rows):
+    y = start_y - row * spacing
+    for column in range(columns):
+        x = start_x + column * spacing
+        pen.goto(x, y)
+        pen.dot(dot_size)
+
+screen.update()
+print("Dot Grid reference ready")
+turtle.done()

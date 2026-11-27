@@ -1,29 +1,26 @@
 import turtle
-import random
-
-turtle.colormode(255)
-
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10)
 
 
-def draw_square(side_length, red_value, green_value, blue_value):
-    drawing_turtle.color(red_value, green_value, blue_value)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-    for i in range(4):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.right(90)
+screen.colormode(255)
 
 
-for i in range(4):
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
+def draw_square(length, red, green, blue):
+    pen.color(red, green, blue)
+    for edge in range(4):
+        pen.forward(length)
+        pen.right(90)
 
-    length = 20
 
-    for j in range(3):
-        length += 20
-        draw_square(length, red_value, green_value, blue_value)
+for group in range(4):
+    for length in (18, 34, 50):
+        draw_square(length, 45 + 40 * group, 80, 175)
+    pen.right(90)
 
-    drawing_turtle.right(90)
+screen.update()
+print("Square Inception with Functions reference ready")
+turtle.done()

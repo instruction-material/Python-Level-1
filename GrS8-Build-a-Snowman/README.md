@@ -1,10 +1,5 @@
-# GrS8 Build a Snowman
+# Build a Snowman
 
-Canonical source repository: `Python-Level-1`
+Reuse one parameterized circle to make the body and head.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run starter/main.py for the exercise or solution/main.py for the reference. Both use Turtle mode.

@@ -1,23 +1,26 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(1000)
 
-for i in range(100):
-    drawing_turtle.pendown()
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-    drawing_turtle.color(red_value, green_value, blue_value)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-    drawing_turtle.begin_fill()
-    for i in range(6):
-        drawing_turtle.right(60)
-        drawing_turtle.forward(50)
-    drawing_turtle.end_fill()
+screen.colormode(255)
+for index in range(100):
+    pen.penup()
+    pen.goto(0, 0)
+    pen.setheading(index * 12)
+    pen.forward(index / 4)
+    pen.color(random.randint(20, 160), random.randint(20, 140), random.randint(80, 210))
+    pen.pendown()
+    length = 18 + index // 4
+    for side in range(6):
+        pen.forward(length)
+        pen.right(60)
 
-    drawing_turtle.penup()
-    drawing_turtle.right(10)
+screen.update()
+print("Dizzy Hexagon reference ready")
+turtle.done()
