@@ -1,10 +1,6 @@
-# GrS5 Circle of Circles
+# Circle of Circles
 
-Canonical source repository: `Python-Level-1`
+Draw a circle-like loop from many short straight segments.
+Turn before repeating the same shape to create an evenly spaced ring.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run starter/main.py for the exercise or solution/main.py for the reference. Both run in Turtle mode.

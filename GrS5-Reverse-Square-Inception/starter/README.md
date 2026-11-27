@@ -1,5 +1,6 @@
-# GrS5 Reverse Square Inception starter
+# Reverse Square Inception starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Use three loops to build filled squares in four quadrants.
+Draw from largest to smallest in each quadrant so the layers remain visible.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode and complete the TODO.

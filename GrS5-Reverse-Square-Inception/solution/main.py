@@ -1,26 +1,29 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10)
 
-for i in range(4):
-    length = 80
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-    for j in range(3):
-        length -= 20
+screen.colormode(255)
 
-        red_value = random.randint(0, 255)
-        green_value = random.randint(0, 255)
-        blue_value = random.randint(0, 255)
-        drawing_turtle.color(red_value, green_value, blue_value)
+for quadrant in range(4):
+    side_length = 72
+    for layer in range(3):
+        low = 20 + 60 * layer
+        pen.color(random.randint(low, low + 38), random.randint(low, low + 38),
+                  random.randint(low, low + 38))
+        pen.begin_fill()
+        for side in range(4):
+            pen.forward(side_length)
+            pen.right(90)
+        pen.end_fill()
+        side_length -= 20
+    pen.right(90)
 
-        drawing_turtle.begin_fill()
-        for k in range(4):
-            drawing_turtle.forward(length)
-            drawing_turtle.right(90)
-        drawing_turtle.end_fill()
-
-    drawing_turtle.right(90)
+screen.update()
+print("Reverse Square Inception reference ready")
+turtle.done()

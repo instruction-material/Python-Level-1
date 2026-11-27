@@ -1,10 +1,6 @@
-# GrS5 Reverse Square Inception
+# Reverse Square Inception
 
-Canonical source repository: `Python-Level-1`
+Use three loops to build filled squares in four quadrants.
+Draw from largest to smallest in each quadrant so the layers remain visible.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run starter/main.py for the exercise or solution/main.py for the reference. Both run in Turtle mode.

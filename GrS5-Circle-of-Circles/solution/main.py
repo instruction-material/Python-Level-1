@@ -1,10 +1,18 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10000)
 
-for i in range(36):
-    for i in range(36):
-        drawing_turtle.forward(15)
-        drawing_turtle.right(10)
-    drawing_turtle.right(10)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
+
+pen.color("darkcyan")
+for ring in range(18):
+    for segment in range(36):
+        pen.forward(6)
+        pen.right(10)
+    pen.right(20)
+
+screen.update()
+print("Circle of Circles reference ready")
+turtle.done()

@@ -1,23 +1,25 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-juni = turtle.Turtle()
 
-for i in range(4):
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-    juni.color(red_value, green_value, blue_value)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
+screen.colormode(255)
+
+for quadrant in range(4):
+    pen.color(random.randint(25, 180), random.randint(25, 180), random.randint(25, 180))
     side_length = 30
-
-    for i in range(3):
-        for i in range(4):
-            juni.forward(side_length)
-            juni.right(90)
-
+    for layer in range(3):
+        for side in range(4):
+            pen.forward(side_length)
+            pen.right(90)
         side_length += 20
+    pen.right(90)
 
-    juni.right(90)
+screen.update()
+print("Square Inception reference ready")
+turtle.done()

@@ -1,5 +1,6 @@
-# GrS5 Rainbow Flower starter
+# Rainbow Flower starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Draw six petals from a shared center.
+Give each petal a starting heading, then let its angle and blue channel grow on each step.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode and complete the TODO.

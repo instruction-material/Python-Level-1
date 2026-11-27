@@ -1,33 +1,32 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(1000)
 
-# to make the starting direction for each petal easier to implement, we create a variable degreesToTurn that goes 0, 60, 120, 180 etc. thus, after we goto(0,0), we always point toward the right and then turn by this amount
-degrees_to_turn = 0
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-for i in range(6):
-    drawing_turtle.penup()
-    drawing_turtle.goto(0, 0)
-    drawing_turtle.setheading(0)
-    drawing_turtle.right(degrees_to_turn)
-    drawing_turtle.pendown()
+screen.colormode(255)
 
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = 0
+for petal in range(6):
+    pen.penup()
+    pen.goto(0, 0)
+    pen.setheading(60 * petal)
+    pen.pendown()
 
+    red = random.randint(60, 200)
+    green = random.randint(20, 120)
+    blue = 0
     angle = 0
+    for step in range(40):
+        pen.color(red, green, blue)
+        pen.forward(10)
+        pen.right(angle)
+        angle += 1
+        blue += 5
 
-    for j in range(40):
-        drawing_turtle.color(red_value, green_value, blue_value)
-        drawing_turtle.forward(10)
-        drawing_turtle.right(angle)
-
-        angle = angle + 1
-        blue_value = blue_value + 5
-
-    degrees_to_turn += 60
+screen.update()
+print("Rainbow Flower reference ready")
+turtle.done()

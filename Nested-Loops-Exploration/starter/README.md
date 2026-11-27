@@ -1,5 +1,6 @@
 # Nested Loops Exploration starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Draw three closed squares from the same starting point.
+Use the outer loop to change the length and the inner loop to draw the four sides.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Run main.py in Turtle mode and complete the TODO.

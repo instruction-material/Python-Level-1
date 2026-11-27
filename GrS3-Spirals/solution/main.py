@@ -1,28 +1,27 @@
-import turtle
 import random
 
-turtle.colormode(255)
+import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(100)
-drawing_turtle.penup()
 
-for i in range(100):
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle(visible=False)
+pen.speed(0)
 
-    red_value = random.randint(0, 255)
-    green_value = random.randint(0, 255)
-    blue_value = random.randint(0, 255)
-    drawing_turtle.color(red_value, green_value, blue_value)
+screen.colormode(255)
 
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-    drawing_turtle.goto(x, y)
-    drawing_turtle.pendown()
+for x, y in [(-98, -55), (0, -55), (98, -55), (-98, 55), (0, 55), (98, 55)]:
+    pen.penup()
+    pen.goto(x + random.randint(-8, 8), y + random.randint(-8, 8))
+    pen.setheading(0)
+    pen.color(random.randint(25, 180), random.randint(25, 180), random.randint(25, 180))
+    pen.pendown()
+    length = random.randint(2, 6)
+    for step in range(32):
+        pen.forward(length)
+        pen.left(123)
+        length += 1
 
-    side_length = random.randint(25, 150)
-
-    for i in range(50):
-        drawing_turtle.forward(side_length)
-        drawing_turtle.left(123)
-
-    drawing_turtle.penup()
+screen.update()
+print("Spirals reference ready")
+turtle.done()
