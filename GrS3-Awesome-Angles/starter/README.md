@@ -1,5 +1,5 @@
-# GrS3 Awesome Angles starter
+# Awesome Angles starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Store length and turn angle once, then predict how changing one variable affects the outline.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Open main.py in Turtle mode. Complete each TODO and run after each change.

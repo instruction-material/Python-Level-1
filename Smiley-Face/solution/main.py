@@ -1,34 +1,49 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
+
 screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-drawing_turtle.speed(1000)
-screen.bgcolor("yellow")
 
-drawing_turtle.penup()
-drawing_turtle.goto(-100, 200)
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
 
-drawing_turtle.pendown()
-for i in range(2):
-    drawing_turtle.forward(10)
-    drawing_turtle.right(90)
-    drawing_turtle.forward(100)
-    drawing_turtle.right(90)
-drawing_turtle.penup()
 
-drawing_turtle.goto(50, 200)
-drawing_turtle.pendown()
-for i in range(2):
-    drawing_turtle.forward(10)
-    drawing_turtle.right(90)
-    drawing_turtle.forward(100)
-    drawing_turtle.right(90)
-drawing_turtle.penup()
+def disk(x, y, radius, color):
+    place(x, y - radius)
+    pen.color(color)
+    pen.begin_fill()
+    pen.circle(radius)
+    pen.end_fill()
 
-drawing_turtle.goto(-200, 0)
-drawing_turtle.pendown()
-drawing_turtle.right(90)
-for i in range(37):
-    drawing_turtle.forward(15)
-    drawing_turtle.left(5)
+
+def rectangle(x, y, width, height, color):
+    place(x, y)
+    pen.color(color)
+    pen.begin_fill()
+    for pair in range(2):
+        pen.forward(width)
+        pen.left(90)
+        pen.forward(height)
+        pen.left(90)
+    pen.end_fill()
+
+
+screen.bgcolor("lightsteelblue")
+disk(0, 0, 100, "gold")
+for x in (-35, 21):
+    rectangle(x, 18, 14, 26, "black")
+
+place(-31, -17, -53)
+pen.color("black")
+pen.pensize(4)
+pen.circle(39, 106)
+
+screen.update()
+print("Smiley Face reference ready")
+turtle.done()

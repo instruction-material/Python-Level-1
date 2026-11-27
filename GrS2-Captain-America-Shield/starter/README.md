@@ -1,5 +1,5 @@
-# GrS2 Captain America Shield starter
+# Compass Badge starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Use three centered disks and reflected compass needles to create a geometric badge.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Open main.py in Turtle mode. Complete each TODO and run after each change.

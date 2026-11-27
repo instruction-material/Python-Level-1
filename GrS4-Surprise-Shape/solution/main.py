@@ -1,32 +1,46 @@
-import turtle
 import random
+import turtle
 
-turtle.colormode(255)
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10000)
 
-red_value = random.randint(0, 255)
-green_value = random.randint(0, 255)
-blue_value = random.randint(0, 255)
-drawing_turtle.color(red_value, green_value, blue_value)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-num = random.randint(0, 3)
 
-drawing_turtle.begin_fill()
-if num == 0:
-    for i in range(4):
-        drawing_turtle.forward(100)
-        drawing_turtle.right(90)
-elif num == 1:
-    for i in range(3):
-        drawing_turtle.forward(100)
-        drawing_turtle.right(120)
-elif num == 2:
-    for i in range(6):
-        drawing_turtle.forward(100)
-        drawing_turtle.right(60)
-else:
-    for i in range(36):
-        drawing_turtle.forward(5)
-        drawing_turtle.right(10)
-drawing_turtle.end_fill()
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
+
+
+def polygon(sides, length, turn):
+    for step in range(sides):
+        pen.forward(length)
+        pen.left(turn)
+
+
+def shape_parameters(choice):
+    if choice == 0:
+        return "square", 4, 45, 90
+    elif choice == 1:
+        return "triangle", 3, 58, 120
+    elif choice == 2:
+        return "hexagon", 6, 32, 60
+    else:
+        return "circle approximation", 36, 5, 10
+
+
+choice = random.randint(0, 3)
+name, sides, length, turn = shape_parameters(choice)
+place(-35, -40)
+pen.color("teal")
+pen.begin_fill()
+polygon(sides, length, turn)
+pen.end_fill()
+print("Selected:", choice, name)
+
+screen.update()
+print("Surprise Shape reference ready")
+turtle.done()

@@ -1,10 +1,5 @@
-# GrS2 Watermelon Slice
+# Watermelon Slice
 
-Canonical source repository: `Python-Level-1`
+Layer two halves of circles with the same center. Repeat an evenly spaced seed pattern.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run starter/main.py to work on the project or solution/main.py for the completed example. Both run in Turtle mode. The legacy Replit driver remains in solution/.

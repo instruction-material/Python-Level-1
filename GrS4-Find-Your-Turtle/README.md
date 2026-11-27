@@ -1,10 +1,5 @@
-# GrS4 Find Your Turtle
+# Find Your Turtle
 
-Canonical source repository: `Python-Level-1`
+Use strict signs to classify quadrants and check axes separately. Use or to detect either coordinate outside the review box.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Run starter/main.py to work on the project or solution/main.py for the completed example. Both run in Turtle mode. The legacy Replit driver remains in solution/.

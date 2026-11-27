@@ -1,5 +1,5 @@
-# GrS4 Find Your Turtle starter
+# Find Your Turtle starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Use strict signs to classify quadrants and check axes separately. Use or to detect either coordinate outside the review box.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+Open main.py in Turtle mode. Complete each TODO and run after each change.

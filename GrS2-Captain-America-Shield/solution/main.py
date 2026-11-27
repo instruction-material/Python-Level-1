@@ -1,60 +1,44 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(0)
-drawing_turtle.color("red")
 
-drawing_turtle.penup()
-drawing_turtle.goto(0, 195)
-drawing_turtle.pendown()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-drawing_turtle.begin_fill()
-for i in range(40):
-    drawing_turtle.forward(30)
-    drawing_turtle.right(9)
-drawing_turtle.end_fill()
 
-drawing_turtle.penup()
-drawing_turtle.goto(0, 165)
-drawing_turtle.pendown()
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
 
-drawing_turtle.color("light grey")
-drawing_turtle.begin_fill()
-for i in range(40):
-    drawing_turtle.forward(25)
-    drawing_turtle.right(9)
-drawing_turtle.end_fill()
 
-drawing_turtle.penup()
-drawing_turtle.goto(0, 135)
-drawing_turtle.pendown()
+def disk(x, y, radius, color):
+    place(x, y - radius)
+    pen.color(color)
+    pen.begin_fill()
+    pen.circle(radius)
+    pen.end_fill()
 
-drawing_turtle.color("red")
-drawing_turtle.begin_fill()
-for i in range(40):
-    drawing_turtle.forward(20)
-    drawing_turtle.right(9)
-drawing_turtle.end_fill()
 
-drawing_turtle.penup()
-drawing_turtle.goto(0, 105)
-drawing_turtle.pendown()
+def needle(direction, color):
+    place(0, 14)
+    pen.color(color)
+    pen.begin_fill()
+    pen.goto(61 * direction, 0)
+    pen.goto(0, -14)
+    pen.goto(0, 14)
+    pen.end_fill()
 
-drawing_turtle.color("blue")
-drawing_turtle.begin_fill()
-for i in range(40):
-    drawing_turtle.forward(15)
-    drawing_turtle.right(9)
-drawing_turtle.end_fill()
 
-drawing_turtle.penup()
-drawing_turtle.goto(-60, 35)
-drawing_turtle.pendown()
-drawing_turtle.color("white")
+disk(0, 0, 100, "midnightblue")
+disk(0, 0, 86, "wheat")
+disk(0, 0, 75, "darkslategray")
+for direction, color in [(1, "gold"), (-1, "turquoise")]:
+    needle(direction, color)
+disk(0, 0, 6, "wheat")
 
-# star will not appear filled in repl.it however should be filled in on the student's web portal
-drawing_turtle.begin_fill()
-for i in range(5):
-    drawing_turtle.forward(140)
-    drawing_turtle.right(144)
-drawing_turtle.end_fill()
+screen.update()
+print("Compass Badge reference ready")
+turtle.done()

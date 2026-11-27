@@ -1,30 +1,40 @@
-import turtle
 import random
+import turtle
 
-turtle.colormode(255)
-drawing_turtle = turtle.Turtle()
-drawing_turtle.penup()
 
-# set random color
-red_value = random.randint(0, 255)
-green_value = random.randint(0, 255)
-blue_value = random.randint(0, 255)
-drawing_turtle.color(red_value, green_value, blue_value)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-# set random side length
-side_length = random.randint(0, 200)
 
-# set random starting position
-x = random.randint(-300, 300)
-y = random.randint(-300, 300)
-drawing_turtle.goto(x, y)
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
 
-# draw square
-drawing_turtle.pendown()
-drawing_turtle.begin_fill()
-for i in range(4):
-    drawing_turtle.forward(side_length)
-    drawing_turtle.right(90)
-drawing_turtle.end_fill()
 
-drawing_turtle.penup()
+def polygon(sides, length, turn):
+    for step in range(sides):
+        pen.forward(length)
+        pen.left(turn)
+
+
+screen.colormode(255)
+x = random.randint(-125, 45)
+y = random.randint(-125, 45)
+side_length = random.randint(28, 80)
+red = random.randint(0, 255)
+green = random.randint(0, 255)
+blue = random.randint(0, 255)
+
+place(x, y)
+pen.color(red, green, blue)
+pen.begin_fill()
+polygon(4, side_length, 90)
+pen.end_fill()
+
+screen.update()
+print("Surprise Me Square reference ready")
+turtle.done()

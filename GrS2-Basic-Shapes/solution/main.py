@@ -1,25 +1,34 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
 
-drawing_turtle.pendown()
-drawing_turtle.color("blue")
-for i in range(4):
-    drawing_turtle.forward(100)
-    drawing_turtle.right(90)
-drawing_turtle.penup()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-drawing_turtle.goto(-150, 150)
-drawing_turtle.pendown()
-drawing_turtle.color("red")
-for i in range(3):
-    drawing_turtle.forward(100)
-    drawing_turtle.right(120)
-drawing_turtle.penup()
 
-drawing_turtle.goto(-150, -100)
-drawing_turtle.pendown()
-drawing_turtle.color("green")
-for i in range(36):
-    drawing_turtle.forward(10)
-    drawing_turtle.right(10)
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
+
+
+def polygon(sides, length, turn):
+    for step in range(sides):
+        pen.forward(length)
+        pen.left(turn)
+
+
+place(-40, -40)
+polygon(4, 80, 90)
+
+place(80, -40)
+polygon(3, 60, 120)
+
+place(-100, 40)
+pen.circle(30)
+
+screen.update()
+print("Basic Shapes reference ready")
+turtle.done()

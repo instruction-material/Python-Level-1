@@ -1,58 +1,48 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.pensize(10)
-drawing_turtle.speed(10)
 
-# rectangle for body
-drawing_turtle.color("yellow")
-drawing_turtle.penup()
-drawing_turtle.goto(-150, 0)
-drawing_turtle.pendown()
-drawing_turtle.begin_fill()
-for i in range(2):
-    drawing_turtle.forward(300)
-    drawing_turtle.right(90)
-    drawing_turtle.forward(60)
-    drawing_turtle.right(90)
-drawing_turtle.end_fill()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-# trapezoid for windows and roof
-drawing_turtle.penup()
-drawing_turtle.goto(-70, 0)
-drawing_turtle.pendown()
-drawing_turtle.setheading(45)
-drawing_turtle.forward(80)
-drawing_turtle.right(45)
-drawing_turtle.forward(80)
-drawing_turtle.right(45)
-drawing_turtle.forward(80)
 
-# line to seperate windows
-drawing_turtle.setheading(90)
-drawing_turtle.penup()
-drawing_turtle.goto(50, 10)
-drawing_turtle.pendown()
-drawing_turtle.forward(40)
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
 
-# tires
-drawing_turtle.penup()
-drawing_turtle.goto(-80, -60)
-drawing_turtle.pendown()
-drawing_turtle.color("black")
-drawing_turtle.begin_fill()
-for i in range(36):
-    drawing_turtle.forward(3)
-    drawing_turtle.right(10)
-drawing_turtle.end_fill()
 
-drawing_turtle.penup()
-drawing_turtle.goto(60, -60)
-drawing_turtle.pendown()
-drawing_turtle.begin_fill()
-for i in range(36):
-    drawing_turtle.forward(3)
-    drawing_turtle.right(10)
-drawing_turtle.end_fill()
+def disk(x, y, radius, color):
+    place(x, y - radius)
+    pen.color(color)
+    pen.begin_fill()
+    pen.circle(radius)
+    pen.end_fill()
 
-drawing_turtle.ht()
+
+def rectangle(x, y, width, height, color):
+    place(x, y)
+    pen.color(color)
+    pen.begin_fill()
+    for pair in range(2):
+        pen.forward(width)
+        pen.left(90)
+        pen.forward(height)
+        pen.left(90)
+    pen.end_fill()
+
+
+rectangle(-110, -38, 220, 48, "gold")
+rectangle(-58, 10, 116, 51, "gold")
+for x in (-47, 5):
+    rectangle(x, 21, 42, 29, "lightsteelblue")
+for x in (-65, 65):
+    disk(x, -36, 21, "black")
+    disk(x, -36, 7, "lightgray")
+rectangle(-18, 61, 36, 13, "black")
+
+screen.update()
+print("Taxi reference ready")
+turtle.done()

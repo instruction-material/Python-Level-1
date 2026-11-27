@@ -1,114 +1,48 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(1000)
 
-drawing_turtle.color("yellow")
-drawing_turtle.penup()
-drawing_turtle.goto(-100, -100)
-drawing_turtle.pendown()
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-drawing_turtle.begin_fill()
-drawing_turtle.forward(200)
-drawing_turtle.left(90)
-drawing_turtle.forward(200)
 
-for i in range(18):
-    drawing_turtle.forward(18)
-    drawing_turtle.left(10)
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
 
-drawing_turtle.forward(220)
-drawing_turtle.left(90)
-drawing_turtle.end_fill()
 
-drawing_turtle.color("black")
-drawing_turtle.penup()
-drawing_turtle.goto(-105, 115)
-drawing_turtle.pendown()
+def disk(x, y, radius, color):
+    place(x, y - radius)
+    pen.color(color)
+    pen.begin_fill()
+    pen.circle(radius)
+    pen.end_fill()
 
-drawing_turtle.begin_fill()
-for i in range(2):
-    drawing_turtle.forward(205)
-    drawing_turtle.right(90)
-    drawing_turtle.forward(20)
-    drawing_turtle.right(90)
-drawing_turtle.end_fill()
 
-drawing_turtle.color("silver")
-drawing_turtle.penup()
-drawing_turtle.goto(-60, 110)
-drawing_turtle.pendown()
+def rectangle(x, y, width, height, color):
+    place(x, y)
+    pen.color(color)
+    pen.begin_fill()
+    for pair in range(2):
+        pen.forward(width)
+        pen.left(90)
+        pen.forward(height)
+        pen.left(90)
+    pen.end_fill()
 
-drawing_turtle.right(90)
-drawing_turtle.begin_fill()
-for i in range(36):
-    drawing_turtle.forward(10)
-    drawing_turtle.left(10)
-drawing_turtle.end_fill()
 
-drawing_turtle.color("white")
-drawing_turtle.penup()
-drawing_turtle.goto(-38, 110)
-drawing_turtle.pendown()
+screen.bgcolor("lavender")
+rectangle(-84, -69, 168, 132, "steelblue")
+rectangle(-6, 63, 12, 27, "darkslategray")
+disk(0, 94, 10, "tomato")
+for x in (-45, 21):
+    rectangle(x, 15, 24, 19, "gold")
+for x in (-43, -21, 1, 23):
+    rectangle(x, -39, 12, 25, "midnightblue")
 
-drawing_turtle.begin_fill()
-for i in range(36):
-    drawing_turtle.forward(6)
-    drawing_turtle.left(10)
-drawing_turtle.end_fill()
-
-drawing_turtle.color("brown")
-drawing_turtle.penup()
-drawing_turtle.goto(-15, 110)
-drawing_turtle.pendown()
-
-drawing_turtle.begin_fill()
-for i in range(36):
-    drawing_turtle.forward(2)
-    drawing_turtle.left(10)
-drawing_turtle.end_fill()
-
-drawing_turtle.left(90)
-drawing_turtle.penup()
-drawing_turtle.goto(-105, -30)
-drawing_turtle.pendown()
-
-drawing_turtle.begin_fill()
-drawing_turtle.color("blue")
-drawing_turtle.forward(30)
-drawing_turtle.right(90)
-drawing_turtle.forward(50)
-drawing_turtle.left(90)
-drawing_turtle.forward(150)
-drawing_turtle.left(90)
-drawing_turtle.forward(50)
-drawing_turtle.right(90)
-drawing_turtle.forward(25)
-drawing_turtle.right(90)
-drawing_turtle.forward(70)
-drawing_turtle.right(90)
-drawing_turtle.forward(207)
-drawing_turtle.right(90)
-drawing_turtle.forward(70)
-drawing_turtle.end_fill()
-
-drawing_turtle.penup()
-drawing_turtle.goto(-30, 0)
-drawing_turtle.pendown()
-
-drawing_turtle.color("black")
-drawing_turtle.right(90)
-for i in range(18):
-    drawing_turtle.forward(6)
-    drawing_turtle.left(3)
-
-drawing_turtle.penup()
-drawing_turtle.goto(0, 210)
-
-drawing_turtle.setheading(0)
-drawing_turtle.pendown()
-
-for i in range(3):
-    drawing_turtle.left(45)
-    drawing_turtle.forward(70)
-    drawing_turtle.backward(70)
+screen.update()
+print("Robot Portrait reference ready")
+turtle.done()

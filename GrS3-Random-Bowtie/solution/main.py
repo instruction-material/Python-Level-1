@@ -1,38 +1,38 @@
-import turtle
 import random
+import turtle
 
-turtle.colormode(255)
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10000)
 screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-# set random background color
-red_value = random.randint(0, 255)
-green_value = random.randint(0, 255)
-blue_value = random.randint(0, 255)
-screen.bgcolor(red_value, green_value, blue_value)
 
-# draw right half of bowtie
-drawing_turtle.left(30)
-red_value = random.randint(0, 255)
-green_value = random.randint(0, 255)
-blue_value = random.randint(0, 255)
-drawing_turtle.color(red_value, green_value, blue_value)
-drawing_turtle.begin_fill()
-for i in range(3):
-    drawing_turtle.forward(80)
-    drawing_turtle.right(120)
-drawing_turtle.end_fill()
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
 
-# draw left half of bowtie
-drawing_turtle.right(180)
-red_value = random.randint(0, 255)
-green_value = random.randint(0, 255)
-blue_value = random.randint(0, 255)
-drawing_turtle.color(red_value, green_value, blue_value)
-drawing_turtle.begin_fill()
-for i in range(3):
-    drawing_turtle.forward(80)
-    drawing_turtle.right(120)
-drawing_turtle.end_fill()
+
+def polygon(sides, length, turn):
+    for step in range(sides):
+        pen.forward(length)
+        pen.left(turn)
+
+
+screen.colormode(255)
+sky = (random.randint(175, 255), random.randint(175, 255), random.randint(175, 255))
+screen.bgcolor(*sky)
+side_length = random.randint(45, 100)
+
+for heading, color in [(-30, "teal"), (150, "darkviolet")]:
+    place(0, 0, heading)
+    pen.color(color)
+    pen.begin_fill()
+    polygon(3, side_length, 120)
+    pen.end_fill()
+
+screen.update()
+print("Random Bowtie reference ready")
+turtle.done()

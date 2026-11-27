@@ -1,36 +1,40 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(5)
 
 screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
+
+
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
+
+
+def polygon(sides, length, turn):
+    for step in range(sides):
+        pen.forward(length)
+        pen.left(turn)
+
+
 screen.bgcolor("black")
+place(-154, -50)
+pen.color("magenta")
+polygon(6, 32, 60)
 
-drawing_turtle.pendown()
-drawing_turtle.color("magenta")
-drawing_turtle.begin_fill()
-for i in range(6):
-    drawing_turtle.forward(100)
-    drawing_turtle.right(60)
-drawing_turtle.end_fill()
-drawing_turtle.penup()
+place(-35, -50)
+pen.color("violet")
+polygon(10, 20, 36)
 
-drawing_turtle.goto(100, 200)
-drawing_turtle.pendown()
-drawing_turtle.color("purple")
-drawing_turtle.begin_fill()
-for i in range(10):
-    drawing_turtle.forward(30)
-    drawing_turtle.right(36)
-drawing_turtle.end_fill()
-drawing_turtle.penup()
+place(83, 20)
+pen.color("turquoise")
+pen.begin_fill()
+polygon(5, 84, 144)
+pen.end_fill()
 
-# star will not appear filled in repl.it however should be filled in on the student's web portal
-drawing_turtle.goto(-150, 150)
-drawing_turtle.pendown()
-drawing_turtle.color("teal")
-drawing_turtle.begin_fill()
-for i in range(5):
-    drawing_turtle.forward(50)
-    drawing_turtle.right(144)
-drawing_turtle.end_fill()
+screen.update()
+print("More Shapes reference ready")
+turtle.done()

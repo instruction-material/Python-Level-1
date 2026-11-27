@@ -1,70 +1,42 @@
 import turtle
 
-drawing_turtle = turtle.Turtle()
-drawing_turtle.speed(10000)
 
-# draw the outer green layer
-drawing_turtle.penup()
-drawing_turtle.goto(-200, 0)
-drawing_turtle.pendown()
-drawing_turtle.color("green")
-drawing_turtle.begin_fill()
-drawing_turtle.forward(400)
-drawing_turtle.right(90)
+screen = turtle.Screen()
+screen.tracer(0)
+pen = turtle.Turtle()
+pen.speed(0)
 
-for i in range(37):
-    drawing_turtle.forward(17.5)
-    drawing_turtle.right(5)
 
-drawing_turtle.end_fill()
+def place(x, y, heading=0):
+    pen.penup()
+    pen.goto(x, y)
+    pen.setheading(heading)
+    pen.pendown()
 
-# draw the inner pink layer
-drawing_turtle.penup()
-drawing_turtle.right(85)
-drawing_turtle.forward(50)
-drawing_turtle.pendown()
-drawing_turtle.color("pink")
-drawing_turtle.begin_fill()
-drawing_turtle.forward(300)
-drawing_turtle.right(90)
 
-for i in range(37):
-    drawing_turtle.forward(13)
-    drawing_turtle.right(5)
+def disk(x, y, radius, color):
+    place(x, y - radius)
+    pen.color(color)
+    pen.begin_fill()
+    pen.circle(radius)
+    pen.end_fill()
 
-drawing_turtle.end_fill()
 
-# draw seeds
+def half_disk(radius, color):
+    place(-radius, 0, -90)
+    pen.color(color)
+    pen.begin_fill()
+    pen.circle(radius, 180)
+    pen.setheading(180)
+    pen.forward(2 * radius)
+    pen.end_fill()
 
-drawing_turtle.penup()
-drawing_turtle.goto(80, -40)
-drawing_turtle.pendown()
-drawing_turtle.color("black")
-drawing_turtle.begin_fill()
 
-for i in range(36):
-    drawing_turtle.forward(1)
-    drawing_turtle.right(10)
-drawing_turtle.end_fill()
+half_disk(100, "forestgreen")
+half_disk(87, "salmon")
+for x in (-48, -24, 0, 24, 48):
+    disk(x, -28, 3, "black")
 
-drawing_turtle.penup()
-drawing_turtle.goto(-10, -100)
-drawing_turtle.pendown()
-drawing_turtle.color("black")
-drawing_turtle.begin_fill()
-
-for i in range(36):
-    drawing_turtle.forward(1)
-    drawing_turtle.right(10)
-drawing_turtle.end_fill()
-
-drawing_turtle.penup()
-drawing_turtle.goto(-90, -30)
-drawing_turtle.pendown()
-drawing_turtle.color("black")
-drawing_turtle.begin_fill()
-
-for i in range(36):
-    drawing_turtle.forward(1)
-    drawing_turtle.right(10)
-drawing_turtle.end_fill()
+screen.update()
+print("Watermelon Slice reference ready")
+turtle.done()
