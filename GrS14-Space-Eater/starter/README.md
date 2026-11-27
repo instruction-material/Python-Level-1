@@ -1,5 +1,5 @@
-# GrS14 Space Eater starter
+# Space Eater starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Steer with Left and Right to collect ten targets before time runs out. Press R to replay.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+The starter includes the board, motion, countdown and replay. Complete hit detection, scoring and target relocation. Run main.py in Turtle mode.

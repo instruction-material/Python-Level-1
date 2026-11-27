@@ -1,0 +1,92 @@
+# Original activity: https://app.junilearning.com/juniverse/projects/65e2318a8a9896d5deae7712
+
+import random
+import turtle
+
+
+screen = turtle.Screen()
+screen.tracer(0)
+arena = 200
+lives = 10
+
+
+def draw_border(color):
+    border = turtle.Turtle(visible=False)
+    border.color(color)
+    border.penup()
+    border.goto(-arena, arena)
+    border.pendown()
+    for side in range(4):
+        border.forward(2 * arena)
+        border.right(90)
+
+
+draw_border("black")
+player = turtle.Turtle("turtle")
+player.penup()
+writer = turtle.Turtle(visible=False)
+writer.penup()
+writer.goto(-arena, arena + 10)
+
+balls = []
+for index in range(10):
+    ball = turtle.Turtle("circle")
+    ball.color("red")
+    ball.penup()
+    ball.goto(random.randint(-180, 180), random.randint(-180, 180))
+    ball.setheading(random.randint(0, 359))
+    balls.append(ball)
+
+
+def reflect_at_walls(actor):
+    if actor.xcor() > arena or actor.xcor() < -arena:
+        actor.setx(max(-arena, min(arena, actor.xcor())))
+        actor.setheading(180 - actor.heading())
+    if actor.ycor() > arena or actor.ycor() < -arena:
+        actor.sety(max(-arena, min(arena, actor.ycor())))
+        actor.setheading(-actor.heading())
+
+
+def touching(first, second):
+    # TODO: Compare both absolute coordinate differences to the hitbox limit.
+    return False
+
+
+def turn_left():
+    player.left(10)
+
+
+def turn_right():
+    player.right(10)
+
+
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
+screen.listen()
+
+
+def advance():
+    global lives
+    player.forward(6)
+    reflect_at_walls(player)
+    for ball in balls:
+        ball.forward(6)
+        reflect_at_walls(ball)
+
+    # TODO: Check for contact after moving all balls. On the first hit,
+    # subtract one life, move the player to the center, and stop checking.
+
+    writer.clear()
+    if lives > 0:
+        writer.write(f"Lives: {lives}")
+        screen.ontimer(advance, 25)
+    else:
+        writer.write("Game over")
+    screen.update()
+
+
+writer.write(f"Lives: {lives}")
+screen.update()
+screen.ontimer(advance, 25)
+print("Dodgeball workspace ready")
+turtle.done()

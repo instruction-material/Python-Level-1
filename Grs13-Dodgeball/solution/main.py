@@ -1,90 +1,97 @@
-# Try this project in the Juniverse! https://app.junilearning.com/juniverse/projects/65e2318a8a9896d5deae7712
+# Original activity: https://app.junilearning.com/juniverse/projects/65e2318a8a9896d5deae7712
 
-import turtle
 import random
+import turtle
 
-# create screen object
+
 screen = turtle.Screen()
-# disable screen updates
 screen.tracer(0)
+arena = 200
+lives = 10
 
-# draw the boundary box
-box_drawer = turtle.Turtle()
-box_drawer.speed(10)
-box_drawer.penup()
-box_drawer.goto(-200, 200)
-box_drawer.pendown()
-for i in range(4):
-    box_drawer.forward(400)
-    box_drawer.right(90)
-box_drawer.ht()
+
+def draw_border(color):
+    border = turtle.Turtle(visible=False)
+    border.color(color)
+    border.penup()
+    border.goto(-arena, arena)
+    border.pendown()
+    for side in range(4):
+        border.forward(2 * arena)
+        border.right(90)
+
+
+draw_border("black")
+player = turtle.Turtle("turtle")
+player.penup()
+writer = turtle.Turtle(visible=False)
+writer.penup()
+writer.goto(-arena, arena + 10)
 
 balls = []
-for i in range(10):
-    drawing_turtle = turtle.Turtle()
-    drawing_turtle.penup()
-    drawing_turtle.speed(1000)
-    drawing_turtle.color("red")
-    drawing_turtle.shape("circle")
-    drawing_turtle.goto(random.randint(-200, 200), random.randint(-200, 200))
-    drawing_turtle.right(random.randint(0, 360))
-    balls.append(drawing_turtle)
-
-# add a player
-player = turtle.Turtle()
-player.shape("turtle")
-player.penup()
-
-# start with 10 lives
-lives = 10
-# display lives
-lives_writer = turtle.Turtle()
-lives_writer.penup()
-lives_writer.goto(-200, 210)
-lives_writer.write("Lives: " + str(lives))
+for index in range(10):
+    ball = turtle.Turtle("circle")
+    ball.color("red")
+    ball.penup()
+    ball.goto(random.randint(-180, 180), random.randint(-180, 180))
+    ball.setheading(random.randint(0, 359))
+    balls.append(ball)
 
 
-def check_collision(ball):
-    if ball.xcor() > 200 or ball.xcor() < -200:
-        ball.right(180)
-    elif ball.ycor() > 200 or ball.ycor() < -200:
-        ball.right(180)
+def reflect_at_walls(actor):
+    if actor.xcor() > arena or actor.xcor() < -arena:
+        actor.setx(max(-arena, min(arena, actor.xcor())))
+        actor.setheading(180 - actor.heading())
+    if actor.ycor() > arena or actor.ycor() < -arena:
+        actor.sety(max(-arena, min(arena, actor.ycor())))
+        actor.setheading(-actor.heading())
 
 
-# motion commands for player
-def left():
+def touching(first, second):
+    return (
+        abs(first.xcor() - second.xcor()) < 10
+        and abs(first.ycor() - second.ycor()) < 10
+    )
+
+
+def turn_left():
     player.left(10)
 
 
-def right():
+def turn_right():
     player.right(10)
 
 
-screen.onkey(left, "Left")
-screen.onkey(right, "Right")
+screen.onkey(turn_left, "Left")
+screen.onkey(turn_right, "Right")
 screen.listen()
 
-while lives > 0:
-    player.forward(10)
-    check_collision(player)
+
+def advance():
+    global lives
+    player.forward(6)
+    reflect_at_walls(player)
     for ball in balls:
-        check_collision(ball)
-        # check for collision between player and ball
-        if (
-            abs(ball.xcor() - player.xcor()) < 10
-            and abs(ball.ycor() - player.ycor()) < 10
-        ):
+        ball.forward(6)
+        reflect_at_walls(ball)
+
+    for ball in balls:
+        if touching(player, ball):
             lives -= 1
-            lives_writer.clear()
-            lives_writer.write("Lives: " + str(lives))
-            player.goto(random.randint(-200, 200), random.randint(-200, 200))
-        ball.forward(10)
-        screen.update()
+            player.goto(0, 0)
+            break
 
-# after the player loses all lives, display game over
-lives_writer.goto(0, 0)
-lives_writer.write("GAME OVER!")
+    writer.clear()
+    if lives > 0:
+        writer.write(f"Lives: {lives}")
+        screen.ontimer(advance, 25)
+    else:
+        writer.write("Game over")
+    screen.update()
+
+
+writer.write(f"Lives: {lives}")
 screen.update()
-
-# for repl.it projects only: keep the window open
-turtle.mainloop()
+screen.ontimer(advance, 25)
+print("Dodgeball running")
+turtle.done()

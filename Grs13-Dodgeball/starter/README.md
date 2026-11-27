@@ -1,5 +1,5 @@
-# Grs13 Dodgeball starter
+# Dodgeball starter
 
-This `starter/` directory is intentionally present for wrapper consistency in `Python-Level-1`.
+Steer with Left and Right to dodge the bouncing balls.
 
-The migrated legacy files for this project currently live under `solution/`. Add a distinct `starter/` implementation here when the course source is split into separate starter and solution snapshots.
+The starter moves the player and balls and draws the lives display. Complete the hitbox and damage rules. Run main.py in Turtle mode.

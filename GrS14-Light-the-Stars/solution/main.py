@@ -1,30 +1,51 @@
-import turtle
 import random
+import turtle
 
-turtle.colormode(255.0)
-
-# set up player turtle and screen
-player = turtle.Turtle()
-player.speed(10000)
-player.shape("turtle")
-player.color("white")
-player.penup()
 
 screen = turtle.Screen()
+screen.tracer(0)
+screen.colormode(255)
+arena = 190
+frames_left = 1650
+screen.bgcolor(195, 20, 50)
+player = turtle.Turtle("turtle")
+player.color("white")
+player.penup()
+status = turtle.Turtle(visible=False)
+status.color("white")
+status.penup()
+status.goto(-arena, arena + 10)
 
-# set up the stars to be lit
-stars = []
-for i in range(10):
-    star = turtle.Turtle()
-    star.speed(10000)
+unlit = []
+for index in range(10):
+    star = turtle.Turtle("circle")
     star.color("white")
     star.penup()
-    star.goto(random.randint(-250, 250), random.randint(-250, 250))
-    star.shape("circle")
-    stars.append(star)
+    star.goto(random.randint(-175, 175), random.randint(-175, 175))
+    unlit.append(star)
 
 
-# set up event listeners for controlling the player
+def show_status(message):
+    status.clear()
+    status.write(message)
+
+
+def reflect_at_walls(actor):
+    if actor.xcor() > arena or actor.xcor() < -arena:
+        actor.setx(max(-arena, min(arena, actor.xcor())))
+        actor.setheading(180 - actor.heading())
+    if actor.ycor() > arena or actor.ycor() < -arena:
+        actor.sety(max(-arena, min(arena, actor.ycor())))
+        actor.setheading(-actor.heading())
+
+
+def touching(first, second):
+    return (
+        abs(first.xcor() - second.xcor()) < 10
+        and abs(first.ycor() - second.ycor()) < 10
+    )
+
+
 def turn_left():
     player.left(10)
 
@@ -38,54 +59,28 @@ screen.onkey(turn_right, "Right")
 screen.listen()
 
 
-# lightStar() draws a star wherever we light one
-def light_star():
-    player.pendown()
-    player.color("yellow")
-    player.begin_fill()
-    for i in range(5):
-        player.forward(30)
-        player.right(144)
-    player.end_fill()
-    player.color("white")
-    player.penup()
+def advance():
+    global frames_left
+    player.forward(2)
+    reflect_at_walls(player)
+    for star in unlit[:]:
+        if touching(player, star):
+            star.color("yellow")
+            unlit.remove(star)
+
+    frames_left -= 1
+    red = 30 + frames_left // 10
+    screen.bgcolor(red, 20, 50)
+    if not unlit:
+        show_status("All stars lit!")
+    elif frames_left == 0:
+        show_status("Time is up!")
+    else:
+        show_status(f"Stars lit: {10 - len(unlit)} / 10")
+        screen.ontimer(advance, 20)
+    screen.update()
 
 
-# main loop
-# note: for the sunset:
-# startColor = rgb(195, 20, 50)
-# endColor = rgb(60, 20, 50)
-
-r = 195
-g = 20
-b = 50
-num_stars_lit = 0
-
-while True:
-    # move player
-    player.forward(1)
-
-    # update background color
-    # Will need to introduce how to round r into whole number for our background
-    screen.bgcolor(int(r), g, b)
-    r -= 0.1
-
-    # check if we have reached sunset
-    if r < 30:
-        player.write("Time's up! Game over!")
-        break
-
-    # check for collision with a star
-    for star in stars:
-        if (
-            abs(player.xcor() - star.xcor()) < 10
-            and abs(player.ycor() - star.ycor()) < 10
-        ):
-            light_star()
-            star.goto(500, 500)  # move the star offscreen
-            num_stars_lit += 1
-
-    # check for win condition
-    if num_stars_lit == 10:
-        player.write("I win!")
-        break
+advance()
+print("Light the Stars running")
+turtle.done()

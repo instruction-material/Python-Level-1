@@ -1,10 +1,5 @@
-# Grs13 Dodgeball
+# Dodgeball
 
-Canonical source repository: `Python-Level-1`
+Steer with Left and Right to dodge the bouncing balls.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
-
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+Use starter/main.py for the project and solution/main.py for the working reference. Both run in Turtle mode.

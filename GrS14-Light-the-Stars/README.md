@@ -1,10 +1,7 @@
-# GrS14 Light the Stars
+# Light the Stars
 
-Canonical source repository: `Python-Level-1`
+Light the ten stars before the sky darkens. Steer with Left and Right.
 
-This project was migrated from the legacy direct-source layout on 2026-05-14. The original files are preserved under `solution/` as the current solution/reference snapshot.
+Use starter/main.py for the project and solution/main.py for the working reference. Both run in Turtle mode.
 
-## Structure
-
-- `solution/` contains the migrated source files.
-- `starter/` is present to keep the course wrapper shape consistent; add a distinct starter snapshot there when one is available.
+The legacy Replit driver remains in solution/ for archival use. Run main.py directly.

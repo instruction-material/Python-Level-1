@@ -1,87 +1,132 @@
-import turtle
 import random
+import turtle
+
+
+arena = 200
+winning_score = 10
+round_frames = 1600
+score = 0
+frames_left = round_frames
+playing = True
 
 screen = turtle.Screen()
 screen.bgcolor("black")
+screen.tracer(0)
 
-# draw the boundary box
-box_drawer = turtle.Turtle()
-box_drawer.speed(10)
-box_drawer.color("red")
-box_drawer.penup()
-box_drawer.goto(-200, 200)
-box_drawer.pendown()
-for i in range(4):
-    box_drawer.forward(400)
-    box_drawer.right(90)
-box_drawer.penup()
 
-# create player turtle
-player = turtle.Turtle()
-player.color("blue")
-player.shape("turtle")
+def draw_border(color):
+    border = turtle.Turtle(visible=False)
+    border.color(color)
+    border.penup()
+    border.goto(-arena, arena)
+    border.pendown()
+    for side in range(4):
+        border.forward(2 * arena)
+        border.right(90)
+
+
+draw_border("red")
+player = turtle.Turtle("turtle")
+player.color("deepskyblue")
 player.penup()
+scoreboard = turtle.Turtle(visible=False)
+scoreboard.color("white")
+scoreboard.penup()
+scoreboard.goto(-arena, arena + 10)
 
-# write score
-score = 0
-score_turtle = turtle.Turtle()
-score_turtle.penup()
-score_turtle.color("white")
-score_turtle.goto(-200, 210)
-score_turtle.write("Score: 0")
-
-# create targets
 targets = []
-for i in range(10):
-    targets.append(turtle.Turtle())
-    targets[i].color("red")
-    targets[i].shape("circle")
-    targets[i].penup()
-    targets[i].speed(0)
-    targets[i].setposition(random.randint(-190, 190), random.randint(-190, 190))
-    targets[i].right(random.randint(0, 360))
+for index in range(10):
+    target = turtle.Turtle("circle")
+    target.color("red")
+    target.penup()
+    targets.append(target)
 
 
-# create functions for keyboard events
+def place_target(target):
+    target.goto(random.randint(-180, 180), random.randint(-180, 180))
+    target.setheading(random.randint(0, 359))
+
+
+def show_status(message):
+    scoreboard.clear()
+    scoreboard.write(message)
+
+
+def reset_round():
+    global score, frames_left, playing
+    score = 0
+    frames_left = round_frames
+    playing = True
+    player.goto(0, 0)
+    player.setheading(0)
+    for target in targets:
+        place_target(target)
+    show_status(f"Score: {score} / {winning_score}")
+    screen.update()
+
+
+def reflect_at_walls(actor):
+    if actor.xcor() > arena or actor.xcor() < -arena:
+        actor.setx(max(-arena, min(arena, actor.xcor())))
+        actor.setheading(180 - actor.heading())
+    if actor.ycor() > arena or actor.ycor() < -arena:
+        actor.sety(max(-arena, min(arena, actor.ycor())))
+        actor.setheading(-actor.heading())
+
+
+def touching(first, second):
+    return (
+        abs(first.xcor() - second.xcor()) < 10
+        and abs(first.ycor() - second.ycor()) < 10
+    )
+
+
 def turn_left():
-    player.left(30)
+    player.left(10)
 
 
 def turn_right():
-    player.right(30)
+    player.right(10)
 
 
-# bind keyboard events to screen
 screen.onkey(turn_left, "Left")
 screen.onkey(turn_right, "Right")
 screen.listen()
 
-# main loop for game
-while True:
-    player.forward(10)
 
-    # check for collisions with boundary
-    if player.xcor() > 190 or player.xcor() < -190:
-        player.right(180)
-    elif player.ycor() > 190 or player.ycor() < -190:
-        player.right(180)
+screen.onkey(reset_round, "r")
 
-    for target in targets:
-        target.forward(1)
 
-        # check for collisions with boundary
-        if target.xcor() > 190 or target.xcor() < -190:
-            target.right(180)
-        elif target.ycor() > 190 or target.ycor() < -190:
-            target.right(180)
+def advance():
+    global score, frames_left, playing
+    if playing:
+        player.forward(6)
+        reflect_at_walls(player)
+        for target in targets:
+            target.forward(2)
+            reflect_at_walls(target)
+            if touching(player, target):
+                score += 1
+                place_target(target)
+                if score == winning_score:
+                    break
 
-        # check for player/target collisions
-        if (
-            abs(player.xcor() - target.xcor()) < 10
-            and abs(player.ycor() - target.ycor()) < 10
-        ):
-            target.goto(random.randint(-200, 200), random.randint(-200, 200))
-            target.right(random.randint(0, 360))
-            score += 1
-            score_turtle.clear()
-            score_turtle.write("Score: " + str(score))
+        frames_left -= 1
+        if score == winning_score:
+            playing = False
+            show_status("You win! Press R to replay.")
+        elif frames_left == 0:
+            playing = False
+            show_status("Time is up. Press R to replay.")
+        else:
+            show_status(f"Score: {score} / {winning_score}")
+        screen.update()
+
+    # Keep one timer chain. Resetting the round never creates a second timer.
+    screen.ontimer(advance, 25)
+
+
+reset_round()
+screen.ontimer(advance, 25)
+print("Space Eater running")
+turtle.done()
