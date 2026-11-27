@@ -36,20 +36,43 @@ pen.shape("turtle")
 pen.color("forestgreen")
 
 
-def move_to_line(step):
+writer = turtle.Turtle(visible=False)
+writer.penup()
+writer.color("black")
+
+
+def walk_positions(start, step):
     if step <= 0:
         raise ValueError("Step must be positive.")
-    pen.setheading(0)
-    moves = 0
-    while pen.xcor() < 0:
-        pen.forward(min(step, -pen.xcor()))
-        moves += 1
-    return moves
+    positions = []
+    x = start
+    while x < 0:
+        x += min(step, -x)
+        positions.append(x)
+    return positions
 
 
-moves = move_to_line(5)
-print("Moves:", moves, "Final x:", round(pen.xcor()))
+def show_position(x):
+    pen.goto(x, 0)
+    writer.clear()
+    writer.goto(x, -23)
+    writer.write(x, align="center", font=("Arial", 11, "normal"))
+    screen.update()
 
-screen.update()
+
+positions = walk_positions(-150, 5)
+
+
+def show_next(index):
+    show_position(positions[index])
+    if index + 1 < len(positions):
+        screen.ontimer(lambda: show_next(index + 1), 45)
+
+
+show_position(-150)
+if positions:
+    screen.ontimer(lambda: show_next(0), 45)
+print("Moves:", len(positions))
+
 print("While Loops Exploration reference ready")
 turtle.done()
